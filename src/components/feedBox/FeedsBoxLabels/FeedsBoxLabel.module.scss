@@ -1,0 +1,14 @@
+.Container {
+  flex: 1;
+  .labelItems {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    padding-bottom: 24px;
+  }
+  .LabelBoxTitle {
+    margin-bottom: 20px;
+  }
+}

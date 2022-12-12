@@ -1,0 +1,41 @@
+.feedItem {
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 10px;
+  }
+  .bookmarkImg {
+    color: rgb(117, 117, 117);
+  }
+
+  .footerRight {
+    display: flex;
+    gap: 20px;
+    color: rgb(117, 117, 117);
+    font-weight: 100;
+    .label {
+      background-color: rgb(242, 242, 242);
+      color: rgb(117, 117, 117);
+      border-radius: 100px;
+      padding: 2px 8px;
+      line-height: 2;
+      letter-spacing: 0.3px;
+    }
+  }
+
+  display: flex;
+  margin-bottom: 55px;
+  h2 {
+    color: rgb(41, 41, 41);
+    margin-bottom: 5px;
+  }
+  h3 {
+    color: rgb(117, 117, 117);
+    font-weight: 300;
+    margin-bottom: 15px;
+  }
+
+  .feedDes {
+    margin-left: 36px;
+  }
+}

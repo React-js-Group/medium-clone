@@ -1,0 +1,49 @@
+@import "../src/sass/_variables.scss";
+
+@font-face {
+  font-family: "BYekan";
+  src: url("../public/fonts/BYekan.woff");
+  src: url("../public/fonts/Yekan.woff2");
+  src: url("../public/fonts/BYekan.ttf");
+  font-weight: 400;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: BYekan, sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}

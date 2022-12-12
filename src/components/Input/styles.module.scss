@@ -1,0 +1,42 @@
+@import "../../sass/_variables.scss";
+
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  width: 15rem;
+  max-width: 15rem;
+  position: relative;
+}
+
+.label {
+  font-weight: 400;
+  text-align: right;
+  font-size: 14px;
+  padding: 8px 0;
+  color: $dark-500;
+}
+
+.input {
+  border: 1px solid $secondary-500;
+  outline: 0;
+  padding: 7px 10px;
+  border-radius: 5px;
+  font-family: inherit;
+  padding-left: 30px;
+}
+
+.input::placeholder {
+  color: $secondary-600;
+}
+
+.input:focus {
+  border: 1px solid orange;
+}
+
+.icon {
+  position: absolute;
+  left: 4px;
+  top: 45px;
+  font-size: 20px;
+  color: $secondary-500;
+}

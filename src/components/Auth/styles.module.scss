@@ -1,0 +1,46 @@
+@import "../../sass/_variables.scss";
+
+.container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 80%;
+  max-width: 40rem;
+  height: 90%;
+  max-height: 40rem;
+  overflow-y: scroll;
+  background-color: $white;
+  box-shadow: 2px 3px 8px #30303033;
+  border-radius: 8px;
+  position: absolute;
+  top: 30px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.title {
+  color: $dark-500;
+  padding: 1rem 0;
+}
+
+.form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.selectForm {
+  font-size: 14px;
+  margin: 1rem 0;
+  span {
+    color: $success;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+}
