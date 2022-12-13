@@ -1,0 +1,132 @@
+@import "../../../sass/variables";
+@import "../../../sass/_animations.scss";
+
+.container {
+  width: 35rem;
+  margin: auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+
+  & div {
+    display: flex;
+    align-items: center;
+    width: 80%;
+  }
+
+  & div input {
+    display: flex;
+    padding: 1.5rem;
+    border: none;
+    font-size: 2rem;
+    width: 90%;
+
+    &::placeholder {
+      color: $secondary-500;
+    }
+
+    &:focus {
+      border: 0;
+      outline: 0;
+    }
+  }
+  & div:last-child {
+    display: flex;
+    & input {
+      padding: 1.2rem;
+      border: none;
+      font-size: 1.3rem;
+    }
+    &:focus {
+      border: 0;
+      outline: 0;
+    }
+  }
+
+  @media screen and (max-width: $sm) {
+    align-items: center;
+    width: 100%;
+  }
+}
+
+.Plus {
+  font-size: 30px;
+  position: relative;
+  right: -25px;
+  cursor: pointer;
+  color: $dark-500;
+  transition: rotate 0.5s ease;
+  top: 60px;
+
+  @media screen and (max-width: $sm) {
+    right: -45%;
+  }
+}
+
+.plusPosition {
+  top: -60px;
+}
+
+.rotate {
+  transition: transform 0.2s ease;
+  transform: rotateZ(45deg);
+}
+
+.rotateBack {
+  transition: transform 0.2s ease;
+  transform: rotateZ(0);
+}
+
+.Options {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  right: 15px;
+  padding: 8px;
+  width: 15rem;
+  background-color: $white;
+  top: 120px;
+
+  @media screen and (max-width: $sm) {
+    right: 45px;
+  }
+}
+
+.optionsTitle {
+  top: 0;
+}
+
+.showOptions {
+  display: flex;
+}
+
+.option {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  margin: 0 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  color: $success;
+  border: 1px solid $success;
+  cursor: pointer;
+  &:nth-child(1) {
+    animation: $option 0.1s linear both;
+  }
+  &:nth-child(2) {
+    animation: $option 0.2s linear both;
+  }
+  &:nth-child(3) {
+    animation: $option 0.3s linear both;
+  }
+  &:nth-child(4) {
+    animation: $option 0.2s linear both;
+  }
+  &:nth-child(5) {
+    animation: $option 0.1s linear both;
+  }
+}
