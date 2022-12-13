@@ -6,20 +6,20 @@ interface ButtonProps {
   content: string;
   type: "submit" | "reset" | "button" | undefined;
   onClick: () => void;
-  color?: string;
+  style?: {};
 }
 
 const Button: React.FC<ButtonProps> = ({
   content,
   onClick,
-  color,
   type,
+  style,
 }): JSX.Element => {
   return (
     <button
       type={type}
       className={styles.button}
-      style={{ background: color }}
+      style={style}
       onClick={onClick}
     >
       {content}
