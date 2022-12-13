@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 52px;
+  margin-bottom: 48px;
+
+  .newListBtn {
+    border-color: rgb(26, 137, 23);
+    background: rgb(26, 137, 23);
+    padding: 7px 19px 7px;
+    border-radius: 30px;
+    border: 0px;
+    color: white;
+    line-height: 0px;
+    font-weight: 800;
+    line-height: 32px !important;
+    cursor: pointer;
+  }
+}
