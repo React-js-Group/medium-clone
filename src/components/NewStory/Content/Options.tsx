@@ -24,6 +24,7 @@ const Options: React.FC<OptionsProps> = ({
     >
       <li className={styles.option}>
         <GoFileMedia />
+        <input type="file" />
       </li>
       <li className={styles.option}>
         <FaUnsplash />
