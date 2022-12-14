@@ -1,7 +1,9 @@
 import React from "react";
 import Head from "next/head";
 import Page from "components/layout/page/page";
-import BookMark from "components/bookmark/BookMark";
+
+import Layout from "layout/Layout";
+import BookMarkBody from "components/bookmark/BookMarkBody/BookMarkBody";
 
 const Home: React.FC = (): JSX.Element => {
   return (
@@ -14,7 +16,11 @@ const Home: React.FC = (): JSX.Element => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <BookMark />
+      <Layout>
+        <Page sideBar="BookMark">
+          <BookMarkBody />
+        </Page>
+      </Layout>
     </div>
   );
 };

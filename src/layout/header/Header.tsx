@@ -26,12 +26,7 @@ const Header = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <HeaderTop scroll={scroll} />
-      </div>
-      <div className={styles.headerMain}>
-        <HeaderMain />
-      </div>
+      <HeaderTop scroll={scroll} />
     </div>
   );
 };

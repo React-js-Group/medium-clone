@@ -1,20 +1,21 @@
 import Footer from "./footer/Footer";
-import Header from './header/Header';
-import React from 'react';
-import MainTest from './MainTest';
-import BlogsTest from './BlogsTest';
+import Header from "./header/Header";
+import React from "react";
+import MainTest from "./MainTest";
+import BlogsTest from "./BlogsTest";
+import HeaderTop from "./header/HeaderTop";
 
-const Layout = () => {
-    return (
-        <div>
-            <Header/>
-            <MainTest/>
-            <div style={{display:"flex",padding:"20px 80px"}} >
-            <BlogsTest/>
-            <Footer/>
-            </div>
-        </div>
-    );
+const Layout = ({ children }) => {
+  return (
+    <div>
+      <HeaderTop />
+      {/* <MainTest /> */}
+
+      {/* <BlogsTest /> */}
+      {children}
+      <Footer />
+    </div>
+  );
 };
 
 export default Layout;
