@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { toggle } from "store/fetchers/authSlice";
 
 import Login from "./Login";
 import Register from "./Register";
@@ -7,12 +10,12 @@ import styles from "./styles.module.scss";
 
 const Auth: React.FC = (): JSX.Element => {
   const [currentFrom, setCurrentForm] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.title}>
-        {currentFrom ? "به وبلاگ ملحق شو" : "ورود"}
-      </h3>
+      <FaTimes className={styles.times} onClick={() => dispatch(toggle())} />
+      <h3 className={styles.title}>{currentFrom ? "ثبت نام" : "ورود"}</h3>
       {currentFrom ? (
         <Register currentFrom={currentFrom} />
       ) : (

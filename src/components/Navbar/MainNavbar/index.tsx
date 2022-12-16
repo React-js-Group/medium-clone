@@ -1,11 +1,16 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import { useDispatch } from "react-redux";
+import { toggle } from "store/fetchers/authSlice";
 
-interface scrollProps {
+import styles from "../styles.module.scss";
+
+interface MainNavbarProps {
   scroll: boolean;
 }
 
-const HeaderTop: React.FC<scrollProps> = ({ scroll }) => {
+const MainNavbar: React.FC<MainNavbarProps> = ({ scroll }): JSX.Element => {
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className={scroll ? styles.headerTop1 : styles.headerTop2}>
@@ -21,8 +26,11 @@ const HeaderTop: React.FC<scrollProps> = ({ scroll }) => {
             <li>داستان شما</li>
             <li>عضویت</li>
             <li>نوشتن</li>
-            <li>ورود</li>
-            <button className={scroll ? styles.button : styles.buttonScrooled}>
+            <li onClick={() => dispatch(toggle())}>ورود</li>
+            <button
+              className={scroll ? styles.button : styles.buttonScrooled}
+              onClick={() => dispatch(toggle())}
+            >
               شروع کنید
             </button>
           </ul>
@@ -32,4 +40,4 @@ const HeaderTop: React.FC<scrollProps> = ({ scroll }) => {
   );
 };
 
-export default HeaderTop;
+export default MainNavbar;

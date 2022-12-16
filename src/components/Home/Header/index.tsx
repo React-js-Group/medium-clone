@@ -1,10 +1,10 @@
+import Navbar from "components/Navbar";
 import React, { useEffect, useState } from "react";
-import HeaderMain from "./HeaderMain";
-import HeaderTop from "./HeaderTop";
+import Content from "./Content";
 
 import styles from "./styles.module.scss";
 
-const Header = () => {
+const Header: React.FC = () => {
   const [scroll, setScroll] = useState<boolean>(true);
 
   useEffect(() => {
@@ -27,10 +27,10 @@ const Header = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <HeaderTop scroll={scroll} />
+        <Navbar scroll={scroll} />
       </div>
       <div className={styles.headerMain}>
-        <HeaderMain />
+        <Content />
       </div>
     </div>
   );

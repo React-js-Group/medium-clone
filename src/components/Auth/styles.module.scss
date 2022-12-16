@@ -1,4 +1,5 @@
 @import "../../sass/_variables.scss";
+@import "../../sass/animations";
 
 .container {
   display: flex;
@@ -14,6 +15,8 @@
   border-radius: 8px;
   position: absolute;
   top: 30px;
+  @include animation-auth(animation-auth);
+  animation: animation-auth 0.2s linear both;
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -24,9 +27,18 @@
   display: none;
 }
 
+.times {
+  font-size: 1.5rem;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+}
+
 .title {
   color: $dark-500;
   padding: 1rem 0;
+  font-size: 1.5rem;
 }
 
 .form {

@@ -1,12 +1,3 @@
-@import "../../sass/variables";
-
-.container {
-  width: 100%;
-  height: 550px;
-  background-color: $primary;
-  display: flex;
-  flex-direction: column;
-}
 .header {
   position: fixed;
   width: 100%;
@@ -32,11 +23,11 @@
       display: flex;
       align-items: center;
     }
-    .svg{
-        width: 100%;
-        height: 100%;
-        transform: translate3d(0px, 0px, 0px);
-        content-visibility: visible;
+    .svg {
+      width: 100%;
+      height: 100%;
+      transform: translate3d(0px, 0px, 0px);
+      content-visibility: visible;
     }
   }
   .navbar {
@@ -77,11 +68,11 @@
       display: flex;
       align-items: center;
     }
-    .svg{
-        width: 100%;
-        height: 100%;
-        transform: translate3d(0px, 0px, 0px);
-        content-visibility: visible;
+    .svg {
+      width: 100%;
+      height: 100%;
+      transform: translate3d(0px, 0px, 0px);
+      content-visibility: visible;
     }
   }
   .navbar {
@@ -114,40 +105,17 @@
     background-color: $dark-600;
   }
 }
-.buttonScrooled{
-    padding: 7px 20px 9px;
-    background-color: rgb(26, 137, 23);
-    color: $white;
-    border-radius: 50px;
-    border: none;
-    font-size: 16px;
-    font-family: inherit;
-    cursor: pointer;
-    transition: 0.4s;
-    &:hover {
-        background-color: rgb(21, 110, 18)
-    }
-}
-.headerMain {
-  display: flex;
-  .titleDiv {
-    padding: 140px 70px;
-    h1 {
-      margin: 0;
-      color: $dark;
-      font-size: 100px;
-    }
-    h3 {
-      color: $dark-500;
-      word-spacing: 3px;
-      font-size: 22px;
-      font-weight: 100;
-      margin-bottom:50px;
-    }
-  }
-  .svgDiv {
-    width: 500px;
-    height: 500px;
-    
+.buttonScrooled {
+  padding: 7px 20px 9px;
+  background-color: rgb(26, 137, 23);
+  color: $white;
+  border-radius: 50px;
+  border: none;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: 0.4s;
+  &:hover {
+    background-color: rgb(21, 110, 18);
   }
 }
