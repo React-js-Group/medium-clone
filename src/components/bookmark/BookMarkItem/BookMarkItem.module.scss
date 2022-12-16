@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  border: 1px solid rgb(230, 230, 230);
+  margin-bottom: 20px;
+
+  .content {
+    flex: 3;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .btnBox {
+      display: flex;
+      gap: 20px;
+      .showlist {
+        border-radius: 50px;
+        background: none;
+        border: 1px solid;
+        border-color: rgb(117, 117, 117);
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .postNum {
+        color: rgb(117, 117, 117);
+      }
+    }
+  }
+
+  .imgs {
+    flex: 1;
+    background-color: black;
+  }
+}
