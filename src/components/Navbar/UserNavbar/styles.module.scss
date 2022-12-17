@@ -1,0 +1,147 @@
+@import "../../../sass/variables";
+
+.Nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: $white;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid $secondary-500;
+
+  @media screen and (max-width: $sm) {
+    flex-flow: column;
+    height: auto;
+    align-items: center;
+    background-color: $white;
+  }
+
+  & ul {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 12px;
+    &:first-child,
+    &:last-child {
+      width: 50%;
+      @media screen and (max-width: $sm) {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    &:first-child input {
+      border: 0;
+      outline: 0;
+      padding: 5px;
+      padding-left: 20px;
+    }
+
+    &:last-child {
+      justify-content: flex-end;
+      gap: 35px;
+
+      @media screen and (max-width: $sm) {
+        justify-content: space-around;
+      }
+
+      & li a,
+      & li {
+        display: flex;
+        font-size: 15px;
+        align-items: center;
+        gap: 5px;
+        & svg {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+.first {
+  & svg:nth-child(2) {
+    font-size: 14px;
+    cursor: pointer;
+  }
+  @media screen and (max-width: $sm) {
+    order: 2;
+  }
+}
+.second {
+  order: 1;
+}
+
+.third {
+  order: 1;
+  @media screen and (max-width: $sm) {
+    order: 3;
+  }
+}
+
+.search {
+  position: relative;
+  left: 20px;
+  top: 5px;
+}
+
+.logo {
+  width: 45px;
+  height: 40px;
+  margin: 0 10px;
+  margin-top: 5px;
+}
+
+.profile {
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.ProfileOptions {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  border: 1px solid $secondary-400;
+  border-radius: 5px;
+  width: 250px;
+  background-color: $white;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.5);
+
+  @media screen and (max-width: $sm) {
+    top: 180px;
+    overflow-y: scroll;
+  }
+
+  & ul {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    border-bottom: 1px solid $secondary-400;
+    width: 100% !important;
+  }
+  & li {
+    cursor: pointer;
+    color: $secondary-700;
+    width: 100%;
+    padding: 2px 0;
+    text-align: right;
+  }
+  & li:hover {
+    color: $dark-500;
+  }
+}
+
+.become {
+  justify-content: space-between;
+  & svg {
+    color: $primary;
+    font-size: 18px !important;
+  }
+}
+
+.logout {
+  flex-flow: column;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  & span:last-child {
+    font-size: 12px;
+  }
+}

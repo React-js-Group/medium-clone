@@ -23,8 +23,8 @@ export const LoginSchema: Yup.SchemaOf<LoginValidationInfo> =
 interface RegisterValidationInfo {
   username: string;
   email: string;
-  phone: string;
   password: string;
+  password2: string;
 }
 export const RegisterSchema: Yup.SchemaOf<RegisterValidationInfo> =
   Yup.object().shape({
@@ -35,12 +35,13 @@ export const RegisterSchema: Yup.SchemaOf<RegisterValidationInfo> =
     email: Yup.string()
       .email("ایمیل معتبر نمی باشد")
       .required("ایمیل الزامی می باشد"),
-    phone: Yup.string()
-      .required("شماره موبایل الزامی می باشد")
-      .min(10, "شماره موبایل نباید کمتر از 10 کاراکتر باشد")
-      .max(11, "شماره موبایل نباید بیشتر از 11 کاراکتر باشد"),
     password: Yup.string()
       .required("رمز عبور الزامی می باشد")
-      .min(8, "کلمه عبور نباید کمتر از 8 کاراکتر باشد")
+      .min(8, "رمز عبور نباید کمتر از 8 کاراکتر باشد")
       .max(32, "رمز عبور نباید بیشتر از 32 کاراکتر باشد"),
+    password2: Yup.string()
+      .required("تکرار رمز عبور الزامی می باشد")
+      .oneOf([Yup.ref("password"), null], "تکرار رمز عبور مطابقت ندارد")
+      .min(8, "تکرار رمز عبور نباید کمتر از 8 کاراکتر باشد")
+      .max(32, "تکرار رمز عبور نباید بیشتر از 32 کاراکتر باشد"),
   });

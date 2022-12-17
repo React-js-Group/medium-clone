@@ -1,8 +1,7 @@
 import React from "react";
-import { AiOutlineUser, AiOutlineNumber } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
 import { useFormik } from "formik";
-import { MdAlternateEmail } from "react-icons/md";
-import { RxEyeOpen } from "react-icons/rx";
+import { MdAlternateEmail, MdOutlinePassword } from "react-icons/md";
 import { toast } from "react-toastify";
 
 import { RegisterSchema } from "utils/Validation";
@@ -13,22 +12,26 @@ import Button from "components/Button";
 import styles from "../styles.module.scss";
 
 interface RegisterProps {
-  currentFrom: boolean;
+  currentFrom: string;
+  setForm: (form: string) => void;
 }
 
 interface InitialForm {
   username: string;
   email: string;
-  phone: string;
   password: string;
+  password2: string;
 }
 
-const Register: React.FC<RegisterProps> = ({ currentFrom }): JSX.Element => {
+const Register: React.FC<RegisterProps> = ({
+  currentFrom,
+  setForm,
+}): JSX.Element => {
   const initialValues: InitialForm = {
     username: "",
     email: "",
-    phone: "",
     password: "",
+    password2: "",
   };
 
   const formik = useFormik({
@@ -36,6 +39,7 @@ const Register: React.FC<RegisterProps> = ({ currentFrom }): JSX.Element => {
     validationSchema: RegisterSchema,
     onSubmit: (values) => {
       console.log(values);
+      setForm("verify");
     },
   });
 
@@ -46,12 +50,12 @@ const Register: React.FC<RegisterProps> = ({ currentFrom }): JSX.Element => {
     if (formik.errors.email) {
       toast(formik.errors.email);
     }
-    if (formik.errors.phone) {
-      toast(formik.errors.phone);
-    }
-
     if (formik.errors.password) {
       toast(formik.errors.password);
+    }
+
+    if (formik.errors.password2) {
+      toast(formik.errors.password2);
     }
   };
 
@@ -76,30 +80,28 @@ const Register: React.FC<RegisterProps> = ({ currentFrom }): JSX.Element => {
         onChange={formik.handleChange}
       />
       <Input
-        type="number"
-        name="phone"
-        value={formik.values.phone}
-        label="موبایل"
-        placeholder="09123456789"
-        icon={<AiOutlineNumber />}
+        type="password"
+        name="password"
+        value={formik.values.password}
+        label="رمزعبور"
+        placeholder="*********"
+        icon={<MdOutlinePassword />}
         onChange={formik.handleChange}
       />
       <Input
         type="password"
-        name="password"
-        value={formik.values.password}
-        label="رمز عبور"
+        name="password2"
+        value={formik.values.password2}
+        label="تکرار رمز عبور"
         placeholder="*********"
-        icon={<RxEyeOpen />}
+        icon={<MdOutlinePassword />}
         onChange={formik.handleChange}
       />
       <Button
-        content={currentFrom ? "ثبت نام" : "ورود"}
+        content={currentFrom === "register" ? "ثبت نام" : "ورود"}
         type="submit"
         onClick={handleCheckValidation}
-        style={{
-          backgroundColor: "#ffc017",
-        }}
+        style={{ backgroundColor: "#ffc017" }}
       />
     </form>
   );

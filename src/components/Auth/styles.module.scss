@@ -56,3 +56,19 @@
     margin: 0 5px;
   }
 }
+
+.verifyForm {
+  justify-content: center;
+}
+
+.verifyInput {
+  padding: 5px;
+
+  & input {
+    outline: 0;
+    border: 1px solid $secondary-500;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 2rem;
+  }
+}

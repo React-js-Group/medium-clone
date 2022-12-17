@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BsThreeDots } from "react-icons/bs";
 import Button from "components/Button";
 
 import styles from "./styles.module.scss";

@@ -12,7 +12,7 @@ import styles from "../styles.module.scss";
 import { toast } from "react-toastify";
 
 interface LoginProps {
-  currentFrom: boolean;
+  currentFrom: string;
 }
 
 interface InitialForm {
@@ -64,7 +64,7 @@ const Login: React.FC<LoginProps> = ({ currentFrom }): JSX.Element => {
       />
 
       <Button
-        content={currentFrom ? "ثبت نام" : "ورود"}
+        content={currentFrom === "register" ? "ثبت نام" : "ورود"}
         type="submit"
         onClick={handleCheckValidation}
         style={{
