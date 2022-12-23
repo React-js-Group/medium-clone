@@ -1,7 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
 import { AiOutlineUser } from "react-icons/ai";
-import { RxEyeOpen } from "react-icons/rx";
 
 import Input from "components/Input";
 import Button from "components/Button";
@@ -10,6 +9,8 @@ import { LoginSchema } from "utils/Validation";
 
 import styles from "../styles.module.scss";
 import { toast } from "react-toastify";
+import { postConfiguration } from "api/api";
+import { MdPassword } from "react-icons/md";
 
 interface LoginProps {
   currentFrom: string;
@@ -26,8 +27,13 @@ const Login: React.FC<LoginProps> = ({ currentFrom }): JSX.Element => {
   const formik = useFormik({
     initialValues,
     validationSchema: LoginSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (data) => {
+      try {
+        const res = await postConfiguration(data, "login/");
+        console.log(res);
+      } catch (err) {
+        console.log(err);
+      }
     },
   });
 
@@ -59,7 +65,7 @@ const Login: React.FC<LoginProps> = ({ currentFrom }): JSX.Element => {
         value={formik.values.password}
         label="رمز عبور"
         placeholder="*********"
-        icon={<RxEyeOpen />}
+        icon={<MdPassword />}
         onChange={formik.handleChange}
       />
 

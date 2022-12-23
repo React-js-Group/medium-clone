@@ -3,6 +3,8 @@ import { AiOutlineUser } from "react-icons/ai";
 import { useFormik } from "formik";
 import { MdAlternateEmail, MdOutlinePassword } from "react-icons/md";
 import { toast } from "react-toastify";
+import axios from "axios";
+import config from "config/config.json";
 
 import { RegisterSchema } from "utils/Validation";
 
@@ -10,6 +12,7 @@ import Input from "components/Input";
 import Button from "components/Button";
 
 import styles from "../styles.module.scss";
+import { postConfiguration } from "api/api";
 
 interface RegisterProps {
   currentFrom: string;
@@ -34,12 +37,19 @@ const Register: React.FC<RegisterProps> = ({
     password2: "",
   };
 
+  const URL = config.URL;
+
   const formik = useFormik({
     initialValues,
     validationSchema: RegisterSchema,
-    onSubmit: (values) => {
-      console.log(values);
-      setForm("verify");
+    onSubmit: async (data) => {
+      try {
+        const res = await postConfiguration(data, "/get_user/");
+        console.log(res);
+        setForm("verify");
+      } catch (err) {
+        console.log(err);
+      }
     },
   });
 

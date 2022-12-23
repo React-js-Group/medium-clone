@@ -6,8 +6,10 @@ import { store } from "../src/store";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
-import "../styles/globals.scss";
 import "react-toastify/dist/ReactToastify.css";
+import "tippy.js/dist/tippy.css";
+
+import "../styles/globals.scss";
 
 const queryClient = new QueryClient();
 
