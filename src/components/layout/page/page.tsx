@@ -3,7 +3,7 @@ import SideBar from "../sideBar";
 import classes from "./Page.module.scss";
 interface OptionsProps {
   children: any;
-  sideBar: any;
+  sideBar: Array<String>;
 }
 const Page: React.FC<OptionsProps> = ({
   children,

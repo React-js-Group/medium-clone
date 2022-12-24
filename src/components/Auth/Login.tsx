@@ -20,8 +20,13 @@ interface InitialForm {
   password: string;
 }
 
-const Login: React.FC<LoginProps> = ({ currentFrom }): JSX.Element => {
-  const initialValues: InitialForm = { username: "", password: "" };
+const Login: React.FC<LoginProps> = ({
+  currentFrom,
+}): JSX.Element => {
+  const initialValues: InitialForm = {
+    username: "",
+    password: "",
+  };
 
   const formik = useFormik({
     initialValues,

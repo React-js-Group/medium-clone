@@ -4,6 +4,10 @@ import Page from "components/layout/page/page";
 
 import Layout from "layout/Layout";
 import BookMarkBody from "components/bookmark/BookMarkBody/BookMarkBody";
+import {
+  BOOK_MARK_SIDEBAR,
+  PROFILE_SIDEBAR,
+} from "components/layout/sideBar/sideBarType";
 
 const Home: React.FC = (): JSX.Element => {
   return (
@@ -17,7 +21,7 @@ const Home: React.FC = (): JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <Page sideBar="BookMark">
+        <Page sideBar={[PROFILE_SIDEBAR, BOOK_MARK_SIDEBAR]}>
           <BookMarkBody />
         </Page>
       </Layout>

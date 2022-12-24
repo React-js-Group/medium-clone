@@ -10,6 +10,7 @@ interface InputProps {
   placeholder?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   icon?: React.ReactElement;
+  counter?: any;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -19,6 +20,7 @@ const Input: React.FC<InputProps> = ({
   label,
   placeholder,
   icon,
+  counter,
   onChange,
 }): JSX.Element => {
   return (
@@ -26,6 +28,7 @@ const Input: React.FC<InputProps> = ({
       <label htmlFor={name} className={styles.label}>
         {label}
       </label>
+      {counter}
       <input
         type={type}
         value={value}

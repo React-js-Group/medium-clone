@@ -1,14 +1,29 @@
 import BookMarkSideBar from "./BookmarkSideBar/BookMarkSideBar";
+import ProfileSideBar from "./profileSideBar";
 import classes from "./SideBar.module.scss";
+import {
+  BOOK_MARK_SIDEBAR,
+  PROFILE_SIDEBAR,
+} from "./sideBarType";
+
 interface OptionsProps {
-  sideBar: any;
+  sideBar: Array<any>;
 }
+
 const SideBar: React.FC<OptionsProps> = ({
   sideBar,
 }): JSX.Element => {
+  console.log();
   return (
     <div className={classes.SideBar}>
-      {sideBar == "BookMark" && <BookMarkSideBar />}
+      {/* BOOK_MARKSIDEBAR */}
+
+      {sideBar.filter((item) => item == BOOK_MARK_SIDEBAR)
+        .length !== 0 && <BookMarkSideBar />}
+
+      {/* PROFILE_SIDEBAR*/}
+      {sideBar.filter((item) => item == PROFILE_SIDEBAR)
+        .length !== 0 && <ProfileSideBar />}
     </div>
   );
 };

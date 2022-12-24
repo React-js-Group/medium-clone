@@ -1,3 +1,6 @@
+//? ********************************LoginSchema**********************************
+//? ***************************************************************************
+
 import * as Yup from "yup";
 
 interface LoginValidationInfo {
@@ -17,7 +20,7 @@ export const LoginSchema: Yup.SchemaOf<LoginValidationInfo> =
       .max(32, "رمز عبور نباید بیشتر از 32 کاراکتر باشد"),
   });
 
-//? ***************************************************************************
+//? **********************************RegisterSchema**************************
 //? ***************************************************************************
 
 interface RegisterValidationInfo {
@@ -43,4 +46,16 @@ export const RegisterSchema: Yup.SchemaOf<RegisterValidationInfo> =
       .required("رمز عبور الزامی می باشد")
       .min(8, "کلمه عبور نباید کمتر از 8 کاراکتر باشد")
       .max(32, "رمز عبور نباید بیشتر از 32 کاراکتر باشد"),
+  });
+//? *****************************bookMarNameSchema*******************************
+//? ***************************************************************************
+interface bookMarkModuleSchema {
+  bookMarkName: string;
+}
+export const bookMarkModuleSchema: Yup.SchemaOf<bookMarkModuleSchema> =
+  Yup.object().shape({
+    bookMarkName: Yup.string()
+      .required("وارد کردن نام لیست الزامی می باشد")
+
+      .max(32, "حداکثر کارکتر های ورودی نباید بیشتر 32 باشد"),
   });
