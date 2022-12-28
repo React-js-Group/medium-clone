@@ -9,7 +9,7 @@ import { LoginSchema } from "utils/Validation";
 
 import styles from "../styles.module.scss";
 import { toast } from "react-toastify";
-import { postConfiguration } from "api/api";
+import { userLogin } from "api/api";
 import { MdPassword } from "react-icons/md";
 
 interface LoginProps {
@@ -29,7 +29,7 @@ const Login: React.FC<LoginProps> = ({ currentFrom }): JSX.Element => {
     validationSchema: LoginSchema,
     onSubmit: async (data) => {
       try {
-        const res = await postConfiguration(data, "login/");
+        const res = await userLogin("login/");
         console.log(res);
       } catch (err) {
         console.log(err);

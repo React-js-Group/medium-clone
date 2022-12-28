@@ -12,7 +12,7 @@ import Input from "components/Input";
 import Button from "components/Button";
 
 import styles from "../styles.module.scss";
-import { postConfiguration } from "api/api";
+import { userRegister } from "api/api";
 
 interface RegisterProps {
   currentFrom: string;
@@ -44,7 +44,7 @@ const Register: React.FC<RegisterProps> = ({
     validationSchema: RegisterSchema,
     onSubmit: async (data) => {
       try {
-        const res = await postConfiguration(data, "/get_user/");
+        const res = await userRegister(data, "/get_user/");
         console.log(res);
         setForm("verify");
       } catch (err) {

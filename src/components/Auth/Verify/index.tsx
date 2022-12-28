@@ -6,12 +6,10 @@ import config from "config/config.json";
 import Button from "../../Button";
 
 import styles from "../styles.module.scss";
-import { postConfiguration } from "api/api";
+import { userRegister } from "api/api";
 
 const Verify: React.FC = (): JSX.Element => {
   const [code, setCode] = useState<string>("");
-
-  const URL = config.URL;
 
   const handleChange = (otp: string) => {
     setCode(otp);
@@ -23,7 +21,7 @@ const Verify: React.FC = (): JSX.Element => {
     };
 
     try {
-      const res = await postConfiguration(data, "/register/");
+      const res = await userRegister(data, "/register/");
       console.log(res);
     } catch (err) {
       console.log(err);
