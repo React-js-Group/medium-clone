@@ -85,10 +85,10 @@
   position: absolute;
   z-index: 2;
   right: 15px;
+  top: 135px;
   padding: 8px;
   width: 15rem;
   background-color: $white;
-  top: 120px;
 
   @media screen and (max-width: $sm) {
     right: 45px;

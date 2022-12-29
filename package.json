@@ -24,6 +24,7 @@
     "react-auth-code-input": "^3.2.1",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
+    "react-jwt": "^1.1.7",
     "react-query": "^3.39.2",
     "react-redux": "^8.0.5",
     "react-toastify": "^9.1.1",

@@ -26,9 +26,9 @@ const Header: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      {/* <div className={styles.header}>
         <Navbar scroll={scroll} />
-      </div>
+      </div> */}
       <div className={styles.headerMain}>
         <Content />
       </div>

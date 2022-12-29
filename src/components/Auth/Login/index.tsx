@@ -1,6 +1,8 @@
 import React from "react";
 import { useFormik } from "formik";
 import { AiOutlineUser } from "react-icons/ai";
+import { toast } from "react-toastify";
+import { MdPassword } from "react-icons/md";
 
 import Input from "components/Input";
 import Button from "components/Button";
@@ -8,9 +10,9 @@ import Button from "components/Button";
 import { LoginSchema } from "utils/Validation";
 
 import styles from "../styles.module.scss";
-import { toast } from "react-toastify";
 import { postRequest } from "api";
-import { MdPassword } from "react-icons/md";
+import { access, refresh, toggle } from "store/fetchers/authSlice";
+import { useDispatch } from "react-redux";
 
 interface LoginProps {
   currentFrom: string;
@@ -24,6 +26,7 @@ interface InitialForm {
 
 const Login: React.FC<LoginProps> = ({ currentFrom, setForm }): JSX.Element => {
   const initialValues: InitialForm = { email: "", password: "" };
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues,
@@ -34,7 +37,9 @@ const Login: React.FC<LoginProps> = ({ currentFrom, setForm }): JSX.Element => {
         if (res.status !== 200) {
           console.log("hi");
         }
-        console.log(res.status);
+        dispatch(access(res.data.access));
+        dispatch(refresh(res.data.refresh));
+        dispatch(toggle());
       } catch (err) {
         toast("اطلاعات وارد شده صحیح نمی باشد");
         console.log(err);

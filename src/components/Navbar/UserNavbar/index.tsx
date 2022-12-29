@@ -1,6 +1,6 @@
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
 import {
   BsBookmarks,
   BsReverseLayoutTextWindowReverse,
@@ -13,9 +13,12 @@ import { GiStarShuriken } from "react-icons/gi";
 
 import styles from "./styles.module.scss";
 import { AiOutlineUser } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { access, refresh } from "store/fetchers/authSlice";
 
 const UserNavbar: React.FC = (): JSX.Element => {
   const [displayProfile, setDisplayProfile] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   return (
     <nav className={styles.Nav}>
@@ -97,7 +100,14 @@ const UserNavbar: React.FC = (): JSX.Element => {
               </ul>
               <ul>
                 <li className={styles.logout}>
-                  <span>خروج</span>
+                  <span
+                    onClick={() => {
+                      dispatch(access(""));
+                      dispatch(refresh(""));
+                    }}
+                  >
+                    خروج
+                  </span>
                   <span>amohamadi17@gmail.com</span>
                 </li>
               </ul>
