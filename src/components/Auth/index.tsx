@@ -5,12 +5,13 @@ import { toggle } from "store/fetchers/authSlice";
 
 import Login from "./Login";
 import Register from "./Register";
-
-import styles from "./styles.module.scss";
+import ForgetPassword from "./ForgetPassword";
 import Verify from "./Verify";
 
+import styles from "./styles.module.scss";
+
 const Auth: React.FC = (): JSX.Element => {
-  const [currentFrom, setCurrentForm] = useState<string>("register");
+  const [currentFrom, setCurrentForm] = useState<string>("login");
   const dispatch = useDispatch();
 
   const handleSetCurrentForm = (form: string) => {
@@ -24,38 +25,15 @@ const Auth: React.FC = (): JSX.Element => {
       }`}
     >
       <FaTimes className={styles.times} onClick={() => dispatch(toggle())} />
-      <h3 className={styles.title}>
-        {currentFrom === "register"
-          ? "ثبت نام"
-          : currentFrom === "login"
-          ? "ورود"
-          : "تایید ایمیل"}
-      </h3>
-      {currentFrom === "verify" && (
-        <p>لطفا کد ارسال شده به ایمیل را وارد نمایید</p>
-      )}
       {currentFrom === "register" ? (
         <Register currentFrom={currentFrom} setForm={handleSetCurrentForm} />
       ) : currentFrom === "login" ? (
-        <Login currentFrom={currentFrom} />
+        <Login currentFrom={currentFrom} setForm={handleSetCurrentForm} />
+      ) : currentFrom === "forgetPassword" ? (
+        <ForgetPassword setForm={handleSetCurrentForm} />
       ) : (
-        <Verify />
+        <Verify setForm={handleSetCurrentForm} />
       )}
-      <div className={styles.selectForm}>
-        <p>
-          {currentFrom === "register" ? (
-            <>
-              حساب کاربری دارید؟
-              <span onClick={() => setCurrentForm("login")}>ورود</span>
-            </>
-          ) : currentFrom === "login" ? (
-            <>
-              حساب کاربری ندارید؟
-              <span onClick={() => setCurrentForm("register")}>ثبت نام</span>
-            </>
-          ) : null}
-        </p>
-      </div>
     </div>
   );
 };

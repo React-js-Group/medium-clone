@@ -1,16 +1,15 @@
 import * as Yup from "yup";
 
 interface LoginValidationInfo {
-  username: string;
+  email: string;
   password: string;
 }
 
 export const LoginSchema: Yup.SchemaOf<LoginValidationInfo> =
   Yup.object().shape({
-    username: Yup.string()
-      .required("نام کاربری الزامی می باشد")
-      .min(4, "نام کاربری نباید کمتر از 4 کاراکتر باشد")
-      .max(32, "نام کاربری نباید بیشتر از 32 کاراکتر باشد"),
+    email: Yup.string()
+      .required("ایمیل الزامی می باشد")
+      .email("ایمیل معتبر نمی باشد"),
     password: Yup.string()
       .required("رمز عبور الزامی می باشد")
       .min(8, "کلمه عبور نباید کمتر از 8 کاراکتر باشد")
