@@ -20,7 +20,7 @@ const Home: React.FC<HomeProps> = ({ children }) => {
 
   useEffect(() => {
     setRender(render + 1);
-  }, [access, render]);
+  }, [access]);
 
   return (
     <div style={displayForm ? { height: "100vh", overflow: "hidden" } : null}>
