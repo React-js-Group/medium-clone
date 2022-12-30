@@ -1,10 +1,10 @@
 @import "../src/sass/_variables.scss";
 
 @font-face {
-  font-family: "BYekan";
-  src: url("../public/fonts/BYekan.woff");
-  src: url("../public/fonts/Yekan.woff2");
-  src: url("../public/fonts/BYekan.ttf");
+  font-family: "Vazir";
+  src: url("../public/fonts/Vazir-Medium.woff");
+  src: url("../public/fonts/Vazir-Medium.woff2");
+  src: url("../public/fonts/Vazir-Medium.ttf");
   font-weight: 400;
 }
 
@@ -12,7 +12,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: BYekan, sans-serif;
+  font-family: Vazir, sans-serif;
 }
 
 ul {
@@ -34,6 +34,7 @@ button {
 }
 * {
   box-sizing: border-box;
+  font-family: Vazir, sans-serif;
 }
 
 input::-webkit-outer-spin-button,
@@ -44,6 +45,16 @@ input::-webkit-inner-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+body::-webkit-scrollbar {
+  width: 0.5rem;
+  background-color: #ffffff;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background: #cccccc;
 }
 
 @media (prefers-color-scheme: dark) {

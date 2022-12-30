@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Page from "components/layout/page/page";
 
-import Layout from "layout/Layout";
+// import Layout from "layout/Layout";
 import BookMarkBody from "components/bookmark/BookMarkBody/BookMarkBody";
 import {
   BOOK_MARK_SIDEBAR,
@@ -20,11 +20,11 @@ const Home: React.FC = (): JSX.Element => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout>
-        <Page sideBar={[PROFILE_SIDEBAR, BOOK_MARK_SIDEBAR]}>
-          <BookMarkBody />
-        </Page>
-      </Layout>
+      {/* <Layout> */}
+      <Page sideBar="BookMark">
+        <BookMarkBody />
+      </Page>
+      {/* </Layout> */}
     </div>
   );
 };
