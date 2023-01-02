@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface initialStateInfo {
+  loading: boolean;
   displayForm: boolean;
   access: string;
   refresh: string;
 }
 
 const initialState: initialStateInfo = {
+  loading: false,
   displayForm: false,
   access: "",
   refresh: "",
@@ -16,6 +18,9 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    loading(state) {
+      state.loading = !state.loading;
+    },
     toggle(state) {
       state.displayForm = !state.displayForm;
     },
@@ -28,5 +33,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { toggle, access, refresh } = authSlice.actions;
+export const { toggle, access, refresh, loading } = authSlice.actions;
 export default authSlice.reducer;

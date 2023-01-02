@@ -3,7 +3,7 @@ import Header from "./Header";
 import { useEffect, useState } from "react";
 import Modal from "components/Modal";
 import Auth from "components/Auth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Mark from "components/Mark";
 import Navbar from "components/Navbar";
 import { useJwt } from "react-jwt";
@@ -13,14 +13,13 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ children }) => {
-  const [render, setRender] = useState(0);
-  const displayForm = useSelector((state: any) => state.auth.displayForm);
-  const { access } = JSON.parse(localStorage.getItem("persist:root"));
+  const { displayForm, access, loading } = useSelector(
+    (state: any) => state.auth
+  );
   const { decodedToken } = useJwt(access);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    setRender(render + 1);
-  }, [access]);
+  if (loading) return <h1>LOADING....</h1>;
 
   return (
     <div style={displayForm ? { height: "100vh", overflow: "hidden" } : null}>

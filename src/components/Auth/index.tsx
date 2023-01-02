@@ -12,10 +12,15 @@ import styles from "./styles.module.scss";
 
 const Auth: React.FC = (): JSX.Element => {
   const [currentFrom, setCurrentForm] = useState<string>("login");
+  const [data, setData] = useState<{}>({});
   const dispatch = useDispatch();
 
   const handleSetCurrentForm = (form: string) => {
     setCurrentForm(form);
+  };
+
+  const handleSetData = (data: {}) => {
+    setData(data);
   };
 
   return (
@@ -26,13 +31,17 @@ const Auth: React.FC = (): JSX.Element => {
     >
       <FaTimes className={styles.times} onClick={() => dispatch(toggle())} />
       {currentFrom === "register" ? (
-        <Register currentFrom={currentFrom} setForm={handleSetCurrentForm} />
+        <Register
+          currentFrom={currentFrom}
+          setForm={handleSetCurrentForm}
+          onSetData={handleSetData}
+        />
       ) : currentFrom === "login" ? (
         <Login currentFrom={currentFrom} setForm={handleSetCurrentForm} />
       ) : currentFrom === "forgetPassword" ? (
         <ForgetPassword setForm={handleSetCurrentForm} />
       ) : (
-        <Verify setForm={handleSetCurrentForm} />
+        <Verify setForm={handleSetCurrentForm} userData={data} />
       )}
     </div>
   );

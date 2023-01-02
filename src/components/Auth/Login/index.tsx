@@ -8,11 +8,11 @@ import Input from "components/Input";
 import Button from "components/Button";
 
 import { LoginSchema } from "utils/Validation";
+import { postRequest } from "api";
+import { access, refresh, toggle, loading } from "store/fetchers/authSlice";
+import { useDispatch } from "react-redux";
 
 import styles from "../styles.module.scss";
-import { postRequest } from "api";
-import { access, refresh, toggle } from "store/fetchers/authSlice";
-import { useDispatch } from "react-redux";
 
 interface LoginProps {
   currentFrom: string;
@@ -33,16 +33,18 @@ const Login: React.FC<LoginProps> = ({ currentFrom, setForm }): JSX.Element => {
     validationSchema: LoginSchema,
     onSubmit: async (data) => {
       try {
+        dispatch(loading());
         const res = await postRequest("login/", data);
-        if (res.status !== 200) {
-          console.log("hi");
-        }
         dispatch(access(res.data.access));
         dispatch(refresh(res.data.refresh));
         dispatch(toggle());
+        if (res.status === 200) {
+          dispatch(loading());
+        }
       } catch (err) {
         toast("اطلاعات وارد شده صحیح نمی باشد");
         console.log(err);
+        dispatch(loading());
       }
     },
   });

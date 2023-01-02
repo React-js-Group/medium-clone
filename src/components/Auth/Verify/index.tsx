@@ -1,29 +1,45 @@
 import React, { useRef, useState, useEffect } from "react";
-import OtpInput from "react-otp-input";
 import AuthCode, { AuthCodeRef } from "react-auth-code-input";
-
-import Button from "../../Button";
+import { BiArrowBack } from "react-icons/bi";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { refresh, access } from "store/fetchers/authSlice";
 
 import { postRequest } from "api";
+import Button from "../../Button";
 
 import styles from "../styles.module.scss";
-import { BiArrowBack } from "react-icons/bi";
 
 interface VerifyProps {
   setForm: (form: string) => void;
+  userData: {};
 }
 
-const Verify: React.FC<VerifyProps> = ({ setForm }): JSX.Element => {
+const Verify: React.FC<VerifyProps> = ({ setForm, userData }): JSX.Element => {
   const [code, setCode] = useState<string>("");
   const AuthInputRef = useRef<AuthCodeRef>(null);
+  const dispatch = useDispatch();
 
   const handleSubmitCode = async () => {
     try {
-      console.log(code);
-      const res = await postRequest("register/", { data: code });
-      console.log(res);
+      const res = await postRequest("register/", {
+        data: { ...userData, code: code },
+        withCredentials: true,
+      });
+      if (res.status === 200) {
+        const { access: accessTok, refresh: refreshTok } = res.data.tokens;
+        dispatch(access(accessTok));
+        dispatch(refresh(refreshTok));
+
+        toast("ثبت نام موفقیت آمیز بود ، خوش آمدید");
+      }
     } catch (err) {
-      console.log(err);
+      if (err.response.status === 404) {
+        toast("کد وارد شده صحیح نمی باشد");
+      }
+      if (err.response.status === 500) {
+        toast("مشکلی از سمت سرور پیش آمده است ، لطفا بعدا امتحان کنید");
+      }
     }
   };
 

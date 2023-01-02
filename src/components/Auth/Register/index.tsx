@@ -3,7 +3,6 @@ import { AiOutlineUser } from "react-icons/ai";
 import { useFormik } from "formik";
 import { MdAlternateEmail, MdOutlinePassword } from "react-icons/md";
 import { toast } from "react-toastify";
-import axios from "axios";
 
 import { RegisterSchema } from "utils/Validation";
 
@@ -16,6 +15,7 @@ import { postRequest } from "api";
 interface RegisterProps {
   currentFrom: string;
   setForm: (form: string) => void;
+  onSetData: (data: {}) => void;
 }
 
 interface InitialForm {
@@ -28,6 +28,7 @@ interface InitialForm {
 const Register: React.FC<RegisterProps> = ({
   currentFrom,
   setForm,
+  onSetData,
 }): JSX.Element => {
   const initialValues: InitialForm = {
     username: "",
@@ -42,9 +43,20 @@ const Register: React.FC<RegisterProps> = ({
     onSubmit: async (data) => {
       try {
         const res = await postRequest("get_user/", data);
-        console.log(res);
+        delete data.password2;
+        onSetData(data);
+
         setForm("verify");
       } catch (err) {
+        if (err.response.status === 409) {
+          toast("کاربری با این مشخصات وجود دارد");
+        }
+        if (err.response.status === 401) {
+          toast("رمز عبور و تکرار رمز عبور یکسان نیستند");
+        }
+        if (err.response.status === 400) {
+          toast("مشکلی از سمت سرور به وجود آمده است ، لطفا بعدا امتحان کنید");
+        }
         console.log(err);
       }
     },
