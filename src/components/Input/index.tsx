@@ -10,6 +10,7 @@ interface InputProps {
   placeholder?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   icon?: React.ReactElement;
+  onClick?: (e: React.MouseEvent<HTMLSpanElement>) => void;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,6 +21,7 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   icon,
   onChange,
+  onClick,
 }): JSX.Element => {
   return (
     <div className={styles.wrapper}>
@@ -35,7 +37,11 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         onChange={onChange}
       />
-      {icon && <span className={styles.icon}>{icon}</span>}
+      {icon && (
+        <span className={styles.icon} onClick={onClick}>
+          {icon}
+        </span>
+      )}
     </div>
   );
 };

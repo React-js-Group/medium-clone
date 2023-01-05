@@ -1,7 +1,8 @@
-import React from "react";
+import { useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { useFormik } from "formik";
-import { MdAlternateEmail, MdOutlinePassword } from "react-icons/md";
+import { MdAlternateEmail } from "react-icons/md";
+import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 import { toast } from "react-toastify";
 
 import { RegisterSchema } from "utils/Validation";
@@ -16,6 +17,8 @@ interface RegisterProps {
   currentFrom: string;
   setForm: (form: string) => void;
   onSetData: (data: {}) => void;
+  displayPassword: boolean;
+  onDisplayPassword: () => void;
 }
 
 interface InitialForm {
@@ -29,6 +32,8 @@ const Register: React.FC<RegisterProps> = ({
   currentFrom,
   setForm,
   onSetData,
+  displayPassword,
+  onDisplayPassword,
 }): JSX.Element => {
   const initialValues: InitialForm = {
     username: "",
@@ -37,27 +42,32 @@ const Register: React.FC<RegisterProps> = ({
     password2: "",
   };
 
+  const [displayPasswordConfirm, setDispalyPasswordConfirm] =
+    useState<boolean>(false);
+
+  const handleDisplayPasswordConfirm = () => {
+    setDispalyPasswordConfirm(!displayPasswordConfirm);
+  };
+
   const formik = useFormik({
     initialValues,
     validationSchema: RegisterSchema,
     onSubmit: async (data) => {
       try {
-        const res = await postRequest("get_user/", data);
+        await postRequest("get_user/", data);
         delete data.password2;
         onSetData(data);
-
         setForm("verify");
-      } catch (err) {
-        if (err.response.status === 409) {
+      } catch ({ response }) {
+        if (response.status === 409) {
           toast("کاربری با این مشخصات وجود دارد");
         }
-        if (err.response.status === 401) {
+        if (response.status === 401) {
           toast("رمز عبور و تکرار رمز عبور یکسان نیستند");
         }
-        if (err.response.status === 400) {
+        if (response.status === 400) {
           toast("مشکلی از سمت سرور به وجود آمده است ، لطفا بعدا امتحان کنید");
         }
-        console.log(err);
       }
     },
   });
@@ -101,22 +111,24 @@ const Register: React.FC<RegisterProps> = ({
           onChange={formik.handleChange}
         />
         <Input
-          type="password"
+          type={displayPassword ? "text" : "password"}
           name="password"
           value={formik.values.password}
           label="رمزعبور"
           placeholder="*********"
-          icon={<MdOutlinePassword />}
+          icon={displayPassword ? <RxEyeOpen /> : <RxEyeClosed />}
           onChange={formik.handleChange}
+          onClick={onDisplayPassword}
         />
         <Input
-          type="password"
+          type={displayPasswordConfirm ? "text" : "password"}
           name="password2"
           value={formik.values.password2}
           label="تکرار رمز عبور"
           placeholder="*********"
-          icon={<MdOutlinePassword />}
+          icon={displayPasswordConfirm ? <RxEyeOpen /> : <RxEyeClosed />}
           onChange={formik.handleChange}
+          onClick={handleDisplayPasswordConfirm}
         />
         <Button
           content={currentFrom === "register" ? "ثبت نام" : "ورود"}
