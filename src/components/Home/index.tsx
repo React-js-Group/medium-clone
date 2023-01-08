@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Mark from 'components/Mark'
 import Navbar from 'components/Navbar'
 import { useJwt } from 'react-jwt'
+import Loading from 'components/Loading'
 
 interface HomeProps {
   children?: React.ReactNode
@@ -23,7 +24,8 @@ const Home: React.FC<HomeProps> = ({ children }) => {
 
   return (
     <div style={displayForm ? { height: '100vh', overflow: 'hidden' } : null}>
-      {displayForm && (
+      <Loading />
+      {/* {displayForm && (
         <Modal>
           <Auth />
         </Modal>
@@ -33,7 +35,7 @@ const Home: React.FC<HomeProps> = ({ children }) => {
       <div style={{ height: '90vh' }}>Main</div>
       <Mark />
       {children}
-      <Footer />
+      <Footer /> */}
     </div>
   )
 }

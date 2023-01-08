@@ -1,5 +1,5 @@
-import Head from "next/head";
-import Home from "components/Home";
+import Head from 'next/head'
+import Home from 'components/Home'
 
 const HomePage: React.FC = (): JSX.Element => {
   return (
@@ -11,7 +11,7 @@ const HomePage: React.FC = (): JSX.Element => {
       </Head>
       <Home />
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

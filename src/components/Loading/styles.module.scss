@@ -1,0 +1,308 @@
+@import '../../sass/animations';
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: $secondary-400;
+}
+
+.header {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.left {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 2rem;
+  gap: 1rem;
+  overflow: hidden;
+  & span:first-child {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50px;
+    background-color: $secondary-500;
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
+  }
+  & span:last-child {
+    width: 10rem;
+    height: 2rem;
+    border-radius: 20px;
+    background-color: $secondary-500;
+    @media screen and (max-width: 600px) {
+      width: 20rem;
+    }
+  }
+  &::after {
+    content: '';
+    width: 18rem;
+    height: 20px;
+    display: inline-block;
+    background-color: $secondary-400;
+    position: relative;
+    left: 0;
+    @include animation-shimer(animation-shimer);
+    animation: animation-shimer 1.3s linear infinite;
+
+    @media screen and (max-width: 600px) {
+      width: 80rem;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 50%;
+  }
+}
+
+.right {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 1rem;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  & span:last-child {
+    width: 30px;
+    height: 30px;
+    background-color: $secondary-500;
+    border-radius: 50px;
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
+  }
+  & span:nth-child(2) {
+    width: 8rem;
+    height: 2rem;
+    background-color: $secondary-500;
+    border-radius: 50px;
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+  }
+  & ul {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    & li {
+      background-color: $secondary-500;
+      width: 3rem;
+      height: 1rem;
+      border-radius: 20px;
+      display: block;
+    }
+    @media screen and (max-width: 900px) {
+      & li:nth-child(1),
+      li:nth-child(2),
+      :nth-child(3) {
+        display: none;
+      }
+    }
+  }
+
+  &::after {
+    content: '';
+    width: 18rem;
+    height: 20px;
+    display: inline;
+    background-color: $secondary-400;
+    position: absolute;
+    @include animation-shimer(animation-shimer);
+    animation: animation-shimer 1.3s linear infinite;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 50%;
+  }
+}
+
+.main {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  overflow: hidden;
+  @media screen and (max-width: 900px) {
+    flex-flow: column;
+  }
+}
+
+.mainLeft {
+  width: 50%;
+  height: 70%;
+  padding-right: 5rem;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  position: relative;
+  overflow: hidden;
+
+  & div:first-child {
+    width: 18rem;
+    height: 4rem;
+    border-radius: 100px;
+    background-color: $secondary-500;
+  }
+  & div:nth-child(2) {
+    width: 28rem;
+    height: 5rem;
+    border-radius: 100px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    & span {
+      height: 8px;
+      border-radius: 100px;
+      margin-right: 2rem;
+    }
+    & span:nth-child(1) {
+      width: 13rem;
+      display: block;
+      background-color: $secondary-500;
+    }
+    & span:nth-child(2) {
+      width: 23rem;
+      display: block;
+      background-color: $secondary-500;
+      @media screen and (max-width: 600px) {
+        width: 15rem;
+      }
+    }
+    & span:nth-child(3) {
+      width: 8rem;
+      display: block;
+      background-color: $secondary-500;
+    }
+  }
+
+  & div:last-child {
+    width: 12rem;
+    height: 2rem;
+    border-radius: 100px;
+    background-color: $secondary-500;
+  }
+
+  &::after {
+    content: '';
+    width: 50rem;
+    height: 20px;
+    display: inline;
+    background-color: $secondary-400;
+    position: absolute;
+    @include animation-shimer(animation-shimer);
+    animation: animation-shimer 1.3s linear infinite;
+  }
+
+  @media screen and (max-width: 900px) {
+    flex-flow: column;
+    width: 100%;
+    height: 70vh;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding-right: 10px;
+    margin-top: 1rem;
+    gap: 2rem;
+    justify-content: flex-start;
+    height: 60vh;
+  }
+}
+
+.mainRight {
+  width: 50%;
+  height: 80%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    display: flex;
+  }
+
+  & svg {
+    width: 20rem;
+    height: 20rem;
+    color: $secondary-500;
+  }
+
+  & div {
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    padding-right: 12rem;
+
+    & span:first-child {
+      width: 12rem;
+      @media screen and (max-width: 600px) {
+        position: absolute;
+        right: 3rem;
+        width: 12rem;
+      }
+    }
+    & span:last-child {
+      width: 8rem;
+
+      @media screen and (max-width: 600px) {
+        display: none;
+        position: absolute;
+        left: 0;
+      }
+      @media screen and (max-width: 400px) {
+        display: block;
+        height: 1rem;
+        right: 3rem;
+        bottom: -1rem;
+      }
+    }
+
+    & span {
+      height: 3rem;
+      border-radius: 50px;
+      background-color: $secondary-500;
+    }
+  }
+
+  &::after {
+    content: '';
+    width: 50rem;
+    height: 20px;
+    display: inline;
+    background-color: $secondary-400;
+    position: absolute;
+    @include animation-shimer(animation-shimer);
+    animation: animation-shimer 1.3s linear infinite;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    flex-flow: row;
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    height: 100%;
+    flex-flow: column;
+  }
+}
