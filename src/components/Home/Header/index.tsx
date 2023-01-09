@@ -30,7 +30,7 @@ const Header: React.FC = () => {
         <Navbar scroll={scroll} />
       </div> */}
       <div className={styles.headerMain}>
-        {/* <Content /> */}
+        <Content />
       </div>
     </div>
   )

@@ -22,20 +22,14 @@ const Home: React.FC<HomeProps> = ({ children }) => {
 
   return (
     <div style={displayForm ? { height: '100vh', overflow: 'hidden' } : null}>
-      {displayForm && (
-        <div
-          style={displayForm ? { height: '100vh', overflow: 'hidden' } : null}
-        >
-          <Navbar scroll={false} token={decodedToken} />
-          <Header />
-          <Page sideBar={null}>
-            <FeedList />
-          </Page>
-          <Mark />
-          {children}
-          <Footer />
-        </div>
-      )}
+      {/* <Navbar  /> */}
+      <Header />
+      <Page sideBar={null}>
+        <FeedList />
+      </Page>
+      <Mark />
+      {children}
+      <Footer />
     </div>
   )
 }

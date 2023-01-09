@@ -1,22 +1,17 @@
-import Navbar from "components/Navbar";
-import { useJwt } from "react-jwt";
-import Body from "../Body/Body";
-import SideBar from "../sideBar";
-import classes from "./Page.module.scss";
+import Navbar from 'components/Navbar'
+import { useJwt } from 'react-jwt'
+import Body from '../Body/Body'
+import SideBar from '../sideBar'
+import classes from './Page.module.scss'
 interface OptionsProps {
-  children: any;
-  sideBar?: Array<String>;
+  children: any
+  sideBar?: Array<String>
 }
 
-const Page: React.FC<OptionsProps> = ({
-  children,
-  sideBar,
-}): JSX.Element => {
-  const { access } = JSON.parse(
-    localStorage.getItem("persist:root")
-  );
+const Page: React.FC<OptionsProps> = ({ children, sideBar }): JSX.Element => {
+  const { access } = JSON.parse(localStorage.getItem('persist:root'))
 
-  const { decodedToken } = useJwt(access);
+  const { decodedToken } = useJwt(access)
 
   return (
     <>
@@ -26,7 +21,7 @@ const Page: React.FC<OptionsProps> = ({
         {children}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page
