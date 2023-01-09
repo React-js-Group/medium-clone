@@ -18,14 +18,13 @@ const Home: React.FC<HomeProps> = ({ children }) => {
     (state: any) => state.auth
   )
   const { decodedToken } = useJwt(access)
-  const dispatch = useDispatch()
 
-  if (loading) return <h1>LOADING....</h1>
+  console.log(decodedToken)
+  if (loading) return <Loading />
 
   return (
     <div style={displayForm ? { height: '100vh', overflow: 'hidden' } : null}>
-      <Loading />
-      {/* {displayForm && (
+      {displayForm && (
         <Modal>
           <Auth />
         </Modal>
@@ -35,7 +34,7 @@ const Home: React.FC<HomeProps> = ({ children }) => {
       <div style={{ height: '90vh' }}>Main</div>
       <Mark />
       {children}
-      <Footer /> */}
+      <Footer />
     </div>
   )
 }
