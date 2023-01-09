@@ -85,7 +85,7 @@ const Login: React.FC<LoginProps> = ({
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <h3 className={styles.title}>ورود</h3>
       <form className={styles.form} onSubmit={formik.handleSubmit}>
         <Input
@@ -115,6 +115,7 @@ const Login: React.FC<LoginProps> = ({
           onClick={handleCheckValidation}
           style={{
             backgroundColor: '#ffc017',
+            color: '#000',
           }}
           className={styles.button}
         />
@@ -130,7 +131,7 @@ const Login: React.FC<LoginProps> = ({
         <p>رمز عبور خود را فراموش کرده اید؟</p>
         <BiKey />
       </div>
-    </>
+    </div>
   )
 }
 

@@ -30,32 +30,30 @@ const Auth: React.FC = (): JSX.Element => {
   }
 
   return (
-    <div
-      className={`${styles.container} ${
-        currentFrom === 'verify' && styles.verifyForm
-      }`}
-    >
-      <FaTimes className={styles.times} onClick={() => dispatch(toggle())} />
-      {currentFrom === 'register' ? (
-        <Register
-          currentFrom={currentFrom}
-          setForm={handleSetCurrentForm}
-          onSetData={handleSetData}
-          displayPassword={displayPassword}
-          onDisplayPassword={handleDisplayPassword}
-        />
-      ) : currentFrom === 'login' ? (
-        <Login
-          currentFrom={currentFrom}
-          setForm={handleSetCurrentForm}
-          displayPassword={displayPassword}
-          onDisplayPassword={handleDisplayPassword}
-        />
-      ) : currentFrom === 'forgetPassword' ? (
-        <ForgetPassword setForm={handleSetCurrentForm} />
-      ) : (
-        <Verify setForm={handleSetCurrentForm} userData={data} />
-      )}
+    <div className={styles.wrapper}>
+      <div className={`${currentFrom === 'verify' && styles.verifyForm}`}>
+        <FaTimes className={styles.times} onClick={() => dispatch(toggle())} />
+        {currentFrom === 'register' ? (
+          <Register
+            currentFrom={currentFrom}
+            setForm={handleSetCurrentForm}
+            onSetData={handleSetData}
+            displayPassword={displayPassword}
+            onDisplayPassword={handleDisplayPassword}
+          />
+        ) : currentFrom === 'login' ? (
+          <Login
+            currentFrom={currentFrom}
+            setForm={handleSetCurrentForm}
+            displayPassword={displayPassword}
+            onDisplayPassword={handleDisplayPassword}
+          />
+        ) : currentFrom === 'forgetPassword' ? (
+          <ForgetPassword setForm={handleSetCurrentForm} />
+        ) : (
+          <Verify setForm={handleSetCurrentForm} userData={data} />
+        )}
+      </div>
     </div>
   )
 }

@@ -7,6 +7,9 @@ import { useJwt } from 'react-jwt'
 import Loading from 'components/Loading'
 import FeedList from 'components/feedBox/FeedList/FeedList'
 import Page from 'components/layout/page/page'
+import Auth from 'components/Auth'
+import Modal from 'components/Modal'
+import { toggle } from 'store/fetchers/authSlice'
 
 interface HomeProps {
   children?: React.ReactNode
@@ -22,6 +25,11 @@ const Home: React.FC<HomeProps> = ({ children }) => {
 
   return (
     <div style={displayForm ? { height: '100vh', overflow: 'hidden' } : null}>
+      {displayForm && (
+        <Modal displayForm={displayForm} setDisplayForm={toggle}>
+          <Auth />
+        </Modal>
+      )}
       {/* <Navbar  /> */}
       <Header />
       <Page sideBar={null}>

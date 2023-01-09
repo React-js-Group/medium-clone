@@ -1,27 +1,21 @@
-import Auth from "components/Auth";
-import Modal from "components/Modal";
-import Link from "next/link";
-import React from "react";
-import { useDispatch } from "react-redux";
-import { toggle } from "store/fetchers/authSlice";
-import { useState } from "react";
-import styles from "./styles.module.scss";
+import Auth from 'components/Auth'
+import Modal from 'components/Modal'
+import Link from 'next/link'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { toggle } from 'store/fetchers/authSlice'
+import { useState } from 'react'
+import styles from './styles.module.scss'
 interface MainNavbarProps {
-  scroll: boolean;
+  scroll: boolean
 }
 
-const MainNavbar: React.FC<MainNavbarProps> = ({
-  scroll,
-}): JSX.Element => {
-  const dispatch = useDispatch();
-  const [displayForm, setDisplayForm] = useState(false);
+const MainNavbar: React.FC<MainNavbarProps> = ({ scroll }): JSX.Element => {
+  const dispatch = useDispatch()
+  const [displayForm, setDisplayForm] = useState(false)
   return (
     <>
-      <div
-        className={
-          scroll ? styles.headerTop1 : styles.headerTop2
-        }
-      >
+      <div className={scroll ? styles.headerTop1 : styles.headerTop2}>
         <div className={styles.logo}>
           <Link href="/">
             <svg viewBox="0 0 3940 610" className={styles.svg}>
@@ -36,27 +30,16 @@ const MainNavbar: React.FC<MainNavbarProps> = ({
             <li>نوشتن</li>
             <li onClick={() => dispatch(toggle())}>ورود</li>
             <button
-              className={
-                scroll ? styles.button : styles.buttonScrooled
-              }
-              onClick={() => setDisplayForm(!displayForm)}
+              className={scroll ? styles.button : styles.buttonScrooled}
+              onClick={() => dispatch(toggle())}
             >
               شروع کنید
             </button>
           </ul>
         </div>
-
-        {displayForm && (
-          <Modal
-            displayForm={displayForm}
-            setDisplayForm={setDisplayForm}
-          >
-            <Auth />
-          </Modal>
-        )}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default MainNavbar;
+export default MainNavbar

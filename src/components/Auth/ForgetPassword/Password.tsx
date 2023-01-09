@@ -37,7 +37,6 @@ const Password: React.FC<PasswordProps> = ({ email, onForm }) => {
     onSubmit: async (values) => {
       const data = { ...values, email }
       try {
-        console.log(data)
         const request = await postRequest('reset-password/', data)
         if (request.status === 200) {
           toast('رمز عبور با موفقیت تغییر کرد')
@@ -73,12 +72,12 @@ const Password: React.FC<PasswordProps> = ({ email, onForm }) => {
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <h3 className={styles.title}>بازیابی رمز عبور</h3>
       <form
         onSubmit={formik.handleSubmit}
         className={styles.form}
-        style={{ marginTop: '8rem' }}
+        style={{ marginTop: '4rem' }}
       >
         <Input
           type={displayPassword ? 'text' : 'password'}
@@ -105,9 +104,10 @@ const Password: React.FC<PasswordProps> = ({ email, onForm }) => {
           onClick={handleErrors}
           content="تایید"
           style={{ backgroundColor: '#ffc017' }}
+          className={styles.button}
         />
       </form>
-    </>
+    </div>
   )
 }
 

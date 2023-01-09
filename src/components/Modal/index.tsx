@@ -1,14 +1,14 @@
-import React from "react";
-import { FaTimes } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { toggle } from "store/fetchers/authSlice";
+import React from 'react'
+import { FaTimes } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
+import { toggle } from 'store/fetchers/authSlice'
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
 
 interface ModalProps {
-  children: React.ReactNode;
-  setDisplayForm: any;
-  displayForm: boolean;
+  children: React.ReactNode
+  setDisplayForm: any
+  displayForm: boolean
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -16,15 +16,10 @@ const Modal: React.FC<ModalProps> = ({
   setDisplayForm,
   displayForm,
 }): JSX.Element => {
-  const dispatch = useDispatch();
-
-  const handleHideModal = (
-    event: React.MouseEvent<HTMLDivElement>
-  ) => {
-    (event.target as HTMLDivElement).id === "modal" &&
-      setDisplayForm(!displayForm);
-    console.log(event);
-  };
+  const handleHideModal = (event: React.MouseEvent<HTMLDivElement>) => {
+    ;(event.target as HTMLDivElement).id === 'modal' &&
+      setDisplayForm(!displayForm)
+  }
 
   return (
     <div
@@ -40,7 +35,7 @@ const Modal: React.FC<ModalProps> = ({
         {children}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal

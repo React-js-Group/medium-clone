@@ -71,6 +71,7 @@ const Verify: React.FC<VerifyProps> = ({ setForm, userData }): JSX.Element => {
           padding: '10px',
           margin: '1rem 0',
         }}
+        className={styles.button}
         onClick={handleSubmitCode}
       />
     </div>

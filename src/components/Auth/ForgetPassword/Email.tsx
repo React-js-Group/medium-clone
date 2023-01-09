@@ -47,12 +47,12 @@ const Email: React.FC<EmailProps> = ({ onForm, onCurrentForm, onEmail }) => {
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <h3 className={styles.title}>بازیابی رمز عبور</h3>
       <form
         onSubmit={formik.handleSubmit}
         className={styles.form}
-        style={{ marginTop: '8rem' }}
+        style={{ marginTop: '4rem' }}
       >
         <BiArrowBack
           className={styles.arrowBack}
@@ -71,9 +71,10 @@ const Email: React.FC<EmailProps> = ({ onForm, onCurrentForm, onEmail }) => {
           onClick={handleErrors}
           content="بازیابی رمز عبور"
           style={{ backgroundColor: '#ffc017' }}
+          className={styles.button}
         />
       </form>
-    </>
+    </div>
   )
 }
 
