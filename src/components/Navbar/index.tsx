@@ -6,8 +6,15 @@ interface NavbarProps {
   token: unknown | null;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ scroll, token }): JSX.Element => {
-  return <>{token ? <UserNavbar /> : <MainNavbar scroll={scroll} />}</>;
+const Navbar: React.FC<NavbarProps> = ({
+  scroll,
+  token,
+}): JSX.Element => {
+  return (
+    <>
+      {token ? <UserNavbar /> : <MainNavbar scroll={scroll} />}
+    </>
+  );
 };
 
 export default Navbar;

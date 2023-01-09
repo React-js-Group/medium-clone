@@ -1,4 +1,3 @@
-import SideBar from "components/layout/sideBar/SideBar";
 import BookMarkBox from "../BookMarkBox/BookMarkBox";
 import BookMarkHeader from "../BookMarkHeader/BookMarkHeader";
 import BookMarkMenu from "../BookMarkMenu/BookMarkMenu";

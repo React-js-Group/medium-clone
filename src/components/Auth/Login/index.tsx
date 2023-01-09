@@ -12,9 +12,9 @@ import { access, refresh, toggle, loading } from 'store/fetchers/authSlice'
 import { useDispatch } from 'react-redux'
 
 import styles from '../styles.module.scss'
-import { BiKey } from 'react-icons/bi'
 import { RxEyeClosed, RxEyeOpen } from 'react-icons/rx'
 import { CheckToken } from 'utils/CheckToken'
+import { BiKey } from 'react-icons/bi'
 
 interface LoginProps {
   currentFrom: string
@@ -116,6 +116,7 @@ const Login: React.FC<LoginProps> = ({
           style={{
             backgroundColor: '#ffc017',
           }}
+          className={styles.button}
         />
       </form>
       <div className={styles.selectForm}>

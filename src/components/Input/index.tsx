@@ -1,16 +1,17 @@
-import React from "react";
+import React from 'react'
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
 
 interface InputProps {
-  type: React.HTMLInputTypeAttribute | undefined;
-  name: string;
-  value: string;
-  label?: string;
-  placeholder?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  icon?: React.ReactElement;
-  onClick?: (e: React.MouseEvent<HTMLSpanElement>) => void;
+  type: React.HTMLInputTypeAttribute | undefined
+  name: string
+  value?: string
+  label?: string
+  placeholder?: string
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  icon?: React.ReactElement
+  onClick?: (e: React.MouseEvent<HTMLSpanElement>) => void
+  counter?: any
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,6 +21,7 @@ const Input: React.FC<InputProps> = ({
   label,
   placeholder,
   icon,
+  counter,
   onChange,
   onClick,
 }): JSX.Element => {
@@ -28,6 +30,7 @@ const Input: React.FC<InputProps> = ({
       <label htmlFor={name} className={styles.label}>
         {label}
       </label>
+      {counter}
       <input
         type={type}
         value={value}
@@ -43,7 +46,7 @@ const Input: React.FC<InputProps> = ({
         </span>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

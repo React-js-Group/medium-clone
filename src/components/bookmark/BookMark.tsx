@@ -1,4 +1,3 @@
-import SideBar from "components/layout/sideBar";
 import classes from "./BookMark.module.scss";
 import BookMarkBody from "./BookMarkBody/BookMarkBody";
 

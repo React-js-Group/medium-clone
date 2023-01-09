@@ -1,57 +1,58 @@
-import React, { useRef, useState, useEffect } from "react";
-import AuthCode, { AuthCodeRef } from "react-auth-code-input";
-import { BiArrowBack } from "react-icons/bi";
-import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { refresh, access } from "store/fetchers/authSlice";
+import React, { useRef, useState, useEffect } from 'react'
 
-import { postRequest } from "api";
-import Button from "../../Button";
+import AuthCode, { AuthCodeRef } from 'react-auth-code-input'
+import { BiArrowBack } from 'react-icons/bi'
+import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { refresh, access } from 'store/fetchers/authSlice'
 
-import styles from "../styles.module.scss";
+import { postRequest } from 'api'
+import Button from '../../Button'
+
+import styles from '../styles.module.scss'
 
 interface VerifyProps {
-  setForm: (form: string) => void;
-  userData: {};
+  setForm: (form: string) => void
+  userData: {}
 }
 
 const Verify: React.FC<VerifyProps> = ({ setForm, userData }): JSX.Element => {
-  const [code, setCode] = useState<string>("");
-  const AuthInputRef = useRef<AuthCodeRef>(null);
-  const dispatch = useDispatch();
+  const [code, setCode] = useState<string>('')
+  const AuthInputRef = useRef<AuthCodeRef>(null)
+  const dispatch = useDispatch()
 
   const handleSubmitCode = async () => {
     try {
-      const res = await postRequest("register/", {
+      const res = await postRequest('register/', {
         data: { ...userData, code: code },
         withCredentials: true,
-      });
+      })
       if (res.status === 200) {
-        const { access: accessTok, refresh: refreshTok } = res.data.tokens;
-        dispatch(access(accessTok));
-        dispatch(refresh(refreshTok));
+        const { access: accessTok, refresh: refreshTok } = res.data.tokens
+        dispatch(access(accessTok))
+        dispatch(refresh(refreshTok))
 
-        toast("ثبت نام موفقیت آمیز بود ، خوش آمدید");
+        toast('ثبت نام موفقیت آمیز بود ، خوش آمدید')
       }
     } catch (err) {
       if (err.response.status === 404) {
-        toast("کد وارد شده صحیح نمی باشد");
+        toast('کد وارد شده صحیح نمی باشد')
       }
       if (err.response.status === 500) {
-        toast("مشکلی از سمت سرور پیش آمده است ، لطفا بعدا امتحان کنید");
+        toast('مشکلی از سمت سرور پیش آمده است ، لطفا بعدا امتحان کنید')
       }
     }
-  };
+  }
 
   useEffect(() => {
-    AuthInputRef.current?.focus();
-  }, []);
+    AuthInputRef.current?.focus()
+  }, [])
 
   return (
     <div className={styles.verifyForm}>
       <BiArrowBack
         className={styles.arrowBack}
-        onClick={() => setForm("login")}
+        onClick={() => setForm('login')}
       />
       <h3 className={styles.title}>تایید ایمیل</h3>
       <p>لطفا کد ارسال شده به ایمیل را وارد نمایید</p>
@@ -66,14 +67,14 @@ const Verify: React.FC<VerifyProps> = ({ setForm, userData }): JSX.Element => {
         content="تایید"
         type="button"
         style={{
-          backgroundColor: "#118811",
-          padding: "10px",
-          margin: "1rem 0",
+          backgroundColor: '#118811',
+          padding: '10px',
+          margin: '1rem 0',
         }}
         onClick={handleSubmitCode}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Verify;
+export default Verify
