@@ -32,6 +32,17 @@ button {
 .colorRed {
   color: red;
 }
+.swal2-title {
+  font-size: 0.875em !important;
+}
+.swal2-icon .swal2-icon-content {
+  font-size: 1.75em;
+}
+.swal2-icon {
+  height: 2em !important;
+  width: 2em !important;
+}
+
 * {
   box-sizing: border-box;
   font-family: Vazir, sans-serif;

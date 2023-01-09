@@ -1,4 +1,15 @@
+@import "../../../sass/variables";
+
 .feedItem {
+  display: flex;
+  margin-bottom: 55px;
+
+  @media screen and (max-width: $sm) {
+    flex-flow: column;
+    height: auto;
+    align-items: center;
+  }
+
   .footer {
     display: flex;
     justify-content: space-between;
@@ -23,8 +34,6 @@
     }
   }
 
-  display: flex;
-  margin-bottom: 55px;
   h2 {
     color: rgb(41, 41, 41);
     margin-bottom: 5px;

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import OtpInput from "react-otp-input";
+// import OtpInput from "react-otp-input";
 import AuthCode, { AuthCodeRef } from "react-auth-code-input";
 
 import Button from "../../Button";
@@ -13,14 +13,15 @@ interface VerifyProps {
   setForm: (form: string) => void;
 }
 
-const Verify: React.FC<VerifyProps> = ({ setForm }): JSX.Element => {
+const Verify: React.FC<VerifyProps> = ({
+  setForm,
+}): JSX.Element => {
   const [code, setCode] = useState<string>("");
   const AuthInputRef = useRef<AuthCodeRef>(null);
 
   const handleSubmitCode = async () => {
     try {
-      console.log(code);
-      const res = await postRequest("register/", { data: code });
+      const res = await postRequest("register/", { code });
       console.log(res);
     } catch (err) {
       console.log(err);

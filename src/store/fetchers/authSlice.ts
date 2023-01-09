@@ -29,4 +29,7 @@ const authSlice = createSlice({
 });
 
 export const { toggle, access, refresh } = authSlice.actions;
+export const accessToken = (state: any) => state.auth.access;
+export const displayForm = (state: any) =>
+  state.auth.displayForm;
 export default authSlice.reducer;

@@ -11,30 +11,31 @@ import Verify from "./Verify";
 import styles from "./styles.module.scss";
 
 const Auth: React.FC = (): JSX.Element => {
-  const [currentFrom, setCurrentForm] = useState<string>("login");
-  const dispatch = useDispatch();
+  const [currentFrom, setCurrentForm] =
+    useState<string>("login");
 
   const handleSetCurrentForm = (form: string) => {
     setCurrentForm(form);
   };
 
   return (
-    <div
-      className={`${styles.container} ${
-        currentFrom === "verify" && styles.verifyForm
-      }`}
-    >
-      <FaTimes className={styles.times} onClick={() => dispatch(toggle())} />
+    <>
       {currentFrom === "register" ? (
-        <Register currentFrom={currentFrom} setForm={handleSetCurrentForm} />
+        <Register
+          currentFrom={currentFrom}
+          setForm={handleSetCurrentForm}
+        />
       ) : currentFrom === "login" ? (
-        <Login currentFrom={currentFrom} setForm={handleSetCurrentForm} />
+        <Login
+          currentFrom={currentFrom}
+          setForm={handleSetCurrentForm}
+        />
       ) : currentFrom === "forgetPassword" ? (
         <ForgetPassword setForm={handleSetCurrentForm} />
       ) : (
         <Verify setForm={handleSetCurrentForm} />
       )}
-    </div>
+    </>
   );
 };
 

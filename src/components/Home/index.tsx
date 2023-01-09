@@ -7,6 +7,10 @@ import { useSelector } from "react-redux";
 import Mark from "components/Mark";
 import Navbar from "components/Navbar";
 import { useJwt } from "react-jwt";
+import Page from "components/layout/page/page";
+import BookMark from "components/bookmark/BookMark";
+
+import FeedList from "components/feedBox/FeedList/FeedList";
 
 interface HomeProps {
   children?: React.ReactNode;
@@ -14,8 +18,13 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ children }) => {
   const [render, setRender] = useState(0);
-  const displayForm = useSelector((state: any) => state.auth.displayForm);
-  const { access } = JSON.parse(localStorage.getItem("persist:root"));
+  const displayForm = useSelector(
+    (state: any) => state.auth.displayForm
+  );
+  const { access } = JSON.parse(
+    localStorage.getItem("persist:root")
+  );
+
   const { decodedToken } = useJwt(access);
 
   useEffect(() => {
@@ -23,15 +32,23 @@ const Home: React.FC<HomeProps> = ({ children }) => {
   }, [access]);
 
   return (
-    <div style={displayForm ? { height: "100vh", overflow: "hidden" } : null}>
-      {displayForm && (
+    <div
+      style={
+        displayForm
+          ? { height: "100vh", overflow: "hidden" }
+          : null
+      }
+    >
+      {/* {displayForm && (
         <Modal>
           <Auth />
         </Modal>
-      )}
+      )} */}
       <Navbar scroll={false} token={decodedToken} />
-      <Header />
-      <div style={{ height: "90vh" }}>Main</div>
+      {/* <Header /> */}
+      <Page sideBar={null}>
+        <FeedList />
+      </Page>
       <Mark />
       {children}
       <Footer />

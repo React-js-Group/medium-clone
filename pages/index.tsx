@@ -1,14 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-<<<<<<< HEAD
-import Modal from "components/Modal";
-import Auth from "components/Auth";
-import Layout from "layout/Layout";
-import FeedBox from "components/feedBox/FeedBox";
-=======
 import Home from "components/Home";
->>>>>>> ali
 
 const HomePage: React.FC = (): JSX.Element => {
   return (
@@ -21,14 +14,7 @@ const HomePage: React.FC = (): JSX.Element => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-<<<<<<< HEAD
-
-      <Layout>
-        <FeedBox />
-      </Layout>
-=======
       <Home />
->>>>>>> ali
     </div>
   );
 };

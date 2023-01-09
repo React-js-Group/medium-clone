@@ -11,7 +11,11 @@ import { LoginSchema } from "utils/Validation";
 
 import styles from "../styles.module.scss";
 import { postRequest } from "api";
-import { access, refresh, toggle } from "store/fetchers/authSlice";
+import {
+  access,
+  refresh,
+  toggle,
+} from "store/fetchers/authSlice";
 import { useDispatch } from "react-redux";
 
 interface LoginProps {
@@ -24,7 +28,10 @@ interface InitialForm {
   password: string;
 }
 
-const Login: React.FC<LoginProps> = ({ currentFrom, setForm }): JSX.Element => {
+const Login: React.FC<LoginProps> = ({
+  currentFrom,
+  setForm,
+}): JSX.Element => {
   const initialValues: InitialForm = { email: "", password: "" };
   const dispatch = useDispatch();
 
@@ -34,12 +41,13 @@ const Login: React.FC<LoginProps> = ({ currentFrom, setForm }): JSX.Element => {
     onSubmit: async (data) => {
       try {
         const res = await postRequest("login/", data);
+
+        console.log("hh", res);
         if (res.status !== 200) {
           console.log("hi");
         }
         dispatch(access(res.data.access));
         dispatch(refresh(res.data.refresh));
-        dispatch(toggle());
       } catch (err) {
         toast("اطلاعات وارد شده صحیح نمی باشد");
         console.log(err);
@@ -60,7 +68,10 @@ const Login: React.FC<LoginProps> = ({ currentFrom, setForm }): JSX.Element => {
   return (
     <>
       <h3 className={styles.title}>ورود</h3>
-      <form className={styles.form} onSubmit={formik.handleSubmit}>
+      <form
+        className={styles.form}
+        onSubmit={formik.handleSubmit}
+      >
         <Input
           type="text"
           name="email"
@@ -82,12 +93,15 @@ const Login: React.FC<LoginProps> = ({ currentFrom, setForm }): JSX.Element => {
         />
 
         <Button
-          content={currentFrom === "register" ? "ثبت نام" : "ورود"}
+          content={
+            currentFrom === "register" ? "ثبت نام" : "ورود"
+          }
           type="submit"
           onClick={handleCheckValidation}
           style={{
             backgroundColor: "#ffc017",
           }}
+          className={styles.button}
         />
       </form>
       <div className={styles.selectForm}>

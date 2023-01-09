@@ -13,17 +13,23 @@ interface OptionsProps {
 const SideBar: React.FC<OptionsProps> = ({
   sideBar,
 }): JSX.Element => {
-  console.log();
+  console.log(sideBar);
   return (
     <div className={classes.SideBar}>
       {/* BOOK_MARKSIDEBAR */}
 
-      {sideBar.filter((item) => item == BOOK_MARK_SIDEBAR)
-        .length !== 0 && <BookMarkSideBar />}
+      {sideBar &&
+        sideBar?.filter((item) => item == BOOK_MARK_SIDEBAR)
+          .length !== 0 && <BookMarkSideBar />}
 
       {/* PROFILE_SIDEBAR*/}
-      {sideBar.filter((item) => item == PROFILE_SIDEBAR)
-        .length !== 0 && <ProfileSideBar />}
+      {sideBar &&
+      sideBar?.filter((item) => item == PROFILE_SIDEBAR)
+        .length !== 0 ? (
+        <ProfileSideBar />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
