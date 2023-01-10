@@ -1,37 +1,39 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 interface initialStateInfo {
-  loading: boolean;
-  displayForm: boolean;
-  access: string;
-  refresh: string;
+  loading: boolean
+  displayForm: boolean
+  access: string
+  refresh: string
 }
 
 const initialState: initialStateInfo = {
   loading: false,
   displayForm: false,
-  access: "",
-  refresh: "",
-};
+  access: '',
+  refresh: '',
+}
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     loading(state) {
-      state.loading = !state.loading;
+      state.loading = !state.loading
     },
     toggle(state) {
-      state.displayForm = !state.displayForm;
+      state.displayForm = !state.displayForm
     },
     access(state, action) {
-      state.access = action.payload;
+      state.access = action.payload
     },
     refresh(state, action) {
-      state.refresh = action.payload;
+      state.refresh = action.payload
     },
   },
-});
+})
 
-export const { toggle, access, refresh, loading } = authSlice.actions;
-export default authSlice.reducer;
+export const { toggle, access, refresh, loading } = authSlice.actions
+export const accessToken = (state: any) => state.auth.access
+export const displayForm = (state: any) => state.auth.displayForm
+export default authSlice.reducer

@@ -6,7 +6,7 @@ const FeedBox: React.FC = (): JSX.Element => {
   return (
     <div className={classes.Container}>
       <FeedList />
-      <FeedLabel />
+      {/* <FeedLabel /> */}
     </div>
   );
 };

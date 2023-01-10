@@ -12,9 +12,9 @@ import { access, refresh, toggle, loading } from 'store/fetchers/authSlice'
 import { useDispatch } from 'react-redux'
 
 import styles from '../styles.module.scss'
-import { BiKey } from 'react-icons/bi'
 import { RxEyeClosed, RxEyeOpen } from 'react-icons/rx'
 import { CheckToken } from 'utils/CheckToken'
+import { BiKey } from 'react-icons/bi'
 
 interface LoginProps {
   currentFrom: string
@@ -90,7 +90,7 @@ const Login: React.FC<LoginProps> = ({
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <h3 className={styles.title}>ورود</h3>
       <form className={styles.form} onSubmit={formik.handleSubmit}>
         <Input
@@ -120,7 +120,9 @@ const Login: React.FC<LoginProps> = ({
           onClick={handleCheckValidation}
           style={{
             backgroundColor: '#ffc017',
+            color: '#000',
           }}
+          className={styles.button}
         />
       </form>
       <div className={styles.selectForm}>
@@ -134,7 +136,7 @@ const Login: React.FC<LoginProps> = ({
         <p>رمز عبور خود را فراموش کرده اید؟</p>
         <BiKey />
       </div>
-    </>
+    </div>
   )
 }
 

@@ -1,5 +1,6 @@
-@import "../../sass/_variables.scss";
+@import '../../sass/_variables.scss';
 
+@import '../../sass/animations';
 .modal {
   width: 100%;
   height: 100vh;
@@ -10,4 +11,34 @@
   backdrop-filter: opacity(0.5);
   position: fixed;
   z-index: 10;
+}
+.container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 80%;
+  max-width: 40rem;
+  height: 90%;
+  max-height: 40rem;
+  overflow-y: scroll;
+  background-color: $white;
+  box-shadow: 2px 3px 8px #30303033;
+  border-radius: 8px;
+  position: absolute;
+  top: 30px;
+  @include animation-auth(animation-auth);
+  animation: animation-auth 0.2s linear both;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+  z-index: 1000;
+  overflow-y: hidden;
+}
+.times {
+  font-size: 1.5rem;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
 }

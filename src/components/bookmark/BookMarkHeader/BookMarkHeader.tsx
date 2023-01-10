@@ -1,10 +1,29 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { displayForm, toggle } from "store/fetchers/authSlice";
+import BookMarkModel from "../BookMarkModel";
 import classes from "./BookMarkHeader.module.scss";
 
 const BookMarkHeader: React.FC = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const bookmarkModel = useSelector(displayForm);
+
+  const [model, setModel] = useState(false);
+  const handelClick = () => {
+    dispatch(toggle());
+  };
   return (
     <div className={classes.container}>
       <h1>لیست شما</h1>
-      <button className={classes.newListBtn}>لیست جدید</button>
+      <button
+        className={classes.newListBtn}
+        onClick={handelClick}
+      >
+        لیست جدید
+      </button>
+      {bookmarkModel && (
+        <BookMarkModel handelClick={handelClick} />
+      )}
     </div>
   );
 };
