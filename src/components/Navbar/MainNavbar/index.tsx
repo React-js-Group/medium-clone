@@ -1,10 +1,7 @@
-import Auth from 'components/Auth'
-import Modal from 'components/Modal'
 import Link from 'next/link'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggle } from 'store/fetchers/authSlice'
-import { useState } from 'react'
 import styles from './styles.module.scss'
 interface MainNavbarProps {
   scroll: boolean
@@ -12,7 +9,6 @@ interface MainNavbarProps {
 
 const MainNavbar: React.FC<MainNavbarProps> = ({ scroll }): JSX.Element => {
   const dispatch = useDispatch()
-  const [displayForm, setDisplayForm] = useState(false)
   return (
     <>
       <div className={scroll ? styles.headerTop1 : styles.headerTop2}>

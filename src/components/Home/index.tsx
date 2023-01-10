@@ -10,6 +10,7 @@ import Page from 'components/layout/page/page'
 import Auth from 'components/Auth'
 import Modal from 'components/Modal'
 import { toggle } from 'store/fetchers/authSlice'
+import { useEffect, useState } from 'react'
 
 interface HomeProps {
   children?: React.ReactNode
