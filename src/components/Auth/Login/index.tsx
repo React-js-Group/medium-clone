@@ -65,6 +65,11 @@ const Login: React.FC<LoginProps> = ({
         }
         if (res.status === 200) {
           dispatch(loading())
+          const tokens = {
+            access: res.data.access,
+            refresh: res.data.refresh,
+          }
+          localStorage.setItem('medium-clone-tokens', JSON.stringify(tokens))
         }
       } catch (err) {
         toast('اطلاعات وارد شده صحیح نمی باشد')

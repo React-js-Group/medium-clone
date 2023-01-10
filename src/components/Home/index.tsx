@@ -29,8 +29,6 @@ const Home: React.FC<HomeProps> = ({ children }) => {
       )}
       <Navbar scroll={false} token={decodedToken} />
       <Header />
-      <div style={{ height: '90vh' }}>Main</div>
-      <Mark />
       {children}
       <Footer />
     </div>

@@ -1,24 +1,24 @@
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 import {
   BsBookmarks,
   BsReverseLayoutTextWindowReverse,
   BsSearch,
-} from "react-icons/bs";
-import { IoNotificationsOutline, IoStatsChart } from "react-icons/io5";
-import { IoIosArrowDown } from "react-icons/io";
-import { TfiWrite } from "react-icons/tfi";
-import { GiStarShuriken } from "react-icons/gi";
+} from 'react-icons/bs'
+import { IoNotificationsOutline, IoStatsChart } from 'react-icons/io5'
+import { IoIosArrowDown } from 'react-icons/io'
+import { TfiWrite } from 'react-icons/tfi'
+import { GiStarShuriken } from 'react-icons/gi'
 
-import styles from "./styles.module.scss";
-import { AiOutlineUser } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { access, refresh } from "store/fetchers/authSlice";
+import styles from './styles.module.scss'
+import { AiOutlineUser } from 'react-icons/ai'
+import { useDispatch } from 'react-redux'
+import { access, refresh } from 'store/fetchers/authSlice'
 
 const UserNavbar: React.FC = (): JSX.Element => {
-  const [displayProfile, setDisplayProfile] = useState<boolean>(false);
-  const dispatch = useDispatch();
+  const [displayProfile, setDisplayProfile] = useState<boolean>(false)
+  const dispatch = useDispatch()
 
   return (
     <nav className={styles.Nav}>
@@ -102,8 +102,15 @@ const UserNavbar: React.FC = (): JSX.Element => {
                 <li className={styles.logout}>
                   <span
                     onClick={() => {
-                      dispatch(access(""));
-                      dispatch(refresh(""));
+                      dispatch(access(''))
+                      dispatch(refresh(''))
+                      localStorage.setItem(
+                        'medium-clone-tokens',
+                        JSON.stringify({
+                          access: '',
+                          refresh: '',
+                        })
+                      )
                     }}
                   >
                     خروج
@@ -116,7 +123,7 @@ const UserNavbar: React.FC = (): JSX.Element => {
         </li>
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default UserNavbar;
+export default UserNavbar
