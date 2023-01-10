@@ -1,9 +1,8 @@
 import Footer from './Footer'
 import Header from './Header'
-import { useEffect, useState } from 'react'
 import Modal from 'components/Modal'
 import Auth from 'components/Auth'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Mark from 'components/Mark'
 import Navbar from 'components/Navbar'
 import { useJwt } from 'react-jwt'
@@ -19,7 +18,6 @@ const Home: React.FC<HomeProps> = ({ children }) => {
   )
   const { decodedToken } = useJwt(access)
 
-  console.log(decodedToken)
   if (loading) return <Loading />
 
   return (
