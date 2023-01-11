@@ -3,10 +3,11 @@ import React from "react";
 import styles from "./styles.module.scss";
 
 interface ButtonProps {
-  content: string;
+  content: any;
   type: "submit" | "reset" | "button" | undefined;
   onClick?: () => void;
   style?: {};
+  className?: any;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -14,11 +15,12 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   type,
   style,
+  className,
 }): JSX.Element => {
   return (
     <button
       type={type}
-      className={styles.button}
+      className={`styles.button ${className}`}
       style={style}
       onClick={onClick}
     >

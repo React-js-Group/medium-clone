@@ -12,14 +12,18 @@ import "react-toastify/dist/ReactToastify.css";
 import "tippy.js/dist/tippy.css";
 
 import "../styles/globals.scss";
+import { json } from "stream/consumers";
 
-const queryClient = new QueryClient();
-
+export const queryClient = new QueryClient();
+console.log(store.getState());
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistStore(store)}>
+        <PersistGate
+          loading={null}
+          persistor={persistStore(store)}
+        >
           <Component {...pageProps} />
           <ToastContainer />
         </PersistGate>

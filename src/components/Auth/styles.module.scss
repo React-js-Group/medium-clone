@@ -1,30 +1,18 @@
-@import "../../sass/_variables.scss";
-@import "../../sass/animations";
+@import '../../sass/_variables.scss';
+@import '../../sass/animations';
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
 
 .container {
   display: flex;
   flex-flow: column;
   align-items: center;
-  width: 80%;
-  max-width: 40rem;
-  height: 90%;
-  max-height: 40rem;
-  overflow-y: scroll;
-  background-color: $white;
-  box-shadow: 2px 3px 8px #30303033;
-  border-radius: 8px;
-  position: absolute;
-  top: 30px;
-  @include animation-auth(animation-auth);
-  animation: animation-auth 0.2s linear both;
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-}
-
-.container::-webkit-scrollbar {
-  display: none;
 }
 
 .times {
@@ -98,4 +86,9 @@
   & svg {
     font-size: 16px;
   }
+}
+.button {
+  margin-top: 20px;
+  padding: 10px 40px;
+  border-radius: 5px;
 }

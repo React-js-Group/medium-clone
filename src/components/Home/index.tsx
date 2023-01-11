@@ -1,12 +1,15 @@
 import Footer from './Footer'
 import Header from './Header'
-import Modal from 'components/Modal'
-import Auth from 'components/Auth'
 import { useSelector } from 'react-redux'
 import Mark from 'components/Mark'
 import Navbar from 'components/Navbar'
 import { useJwt } from 'react-jwt'
 import Loading from 'components/Loading'
+import FeedList from 'components/feedBox/FeedList/FeedList'
+import Page from 'components/layout/page/page'
+import Auth from 'components/Auth'
+import Modal from 'components/Modal'
+import { toggle } from 'store/fetchers/authSlice'
 
 interface HomeProps {
   children?: React.ReactNode
@@ -23,13 +26,15 @@ const Home: React.FC<HomeProps> = ({ children }) => {
   return (
     <div style={displayForm ? { height: '100vh', overflow: 'hidden' } : null}>
       {displayForm && (
-        <Modal>
+        <Modal displayForm={displayForm} setDisplayForm={toggle}>
           <Auth />
         </Modal>
       )}
-      <Navbar scroll={false} token={decodedToken} />
+      {/* <Navbar  /> */}
       <Header />
-      <div style={{ height: '90vh' }}>Main</div>
+      <Page sideBar={null}>
+        <FeedList />
+      </Page>
       <Mark />
       {children}
       <Footer />

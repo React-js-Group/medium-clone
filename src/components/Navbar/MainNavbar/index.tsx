@@ -1,16 +1,18 @@
-import Link from "next/link";
-import React from "react";
-import { useDispatch } from "react-redux";
-import { toggle } from "store/fetchers/authSlice";
-
-import styles from "./styles.module.scss";
+import Auth from 'components/Auth'
+import Modal from 'components/Modal'
+import Link from 'next/link'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { toggle } from 'store/fetchers/authSlice'
+import { useState } from 'react'
+import styles from './styles.module.scss'
 interface MainNavbarProps {
-  scroll: boolean;
+  scroll: boolean
 }
 
 const MainNavbar: React.FC<MainNavbarProps> = ({ scroll }): JSX.Element => {
-  const dispatch = useDispatch();
-
+  const dispatch = useDispatch()
+  const [displayForm, setDisplayForm] = useState(false)
   return (
     <>
       <div className={scroll ? styles.headerTop1 : styles.headerTop2}>
@@ -37,7 +39,7 @@ const MainNavbar: React.FC<MainNavbarProps> = ({ scroll }): JSX.Element => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default MainNavbar;
+export default MainNavbar

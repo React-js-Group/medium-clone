@@ -57,6 +57,9 @@ const Code: React.FC<CodeProps> = ({ onCurrentForm, email }) => {
             backgroundColor: '#118811',
             padding: '10px',
             margin: '1rem 0',
+            color: '#fff',
+            width: '8rem',
+            borderRadius: '8px',
           }}
           onClick={handleSubmitCode}
         />
