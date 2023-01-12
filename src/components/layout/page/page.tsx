@@ -1,4 +1,5 @@
 import Navbar from 'components/Navbar'
+import { useEffect, useState } from 'react'
 import { useJwt } from 'react-jwt'
 import Body from '../Body/Body'
 import SideBar from '../sideBar'
@@ -9,13 +10,9 @@ interface OptionsProps {
 }
 
 const Page: React.FC<OptionsProps> = ({ children, sideBar }): JSX.Element => {
-  const { access } = JSON.parse(localStorage.getItem('persist:root'))
-
-  const { decodedToken } = useJwt(access)
-
   return (
     <>
-      <Navbar scroll={false} token={decodedToken} />
+      <Navbar scroll={false} />
       <div className={classes.container}>
         <SideBar sideBar={sideBar} />
         {children}

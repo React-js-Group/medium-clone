@@ -1,13 +1,14 @@
 import React from 'react'
 import { useFormik } from 'formik'
 import { AiOutlineUser } from 'react-icons/ai'
+import Cookies from 'universal-cookie'
 import { toast } from 'react-toastify'
 
 import Input from 'components/Input'
 import Button from 'components/Button'
 
 import { LoginSchema } from 'utils/Validation'
-import { postRequest } from 'api'
+import { getRequest, postRequest } from 'api'
 import { access, refresh, toggle, loading } from 'store/fetchers/authSlice'
 import { useDispatch } from 'react-redux'
 
@@ -15,6 +16,7 @@ import styles from '../styles.module.scss'
 import { RxEyeClosed, RxEyeOpen } from 'react-icons/rx'
 import { CheckToken } from 'utils/CheckToken'
 import { BiKey } from 'react-icons/bi'
+import { setProfile } from 'store/fetchers/userSlice'
 
 interface LoginProps {
   currentFrom: string
@@ -40,32 +42,35 @@ const Login: React.FC<LoginProps> = ({
   const formik = useFormik({
     initialValues,
     validationSchema: LoginSchema,
-    onSubmit: async (data) => {
+    onSubmit: async (values) => {
       try {
         dispatch(loading())
-        const res = await postRequest('login/', data)
+        const { data } = await postRequest('login/', values)
 
-        //! VALIDATION ACCESS TOKEN
-        const isExpired = CheckToken(res.data.access)
+        dispatch(access(data.access))
+        dispatch(refresh(data.refresh))
 
-        //! IF ACCESS TOKEN WAS NOT VALID
-        if (isExpired) {
-          const { data } = await postRequest('refresh/', {
-            refresh: res.data.refresh,
+        localStorage.setItem(
+          'medium-clone-tokens',
+          JSON.stringify({
+            access: data.access,
+            refresh: data.refresh,
           })
-          dispatch(access(data.access))
-          dispatch(refresh(res.data.refresh))
-          dispatch(toggle())
+        )
+        const cookies = new Cookies()
+        cookies.set('medium-clone-tokens', data.access, { path: '/' })
 
-          //! IF ACCESS TOKEN WAS VALIDED
-        } else {
-          dispatch(access(res.data.access))
-          dispatch(refresh(res.data.refresh))
-          dispatch(toggle())
+        const value = { token: data.access }
+        try {
+          const { data } = await postRequest('get-user-by-token/', value)
+          dispatch(setProfile(data))
+        } catch (err) {
+          toast('اطلاعات وارد شده صحیح نمی باشد')
+          console.log(err)
         }
-        if (res.status === 200) {
-          dispatch(loading())
-        }
+
+        dispatch(toggle())
+        dispatch(loading())
       } catch (err) {
         toast('اطلاعات وارد شده صحیح نمی باشد')
         console.log(err)

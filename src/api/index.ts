@@ -1,15 +1,19 @@
+import Cookies from 'universal-cookie'
 import axios from 'axios'
+
+const cookies = new Cookies()
+const AUTH_TOKEN = cookies.get('medium-clone-tokens')
 
 axios.defaults.baseURL = process.env.BASE_URL
 axios.defaults.headers.post['Content-Type'] = 'application/json'
-// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
 
-const postRequest = (endPoint: string, data: object): Promise<any> => {
-  return axios.post(`${endPoint}`, data)
+const postRequest = async (endPoint: string, data: object): Promise<any> => {
+  return await axios.post(`${endPoint}`, data)
 }
 
-const getRequest = (endPoint: string): Promise<any> => {
-  return axios.get(`${endPoint}`)
+const getRequest = async (endPoint: string): Promise<any> => {
+  return await axios.get(`${endPoint}`)
 }
 
 const bookMarks = async ({ queryKey }) => {

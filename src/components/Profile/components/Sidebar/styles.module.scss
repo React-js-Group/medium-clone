@@ -1,4 +1,4 @@
-@import "../../../../sass/variables";
+@import '../../../../sass/variables';
 
 .Sidebar {
   display: none;
@@ -47,4 +47,14 @@
       }
     }
   }
+}
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  background-color: $primary;
+  border-radius: 100px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
 }

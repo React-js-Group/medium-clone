@@ -1,14 +1,18 @@
-import Button from "components/Button";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useState } from "react";
-import { BiDotsHorizontalRounded } from "react-icons/bi";
-import { IoLockClosed } from "react-icons/io5";
+import Button from 'components/Button'
+import Image from 'next/image'
+import Link from 'next/link'
+import React, { FC, useState } from 'react'
+import { BiDotsHorizontalRounded } from 'react-icons/bi'
+import { IoLockClosed } from 'react-icons/io5'
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
 
-const Main: React.FC = (): JSX.Element => {
-  const [options, setOptions] = useState<boolean>(false);
+interface MainProps {
+  profile: any
+}
+
+const Main: FC<MainProps> = ({ profile }): JSX.Element => {
+  const [options, setOptions] = useState<boolean>(false)
 
   return (
     <main className={styles.Main}>
@@ -20,7 +24,7 @@ const Main: React.FC = (): JSX.Element => {
             width={50}
             height={50}
           />
-          <h1>Ali</h1>
+          <h1>{profile.username}</h1>
         </div>
         <BiDotsHorizontalRounded onClick={() => setOptions(!options)} />
         {options && (
@@ -48,11 +52,11 @@ const Main: React.FC = (): JSX.Element => {
               type="button"
               content="نمایش لیست"
               style={{
-                border: "1px solid #292929",
-                background: "transparent",
-                borderRadius: "100px",
-                color: "#292929",
-                width: "auto",
+                border: '1px solid #292929',
+                background: 'transparent',
+                borderRadius: '100px',
+                color: '#292929',
+                width: 'auto',
               }}
             />
             <IoLockClosed />
@@ -71,7 +75,7 @@ const Main: React.FC = (): JSX.Element => {
         </div>
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default Main;
+export default Main
