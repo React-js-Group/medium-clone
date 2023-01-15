@@ -1,4 +1,4 @@
-@import "../../../sass/variables";
+@import '../../../sass/variables';
 
 .container {
   width: 100%;
@@ -108,9 +108,13 @@
     border: none;
     font-size: 16px;
     font-family: inherit;
+    width: fit-content;
     cursor: pointer;
     &:hover {
       background-color: $dark-600;
+    }
+    @media screen and (max-width: 600px) {
+      font-size: 16px !important;
     }
   }
   .buttonScrooled {
@@ -129,12 +133,30 @@
   }
   .headerMain {
     display: flex;
+    justify-content: center;
     .titleDiv {
-      padding: 140px 70px;
+      width: 100%;
+      height: 550px;
+      justify-content: center;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      padding-right: 32px;
+      @media screen and (max-width: 600px) {
+        align-items: center;
+        padding-right: 0;
+      }
       h1 {
         margin: 0;
         color: $dark;
         font-size: 100px;
+
+        @media screen and (max-width: 600px) {
+          font-size: 5rem;
+        }
+        @media screen and (max-width: 380px) {
+          font-size: 3.2rem !important;
+        }
       }
       h3 {
         color: $dark-500;
@@ -142,11 +164,104 @@
         font-size: 22px;
         font-weight: 100;
         margin-bottom: 50px;
+
+        @media screen and (max-width: 600px) {
+          font-size: 1rem;
+        }
       }
     }
-    .svgDiv {
-      width: 500px;
-      height: 500px;
-    }
+  }
+}
+
+.svgDiv {
+  width: 40rem;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  transition: all ease;
+
+  & span:nth-child(2),
+  span:nth-child(4),
+  span:nth-child(6),
+  span:nth-child(8),
+  span:nth-child(10),
+  span:nth-child(12) {
+    animation: fade 2s ease infinite backwards;
+  }
+  & span:nth-child(14),
+  span:nth-child(16),
+  span:nth-child(18),
+  span:nth-child(20),
+  span:nth-child(24),
+  span:nth-child(26) {
+    animation: fade 3s ease infinite backwards;
+  }
+  & span:nth-child(28),
+  span:nth-child(30),
+  span:nth-child(32),
+  span:nth-child(34),
+  span:nth-child(36),
+  span:nth-child(38),
+  span:nth-child(40) {
+    animation: fade 4s ease infinite backwards;
+  }
+  & span:nth-child(28),
+  span:nth-child(30),
+  span:nth-child(32),
+  span:nth-child(34),
+  span:nth-child(36),
+  span:nth-child(38),
+  span:nth-child(40) {
+    animation: fade 5s ease infinite backwards;
+  }
+  & span:nth-child(42),
+  span:nth-child(44),
+  span:nth-child(46),
+  span:nth-child(48),
+  span:nth-child(50),
+  span:nth-child(52),
+  span:nth-child(54) {
+    animation: fade 6s ease infinite backwards;
+  }
+  & span:nth-child(56),
+  span:nth-child(58),
+  span:nth-child(60),
+  span:nth-child(62),
+  span:nth-child(64),
+  span:nth-child(68),
+  span:nth-child(70) {
+    animation: fade 2.5s ease infinite backwards;
+  }
+  & span:nth-child(1),
+  span:nth-child(3),
+  span:nth-child(5),
+  span:nth-child(7),
+  span:nth-child(9),
+  span:nth-child(11),
+  span:nth-child(13) {
+    animation: fade 3.5s ease infinite backwards;
+  }
+  & span:nth-child(15),
+  span:nth-child(17),
+  span:nth-child(19),
+  span:nth-child(21),
+  span:nth-child(23),
+  span:nth-child(25),
+  span:nth-child(27) {
+    animation: fade 1.5s ease infinite backwards;
+  }
+}
+
+.char {
+  position: absolute;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

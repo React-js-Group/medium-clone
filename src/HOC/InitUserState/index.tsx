@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { access, refresh } from 'store/fetchers/authSlice'
 
-import { postRequest } from 'api'
 import { setProfile } from 'store/fetchers/userSlice'
 
 interface InitUserState {
@@ -11,22 +11,13 @@ interface InitUserState {
 const InitUserState: FC<InitUserState> = ({ children }): JSX.Element => {
   const dispatch = useDispatch()
 
-  const handleInitialUserState = async () => {
-    const { access } = JSON.parse(localStorage.getItem('medium-clone-tokens'))
-    const value = { token: access }
-
-    if (access) {
-      try {
-        const { data } = await postRequest('get-user-by-token/', value)
-        dispatch(setProfile(data))
-      } catch (err) {
-        console.log(err)
-      }
-    }
-  }
-
   useEffect(() => {
-    handleInitialUserState()
+    const data = JSON.parse(localStorage.getItem('medium-clone-tokens'))
+    if (data) {
+      dispatch(setProfile(data.user))
+      dispatch(access(data.access))
+      dispatch(refresh(data.refresh))
+    }
   }, [])
 
   return <>{children}</>

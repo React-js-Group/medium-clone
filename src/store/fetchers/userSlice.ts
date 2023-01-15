@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 interface IProfile {
+  id: number
   name: string
   family: string
   username: string
@@ -13,6 +14,7 @@ interface IProfile {
 
 const initialState = {
   profile: <IProfile>{
+    id: 0,
     name: '',
     family: '',
     username: '',

@@ -12,16 +12,17 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ scroll }): JSX.Element => {
   const [token, setToken] = useState<string>('')
   const { access } = useSelector((state: any) => state.auth)
+  const user = useSelector((state: any) => state.user)
   const { isExpired } = useJwt(token)
 
   useEffect(() => {
     const tokens = JSON.parse(localStorage.getItem('medium-clone-tokens'))
-    setToken(tokens.access)
-  }, [token, isExpired, access])
+    setToken(tokens?.access)
+  }, [token, isExpired, access, user])
 
   return (
     <>
-      {token.length > 0 && !isExpired ? (
+      {token?.length > 0 && !isExpired ? (
         <UserNavbar />
       ) : (
         <MainNavbar scroll={scroll} />

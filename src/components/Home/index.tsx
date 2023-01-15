@@ -13,6 +13,7 @@ import Mark from 'components/Mark'
 import { useEffect, useState, useLayoutEffect } from 'react'
 import Navbar from 'components/Navbar'
 import { CheckToken } from 'utils/CheckToken'
+import axios from 'axios'
 
 interface HomeProps {
   children?: React.ReactNode
@@ -38,7 +39,6 @@ const Home: React.FC<HomeProps> = ({ children }) => {
       <Page sideBar={null}>
         <FeedList />
       </Page>
-      <Mark />
       {children}
       <Footer />
     </div>

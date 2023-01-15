@@ -22,13 +22,6 @@ const ProfilePage: FC<ProfilePageProps> = ({ profile }) => {
       <Head>
         <title>پروفایل</title>
       </Head>
-      {/* <div style={displayForm ? { height: '100vh', overflow: 'hidden' } : null}>
-        {displayForm && (
-          <Modal displayForm={displayForm} setDisplayForm={toggle}>
-            <Auth />
-          </Modal>
-        )}
-      </div> */}
       <Navbar />
       <Profile profile={profile} />
     </>
@@ -36,6 +29,12 @@ const ProfilePage: FC<ProfilePageProps> = ({ profile }) => {
 }
 
 export default ProfilePage
+
+// export async function getStaticPaths() {
+//   return {
+//     props: {},
+//   }
+// }
 
 export async function getServerSideProps({ params }) {
   const query = params.profile.substr(1)

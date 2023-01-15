@@ -61,13 +61,17 @@ const UserNavbar: React.FC = (): JSX.Element => {
           className={styles.third}
           onClick={() => setDisplayProfile(!displayProfile)}
         >
-          <Image
-            className={styles.profile}
-            src="/images/profile.jpg"
-            alt="profile"
-            width={40}
-            height={40}
-          />
+          {user.profile ? (
+            <img
+              alt="profile"
+              className={styles.profile}
+              src={process.env.BASE_URL + user.profile}
+            />
+          ) : (
+            <div className={styles.avatar}>
+              {user.username.slice(0, 1).toUpperCase()}
+            </div>
+          )}
           <IoIosArrowDown />
           {displayProfile && (
             <div className={styles.ProfileOptions}>
@@ -92,7 +96,9 @@ const UserNavbar: React.FC = (): JSX.Element => {
                 </li>
               </ul>
               <ul>
-                <li>تنظیمات</li>
+                <li>
+                  <Link href={`@${user.username}/setting`}>تنظیمات</Link>
+                </li>
                 <li>توصیه ها برای اصلاح</li>
                 <li>مدیریت انتشارات</li>
               </ul>
@@ -108,14 +114,14 @@ const UserNavbar: React.FC = (): JSX.Element => {
                 <li className={styles.logout}>
                   <span
                     onClick={() => {
+                      route.replace('/')
                       dispatch(access(''))
                       dispatch(refresh(''))
-                      dispatch(setProfile({}))
                       localStorage.setItem(
                         'medium-clone-tokens',
                         JSON.stringify({ access: '', refresh: '' })
                       )
-                      route.replace('/')
+                      setTimeout(() => dispatch(setProfile({})), 1000)
                     }}
                   >
                     خروج

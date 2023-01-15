@@ -1,4 +1,4 @@
-@import "../../../../sass/variables";
+@import '../../../../sass/variables';
 
 .Main {
   height: 100vh;
@@ -51,7 +51,7 @@
   border: 1px solid $secondary-500;
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     width: 0;
     height: 0;
@@ -69,11 +69,19 @@
   & ul {
     display: flex;
     flex-flow: column;
+    width: 100%;
   }
 
   & ul li {
     color: $dark-500;
     cursor: pointer;
+    width: 100%;
+
+    @media screen and (min-width: 900px) {
+      &:last-child {
+        display: none;
+      }
+    }
   }
 
   @media screen and (max-width: $md) {
@@ -181,5 +189,52 @@
 
   @media screen and (max-width: $sm) {
     font-size: 14px;
+  }
+}
+
+.profile {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100px;
+}
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  background-color: $primary;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+
+  @media screen and (min-width: 900px) {
+    display: none !important;
+  }
+}
+
+.followers {
+  color: $secondary-700;
+  padding: 8px;
+  & span:last-child {
+    padding: 8px;
+  }
+}
+
+.about {
+  color: $secondary-700;
+  padding-bottom: 8px;
+  font-size: 14px;
+}
+
+.skills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  & li {
+    background-color: $secondary-500;
+    padding: 8px;
+    border-radius: 8px;
   }
 }

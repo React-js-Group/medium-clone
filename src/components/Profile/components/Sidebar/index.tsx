@@ -14,7 +14,7 @@ interface SidebarProps {
 }
 
 const Sidebar: FC<SidebarProps> = ({ profile }): JSX.Element => {
-  const { username } = useSelector((state: any) => state.user.profile)
+  const userProfile = useSelector((state: any) => state.user.profile)
   const route = useRouter()
 
   return (
@@ -24,14 +24,18 @@ const Sidebar: FC<SidebarProps> = ({ profile }): JSX.Element => {
       </div>
       <div>
         {profile.profile ? (
-          <Image alt="profile" src={profile.profile} width={100} height={100} />
+          <img
+            alt="profile"
+            className={styles.profile}
+            src={process.env.BASE_URL + profile.profile}
+          />
         ) : (
           <div className={styles.avatar}>
             {profile.username.slice(0, 1).toUpperCase()}
           </div>
         )}
         <p>{profile.username}</p>
-        {route.query.profile.slice(1) === username && (
+        {route.query.profile.slice(1) === userProfile?.username && (
           <Link href={`${route.query.profile}/setting`}>Edit profile</Link>
         )}
       </div>
