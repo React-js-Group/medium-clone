@@ -1,0 +1,50 @@
+.container {
+  max-width: 50rem;
+  width: 40rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-height: 50rem;
+  height: 50rem;
+}
+
+.spinner {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 100%;
+  border: 2px solid $primary;
+  font-size: 12px;
+  animation: spinner 2s linear infinite forwards;
+}
+
+.waiting {
+  margin-top: 2rem;
+}
+
+.info {
+  font-size: 12px;
+  margin-top: 2rem;
+  color: $secondary-600;
+}
+
+@keyframes spinner {
+  0% {
+    border-top: 100%;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 0;
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    border-top: 100%;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 0;
+    transform: rotateZ(360deg);
+  }
+}

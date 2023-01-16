@@ -8,6 +8,8 @@ import styles from './styles.module.scss'
 import { useSelector } from 'react-redux'
 import { useJwt } from 'react-jwt'
 import { useRouter } from 'next/router'
+import { useQuery } from 'react-query'
+import axios from 'axios'
 
 interface SidebarProps {
   profile: any
@@ -19,9 +21,6 @@ const Sidebar: FC<SidebarProps> = ({ profile }): JSX.Element => {
 
   return (
     <aside className={styles.Sidebar}>
-      <div>
-        <button type="button">Get unlimited access</button>
-      </div>
       <div>
         {profile.profile ? (
           <img
@@ -36,9 +35,19 @@ const Sidebar: FC<SidebarProps> = ({ profile }): JSX.Element => {
         )}
         <p>{profile.username}</p>
         {route.query.profile.slice(1) === userProfile?.username && (
-          <Link href={`${route.query.profile}/setting`}>Edit profile</Link>
+          <Link href={`${route.query.profile}/setting`}>ویرایش پروفایل</Link>
         )}
       </div>
+      <div className={styles.followers}>
+        <span>دنبال کننده :</span>
+        <span>{profile.followers}</span>
+      </div>
+      <div className={styles.about}> {profile.about}</div>
+      <ul className={styles.skills}>
+        {profile.skills?.split(',').map((skill: string, i) => (
+          <li key={skill + i}>{skill}#</li>
+        ))}
+      </ul>
     </aside>
   )
 }

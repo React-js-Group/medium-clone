@@ -2,33 +2,18 @@
 
 .Sidebar {
   display: none;
+  position: sticky !important;
+  top: 0;
   @media screen and (min-width: $md) {
     display: flex;
     flex-flow: column;
     padding: 2rem;
     flex: 4;
     width: 40%;
+    height: auto;
   }
 
-  & div:first-child {
-    & button {
-      border: 0;
-      outline: 0;
-      padding: 8px;
-      background-color: $dark-500;
-      color: $white;
-      border-radius: 100px;
-      margin: 20px 0;
-      width: 15rem;
-      transition: background 0.2s ease;
-      cursor: pointer;
-      &:hover {
-        background-color: $dark-600;
-      }
-    }
-  }
-
-  & div:last-child {
+  & div:nth-child(1) {
     & img {
       border-radius: 100px;
       margin-top: 30px;
@@ -63,4 +48,30 @@
   display: grid;
   place-items: center;
   font-size: 1.5rem;
+}
+
+.followers {
+  color: $secondary-700;
+  padding: 8px;
+  & span:last-child {
+    padding: 8px;
+  }
+}
+
+.about {
+  color: $secondary-700;
+  padding-bottom: 8px;
+  font-size: 14px;
+}
+
+.skills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  & li {
+    background-color: $secondary-500;
+    padding: 8px;
+    border-radius: 8px;
+  }
 }

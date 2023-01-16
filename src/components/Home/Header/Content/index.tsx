@@ -34,8 +34,8 @@ const HeaderMain = () => {
               key={i}
               className={styles.char}
               style={{
-                top: char[0],
-                right: char[1],
+                top: Math.random() > 0.5 ? char[0] : -char[0],
+                right: Math.random() > 0.5 ? char[1] : -char[1],
               }}
             >
               M

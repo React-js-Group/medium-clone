@@ -23,6 +23,16 @@ const putRequest = async (
   })
 }
 
+const getUserPost = async ({ queryKey }) => {
+  const { data } = await axios.get(`user-posts/${queryKey[1].username}/`, {
+    headers: {
+      Authorization: `Bearer ${queryKey[1].token}`,
+    },
+  })
+
+  return data
+}
+
 const bookMarks = async ({ queryKey }) => {
   const { data } = await axios.get(`get-bookmark-list/`, {
     headers: {
@@ -57,4 +67,5 @@ export {
   createBookMark,
   deleteBookMark,
   putRequest,
+  getUserPost,
 }

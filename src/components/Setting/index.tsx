@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import { IoIosArrowBack } from 'react-icons/io'
-import { FaTimes } from 'react-icons/fa'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik'
 import { toast } from 'react-toastify'
 
+import { setProfile } from 'store/fetchers/userSlice'
 import { editUserSchema } from 'utils/Validation'
-import Input from 'components/Input'
-import Button from 'components/Button'
-
 import { putRequest } from 'api'
 import Info from './Info'
+import Form from './Form'
 
 import styles from './styles.module.scss'
-import Skills from './skills'
-import { setProfile } from 'store/fetchers/userSlice'
-import Form from './Form'
+import Loading from '../Spinner'
 
 interface IInitialValues {
   name: string
@@ -29,6 +23,7 @@ const Setting: React.FC = () => {
   const [image, setImage] = useState<any>(null)
   const [src, setSrc] = useState<any>()
   const [skills, setSkills] = useState<{}[]>([{}])
+  const [loading, setLoading] = useState<boolean>(false)
 
   const user = useSelector((state: any) => state.user.profile)
   const auth = useSelector((state: any) => state.auth)
@@ -53,6 +48,7 @@ const Setting: React.FC = () => {
       handleResetForm()
     },
     onSubmit: async ({ name, family, about }) => {
+      setLoading(true)
       const arraySkills = []
       if (skills.length > 0) {
         skills.forEach((item: any) => {
@@ -76,18 +72,24 @@ const Setting: React.FC = () => {
           formData,
           auth.access
         )
-        if (req.status === 200) {
-          const { data } = req
-          setEdit(false)
-          toast('اطلاعات پروفایل با موفقیت به روزرسانی شد')
-          handleResetForm()
-          const mreged = { ...data, ...user }
-          dispatch(setProfile(mreged))
-        }
+        const { data } = req
+        setEdit(false)
+        toast('اطلاعات پروفایل با موفقیت به روزرسانی شد')
+        handleResetForm()
+        const userData = { ...user }
+        delete userData.profile
+        delete userData.skills
+        delete userData.name
+        delete userData.family
+        delete userData.about
+        const merged = { ...userData, ...data }
+        dispatch(setProfile(merged))
+        setLoading(false)
       } catch (err) {
         toast('مشکلی پیش آمده است')
         setEdit(false)
         handleResetForm()
+        setLoading(false)
         console.log(err)
       }
     },
@@ -128,6 +130,7 @@ const Setting: React.FC = () => {
           skills={skills}
           onDelete={handleDeleteSkill}
           onReset={handleResetForm}
+          loading={loading}
         />
       </div>
     </>

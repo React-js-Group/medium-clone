@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
-import Loading from 'components/Loading'
 
 interface GourdProps {
   children: React.ReactNode

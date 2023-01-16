@@ -1,13 +1,19 @@
 import React, { FC, useState } from 'react'
-import Link from 'next/link'
-import { BiDotsHorizontalRounded } from 'react-icons/bi'
-import { IoLockClosed } from 'react-icons/io5'
-
-import Button from 'components/Button'
-
-import styles from './styles.module.scss'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+
+import { useQuery } from 'react-query'
+import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { useSelector } from 'react-redux'
+
+import Spinner from '../../../Spinner'
+import { getRequest } from 'api'
+import axios from 'axios'
+import styles from './styles.module.scss'
+import Card from 'components/Card'
+import { useGetUserPosts } from 'hooks'
+import { accessToken } from 'store/fetchers/authSlice'
+import CardLoading from 'components/Loading/CardLoading'
 
 interface MainProps {
   profile: any
@@ -17,7 +23,13 @@ const Main: FC<MainProps> = ({ profile }): JSX.Element => {
   const [options, setOptions] = useState<boolean>(false)
 
   const userProfile = useSelector((state: any) => state.user.profile)
+  const access = useSelector((state: any) => state.auth.access)
   const route = useRouter()
+
+  const { data, isLoading, error } = useGetUserPosts(
+    useSelector(accessToken),
+    route.query
+  )
 
   return (
     <main className={styles.Main}>
@@ -34,7 +46,7 @@ const Main: FC<MainProps> = ({ profile }): JSX.Element => {
               {profile.username.slice(0, 1).toUpperCase()}
             </div>
           )}
-          <h1>{profile.username}</h1>
+          <h1>{profile.name ? profile.name : profile.username}</h1>
         </div>
         <BiDotsHorizontalRounded onClick={() => setOptions(!options)} />
         {options && (
@@ -69,35 +81,29 @@ const Main: FC<MainProps> = ({ profile }): JSX.Element => {
           </li>
         </ul>
       </nav>
-      <div className={styles.ReadingList}>
-        <div className={styles.ReadingListRight}>
-          <h3>ReadingList</h3>
-          <div>
-            <Button
-              type="button"
-              content="نمایش لیست"
-              style={{
-                border: '1px solid #292929',
-                background: 'transparent',
-                borderRadius: '100px',
-                color: '#292929',
-                width: 'auto',
-              }}
-            />
-            <IoLockClosed />
-          </div>
-        </div>
-        <div className={styles.ReadingListLeft}>
-          <div>
-            <span />
-          </div>
-          <div>
-            <span />
-          </div>
-          <div>
-            <span />
-          </div>
-        </div>
+      <div className={styles.postList}>
+        {isLoading && (
+          <>
+            <CardLoading />
+            <CardLoading />
+            <CardLoading />
+          </>
+        )}
+        {data && (
+          <>
+            {data.map((post: any) => (
+              <Card
+                user={post.user}
+                key={post.id}
+                title={post.title}
+                description={post.description}
+                tags={post.tags}
+                created={post.created}
+                file={post.files[0].file}
+              />
+            ))}
+          </>
+        )}
       </div>
     </main>
   )

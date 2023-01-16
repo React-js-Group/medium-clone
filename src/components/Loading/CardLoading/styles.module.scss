@@ -1,0 +1,115 @@
+@import '../../../sass/variables';
+.container {
+  background-color: $secondary-400;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  height: fit-content;
+  display: flex;
+  flex-flow: column;
+  min-width: 15rem;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    width: 15rem;
+    height: 5rem;
+    position: absolute;
+    left: -5rem;
+    bottom: 0;
+    border-radius: 20px;
+    background-color: $secondary-400;
+    transform: rotateZ(45deg);
+    animation: shadow 1.5s linear infinite;
+  }
+}
+
+.writer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+
+  & span:first-child {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100px;
+    background-color: $secondary-500;
+  }
+
+  & span:last-child {
+    width: 4rem;
+    height: 18px;
+    border-radius: 50px;
+    background-color: $secondary-500;
+  }
+}
+
+.files {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  font-size: 15rem;
+  color: $secondary-500;
+}
+
+.title,
+.description {
+  padding: 2px 8px;
+  margin: 2px 1rem;
+  border-radius: 12px;
+}
+
+.title {
+  background-color: $secondary-500;
+  width: 70%;
+  height: 18px;
+}
+
+.description {
+  display: flex;
+  flex-flow: column;
+  & span {
+    border-radius: 12px;
+    background-color: $secondary-500;
+    margin: 4px 0;
+  }
+  & span:first-child {
+    width: 90%;
+    height: 18px;
+  }
+  & span:nth-child(2) {
+    width: 90%;
+    height: 18px;
+  }
+  & span:nth-child(3) {
+    width: 90%;
+    height: 18px;
+  }
+  & span:nth-child(4) {
+    width: 50%;
+    height: 18px;
+  }
+}
+
+@keyframes shadow {
+  0% {
+    width: 15rem;
+    height: 2rem;
+    left: -5rem;
+    bottom: 0;
+  }
+
+  50% {
+    width: 50rem;
+    left: 2rem;
+  }
+
+  100% {
+    left: 15rem;
+    width: 60rem;
+    bottom: 60rem;
+  }
+}
