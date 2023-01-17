@@ -20,7 +20,9 @@ const ProfilePage: FC<ProfilePageProps> = ({ profile }) => {
   return (
     <>
       <Head>
-        <title>پروفایل</title>
+        <title>
+          پروفایل | {profile.name ? profile.name : profile.username}
+        </title>
       </Head>
       <Navbar />
       <Profile profile={profile} />
@@ -29,12 +31,6 @@ const ProfilePage: FC<ProfilePageProps> = ({ profile }) => {
 }
 
 export default ProfilePage
-
-// export async function getStaticPaths() {
-//   return {
-//     props: {},
-//   }
-// }
 
 export async function getServerSideProps({ params }) {
   const query = params.profile.substr(1)

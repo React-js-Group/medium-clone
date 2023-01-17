@@ -4,11 +4,11 @@
   width: 100%;
   flex: 12;
   padding: 0 20px;
+  height: fit-content;
   @media screen and (min-width: $md) {
     flex: 8;
     padding: 0 80px;
     width: 60%;
-    border-left: 1px solid $secondary-500;
   }
 }
 
@@ -17,7 +17,6 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  position: relative;
 
   & div {
     display: flex;
@@ -171,6 +170,8 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 10px;
+  width: 100%;
+  padding: 8px;
 
   @media screen and (max-width: 600px) {
     grid-template-columns: repeat(1, 1fr);

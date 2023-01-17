@@ -39,7 +39,7 @@ const Skills: FC<SkillsProps> = ({
       <div>
         {skills.map(({ skill, id }: any) => (
           <span
-            key={id}
+            key={`${skill + id}`}
             onClick={(e) => onDelete(id)}
             style={{ display: skill ? 'inline' : 'none' }}
           >

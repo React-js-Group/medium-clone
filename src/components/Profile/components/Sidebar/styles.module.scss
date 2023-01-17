@@ -1,19 +1,33 @@
 @import '../../../../sass/variables';
+.container {
+  position: sticky;
+  flex: 4;
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+}
 
 .Sidebar {
   display: none;
-  position: sticky !important;
-  top: 0;
   @media screen and (min-width: $md) {
+    width: 100% !important;
+    height: 100vh !important;
     display: flex;
     flex-flow: column;
+    border-right: 1px solid $secondary-500;
     padding: 2rem;
     flex: 4;
     width: 40%;
     height: auto;
+    position: sticky !important;
+    top: 3rem;
   }
 
   & div:nth-child(1) {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    padding: 0 8px;
     & img {
       border-radius: 100px;
       margin-top: 30px;
@@ -45,12 +59,14 @@
   height: 4rem;
   background-color: $primary;
   border-radius: 100px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
   font-size: 1.5rem;
 }
 
 .followers {
+  padding: 0 8px;
   color: $secondary-700;
   padding: 8px;
   & span:last-child {

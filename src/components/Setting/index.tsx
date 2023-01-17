@@ -18,7 +18,7 @@ interface IInitialValues {
   about: string
 }
 
-const Setting: React.FC = () => {
+const Setting: React.FC = (): JSX.Element => {
   const [edit, setEdit] = useState<boolean>(false)
   const [image, setImage] = useState<any>(null)
   const [src, setSrc] = useState<any>()

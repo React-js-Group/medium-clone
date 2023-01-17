@@ -12,7 +12,7 @@ interface CodeProps {
   email: string
 }
 
-const Code: React.FC<CodeProps> = ({ onCurrentForm, email }) => {
+const Code: React.FC<CodeProps> = ({ onCurrentForm, email }): JSX.Element => {
   const [code, setCode] = useState<string>('')
   const AuthInputRef = useRef<AuthCodeRef>(null)
 

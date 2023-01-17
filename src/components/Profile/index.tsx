@@ -9,11 +9,13 @@ import { access, refresh, toggle } from 'store/fetchers/authSlice'
 import Main from './components/Main'
 import Sidebar from './components/Sidebar'
 
+import styles from './components/Sidebar/styles.module.scss'
+
 interface ProfileProps {
   profile: object
 }
 
-const Profile: FC<ProfileProps> = ({ profile }) => {
+const Profile: FC<ProfileProps> = ({ profile }): JSX.Element => {
   const [accessToken, setAccessToken] = useState<string>('')
   const displayForm = useSelector((state: any) => state.auth.displayForm)
   const dispatch = useDispatch()
@@ -24,8 +26,6 @@ const Profile: FC<ProfileProps> = ({ profile }) => {
     dispatch(access(getTokens.access))
     dispatch(refresh(getTokens.refresh))
   }, [])
-
-  // const { data, isLoading, isError } = useQuery(['user-posts'], handleRequest)
 
   return (
     <div
@@ -41,7 +41,9 @@ const Profile: FC<ProfileProps> = ({ profile }) => {
         </Modal>
       )}
       <Main profile={profile} />
-      <Sidebar profile={profile} />
+      <div className={styles.container}>
+        <Sidebar profile={profile} />
+      </div>
     </div>
   )
 }

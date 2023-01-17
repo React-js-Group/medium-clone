@@ -15,7 +15,7 @@ interface PasswordProps {
   onForm: (form: string) => void
 }
 
-const Password: React.FC<PasswordProps> = ({ email, onForm }) => {
+const Password: React.FC<PasswordProps> = ({ email, onForm }): JSX.Element => {
   const [displayPassword, setDisplayPassword] = useState<boolean>(false)
   const [displayPassword2, setDisplayPassword2] = useState<boolean>(false)
 

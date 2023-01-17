@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 
 import Skills from '../skills'
-import Loading from '../../Spinner'
+import Spinner from '../../Spinner'
 
 import styles from '../styles.module.scss'
 
@@ -34,7 +34,7 @@ const Form: React.FC<FormProps> = ({
   onDelete,
   onReset,
   loading,
-}) => {
+}): JSX.Element => {
   const user = useSelector((state: any) => state.user)
 
   const handleCheckValidation = () => {
@@ -49,7 +49,7 @@ const Form: React.FC<FormProps> = ({
   return (
     <div className={styles.modal} style={{ display: edit ? 'flex' : 'none' }}>
       {loading ? (
-        <Loading />
+        <Spinner />
       ) : (
         <div className={styles.editContainer}>
           <FaTimes className={styles.times} onClick={formik.handleReset} />

@@ -8,7 +8,9 @@ interface ForgetPasswordProps {
   setForm: (form: string) => void
 }
 
-const ForgetPassword: React.FC<ForgetPasswordProps> = ({ setForm }) => {
+const ForgetPassword: React.FC<ForgetPasswordProps> = ({
+  setForm,
+}): JSX.Element => {
   const [currentForm, setCurrentForm] = useState<string>('email')
   const [email, setEmail] = useState<string>('')
 

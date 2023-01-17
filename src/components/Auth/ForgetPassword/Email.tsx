@@ -15,7 +15,11 @@ interface EmailProps {
   onEmail: (data: string) => void
 }
 
-const Email: React.FC<EmailProps> = ({ onForm, onCurrentForm, onEmail }) => {
+const Email: React.FC<EmailProps> = ({
+  onForm,
+  onCurrentForm,
+  onEmail,
+}): JSX.Element => {
   const formik = useFormik({
     initialValues: { email: '' },
     validationSchema: yup.object().shape({

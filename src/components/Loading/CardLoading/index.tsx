@@ -3,7 +3,7 @@ import { RxImage } from 'react-icons/rx'
 
 import styles from './styles.module.scss'
 
-const CardLoading = () => {
+const CardLoading: React.FC = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <div className={styles.writer}>
