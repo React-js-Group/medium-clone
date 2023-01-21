@@ -1,14 +1,14 @@
-import FeedList from "./FeedList/FeedList";
-import classes from "./FeedBox.module.scss";
-import FeedLabel from "./FeedsBoxLabels/FeedsBoxLabel";
+import FeedList from './FeedList/FeedList'
+import classes from './FeedBox.module.scss'
+import FeedLabel from './FeedsBoxLabels/FeedsBoxLabel'
 
 const FeedBox: React.FC = (): JSX.Element => {
   return (
     <div className={classes.Container}>
-      <FeedList />
+      {/* <FeedList /> */}
       {/* <FeedLabel /> */}
     </div>
-  );
-};
+  )
+}
 
-export default FeedBox;
+export default FeedBox

@@ -78,3 +78,15 @@ export const editUserSchema: Yup.SchemaOf<IEditUserSchema> = Yup.object().shape(
     about: Yup.string(),
   }
 )
+//? *****************************bookMarNameSchema*******************************
+//? ***************************************************************************
+interface createPostSchema {
+  title: string
+}
+export const createPostSchema: Yup.SchemaOf<bookMarkModuleSchema> =
+  Yup.object().shape({
+    title: Yup.string()
+      // .required('وارد کردن تیتر الزامی می باشد')
+      .max(32, 'حداکثر کارکتر های ورودی نباید بیشتر 32 باشد'),
+    tag: Yup.string().max(32, 'حداکثر کارکتر های ورودی نباید بیشتر 32 باشد'),
+  })

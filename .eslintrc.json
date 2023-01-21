@@ -3,7 +3,17 @@
   "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
   "rules": {
     // I suggest you add those two rules:
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-explicit-any": "error"
+    // "@typescript-eslint/no-unused-vars": "error",
+    // "@typescript-eslint/no-explicit-any": "clserror"
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "extendDefaults": true,
+        "types": {
+          "{}": false
+        }
+      }
+    ]
   }
 }

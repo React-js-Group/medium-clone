@@ -1,4 +1,4 @@
-import { useBookMarks } from 'hooks'
+import { useBookMarks } from 'Hoocks'
 import { useAmp } from 'next/amp'
 import { useSelector } from 'react-redux'
 import { accessToken } from 'store/fetchers/authSlice'
@@ -17,8 +17,8 @@ const BookMarkBox: React.FC = (): JSX.Element => {
 
   return (
     <div className={classes.container}>
-      {data.map((item) => (
-        <BookMarkItem item={item} />
+      {data?.map((item) => (
+        <BookMarkItem item={item} key={item.id} />
       ))}
     </div>
   )

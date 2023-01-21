@@ -1,20 +1,19 @@
+import { useDeleteBookMark, useDeletePost } from 'Hoocks'
 import { useState } from 'react'
 import { AiFillDelete, AiOutlineEdit } from 'react-icons/ai'
 import { GiCancel } from 'react-icons/gi'
 import { QueryClient, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
-import Swal from 'sweetalert2'
-
 import { accessToken } from 'store/fetchers/authSlice'
-import { useDeleteBookMark } from 'Hoocks'
+import Swal from 'sweetalert2'
 import EditBookMarkTitle from '../EditTitle/EditTitle'
-import classes from './BookMarkItem.module.scss'
+import classes from './PostItem.module.scss'
 
 interface optionProps {
   item: any
 }
 
-const BookMarkItem: React.FC<optionProps> = ({ item }): JSX.Element => {
+const PostItem: React.FC<optionProps> = ({ item }): JSX.Element => {
   // Hoocks
   const [editTitle, setEditTitle] = useState(false)
 
@@ -24,15 +23,10 @@ const BookMarkItem: React.FC<optionProps> = ({ item }): JSX.Element => {
 
   // useDeleteBookMark
 
-  const {
-    mutate: deleteBookMark,
-    isSuccess,
-    isLoading,
-    error,
-  } = useDeleteBookMark()
+  const { mutate: deletePost, isSuccess, isLoading, error } = useDeletePost()
   //************************ */
 
-  // deleteBookMarkAlert
+  // deletePostAlert
   const deleteBookMarkAlert = () =>
     Swal.fire({
       title: 'ایا از پاک کردن این ایتم مطمئن هستید',
@@ -45,7 +39,8 @@ const BookMarkItem: React.FC<optionProps> = ({ item }): JSX.Element => {
       cancelButtonText: 'خیر',
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteBookMark({ id: item.id, access })
+        console.log(item.id)
+        deletePost({ id: item.id, access })
       }
       if (isSuccess) {
         Swal.fire('پاک شد')
@@ -61,21 +56,12 @@ const BookMarkItem: React.FC<optionProps> = ({ item }): JSX.Element => {
   return (
     <div className={classes.container}>
       <div className={classes.content}>
-        <div className={classes.titleBox}>
-          {!editTitle ? (
-            <>
-              <h3>{item.title}</h3>
-              <AiOutlineEdit onClick={handelEditTitle} />
-            </>
-          ) : (
-            <EditBookMarkTitle item={item} handelEditTitle={handelEditTitle} />
-          )}
-        </div>
+        <div className={classes.titleBox}>{item.title}</div>
 
         <div className={classes.btnBox}>
-          <button className={classes.showlist}>مشاهده لیست</button>
+          <button className={classes.showlist}>مشاهده پست</button>
 
-          <p className={classes.postNum}>{item.posts.length}</p>
+          <p className={classes.postNum}></p>
         </div>
         <div className={classes.iconBox}>
           <button
@@ -91,4 +77,4 @@ const BookMarkItem: React.FC<optionProps> = ({ item }): JSX.Element => {
   )
 }
 
-export default BookMarkItem
+export default PostItem

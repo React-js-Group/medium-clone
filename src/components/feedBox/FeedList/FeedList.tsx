@@ -1,14 +1,29 @@
-import FeedItem from "../feedItem/FeedItem";
-import classes from "./FeedList.module.scss";
+import FeedItem from '../feedItem/FeedItem'
+import classes from './FeedList.module.scss'
+interface Props {
+  posts?: any
+  hasNextPage?: any
+  fetchNextPage?: any
+}
+const FeedList: React.FC<Props> = ({
+  posts,
+  hasNextPage,
+  fetchNextPage,
+}): JSX.Element => {
+  console.log(posts)
 
-const FeedList: React.FC = (): JSX.Element => {
   return (
     <div className={classes.Container}>
-      <FeedItem />
-      <FeedItem />
-      <FeedItem />
-    </div>
-  );
-};
+      {posts?.results?.map((item) => (
+        <FeedItem item={item} key={item.id} />
+      ))}
 
-export default FeedList;
+      {posts.pages?.map((page) =>
+        page.results.map((item) => <FeedItem item={item} key={item.id} />)
+      )}
+      {hasNextPage && <button onClick={fetchNextPage}>Load More</button>}
+    </div>
+  )
+}
+
+export default FeedList

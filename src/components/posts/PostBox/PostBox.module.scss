@@ -1,0 +1,12 @@
+@import '../../../sass/variables';
+
+.container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding-bottom: 300px;
+
+  @media screen and (max-width: $sm) {
+    padding: 10px;
+  }
+}

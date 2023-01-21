@@ -17,19 +17,23 @@ import axios from 'axios'
 
 interface HomeProps {
   children?: React.ReactNode
+  posts: any
+  hasNextPage: any
+  fetchNextPage: any
 }
 
-const Home: React.FC<HomeProps> = ({ children }) => {
-<<<<<<< HEAD
+const Home: React.FC<HomeProps> = ({
+  children,
+  posts,
+  hasNextPage,
+  fetchNextPage,
+}) => {
   const { displayForm, access, loading } = useSelector(
     (state: any) => state.auth
   )
-=======
   const [token, setToken] = useState<string>('')
 
   const dispatch = useDispatch()
-  const { displayForm, loading } = useSelector((state: any) => state.auth)
->>>>>>> ali
 
   if (loading) return <Loading />
 
@@ -43,7 +47,11 @@ const Home: React.FC<HomeProps> = ({ children }) => {
       {/* <Navbar  /> */}
       <Header />
       <Page sideBar={null}>
-        <FeedList />
+        <FeedList
+          posts={posts}
+          hasNextPage={hasNextPage}
+          fetchNextPage={fetchNextPage}
+        />
       </Page>
       {children}
       <Footer />

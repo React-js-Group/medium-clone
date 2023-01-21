@@ -23,5 +23,7 @@ const nextConfig = {
     BASE_URL: process.env.BASE_URL,
   },
 }
+const removeImports = require('next-remove-imports')()
+module.exports = removeImports({})
 
 module.exports = nextConfig

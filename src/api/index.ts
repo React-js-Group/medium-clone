@@ -78,6 +78,15 @@ export const bookMarks = async ({ queryKey }) => {
   return data
 }
 
+export const editBookMark = async ({ id, value, access }) => {
+  const { data } = await axios.put(`update-bookmark/${id}/`, value, {
+    headers: {
+      Authorization: `Bearer ${access}`,
+    },
+  })
+  return data
+}
+
 export const createBookMark = async ({ values, access }) => {
   const { data } = await axios.post(`create-bookmark/`, values, {
     headers: {
@@ -89,6 +98,50 @@ export const createBookMark = async ({ values, access }) => {
 
 export const deleteBookMark = async ({ id, access }) => {
   const { data } = await axios.delete(`delete-bookmark/${id}/`, {
+    headers: {
+      Authorization: `Bearer ${access}`,
+    },
+  })
+
+  return data
+}
+
+export const fetchPosts = async ({ pageParam = 1 }) => {
+  const { data } = await axios.get(`home/?page=${pageParam}`)
+  console.log(data)
+  const url = new URL(data.next)
+  const nextPage = +url.searchParams.get('page')
+  const page = nextPage && !isNaN(nextPage) ? nextPage - 1 : undefined
+
+  return { ...data, page }
+}
+
+export const createPost = async ({ value, access }) => {
+  const { data } = await axios.post(`post/create/`, value, {
+    headers: {
+      Authorization: `Bearer ${access}`,
+      'Content-Type': 'multipart/form-data; boundary=X-INSOMNIA-BOUNDARY',
+    },
+  })
+
+  return data
+}
+export const fetchUserPost = async ({ pageParam = 1, queryKey }) => {
+  console.log(pageParam)
+  const { data } = await axios.get(`user-posts/sina/?page=${pageParam}`, {
+    headers: {
+      Authorization: `Bearer ${queryKey[1]}`,
+    },
+  })
+  const url = new URL(data.next)
+  const nextPage = +url.searchParams.get('page') || 0
+  const page = nextPage && !isNaN(nextPage) ? nextPage - 1 : undefined
+
+  return { ...data, page }
+}
+
+export const deletePost = async ({ id, access }) => {
+  const { data } = await axios.delete(`post/delete/${id}/`, {
     headers: {
       Authorization: `Bearer ${access}`,
     },

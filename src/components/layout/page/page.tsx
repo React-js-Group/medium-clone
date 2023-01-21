@@ -6,7 +6,7 @@ import SideBar from '../sideBar'
 import classes from './Page.module.scss'
 interface OptionsProps {
   children: any
-  sideBar?: Array<String>
+  sideBar?: any
 }
 
 const Page: React.FC<OptionsProps> = ({ children, sideBar }): JSX.Element => {

@@ -17,6 +17,7 @@ interface RegisterProps {
   currentFrom: string
   setForm: (form: string) => void
   onSetData: (data: {}) => void
+
   displayPassword: boolean
   onDisplayPassword: () => void
 }
