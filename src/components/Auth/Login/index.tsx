@@ -59,8 +59,7 @@ const Login: React.FC<LoginProps> = ({
 
           //! IF ACCESS TOKEN WAS VALIDED
         } else {
-          dispatch(access(res.data.access))
-          dispatch(refresh(res.data.refresh))
+          localStorage.setItem('accessToken', res.data.access)
           dispatch(toggle())
         }
         if (res.status === 200) {

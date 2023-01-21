@@ -1,22 +1,25 @@
-import classes from "./FeedItem.module.scss";
-import Image from "next/image";
-import bookMark from "../../../../public/images/bookMark.svg";
+import classes from './FeedItem.module.scss'
+import Image from 'next/image'
+import bookMark from '../../../../public/images/bookMark.svg'
+import Link from 'next/link'
 
 const myLoader = (src: any) => {
-  return src;
-};
-const FeedItem: React.FC = (): JSX.Element => {
+  return src
+}
+
+interface FeedItemProps {
+  item: any
+  key?: number
+}
+
+const FeedItem: React.FC<FeedItemProps> = ({ item }): JSX.Element => {
   return (
     <div className={classes.feedItem}>
       <div className={classes.feedDes}>
-        <h2>
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-          چاپ
-        </h2>
-        <h3>
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-          چاپ
-        </h3>
+        <h2>{item.title}</h2>
+        <Link href={`Posts/${item.title}`}>
+          <h3>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</h3>
+        </Link>
         <div className={classes.footer}>
           <div className={classes.footerRight}>
             <div className={classes.date}>اسفند 1401</div>
@@ -24,12 +27,7 @@ const FeedItem: React.FC = (): JSX.Element => {
             <div className={classes.label}>سلامتی</div>
           </div>
           <div className={classes.footerLeft}>
-            <Image
-              width={30}
-              src={bookMark}
-              alt={"bookMark"}
-              className={classes.bookmarkImg}
-            />
+            {/* <img src={Image} alt={'bookMark'} className={classes.bookmarkImg} /> */}
           </div>
         </div>
       </div>
@@ -37,7 +35,7 @@ const FeedItem: React.FC = (): JSX.Element => {
         {/* <Image src={Image} alt={"post_title"} /> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FeedItem;
+export default FeedItem

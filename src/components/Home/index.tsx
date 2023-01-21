@@ -10,22 +10,30 @@ import Page from 'components/layout/page/page'
 
 interface HomeProps {
   children?: React.ReactNode
+  posts: any
+  hasNextPage: any
+  fetchNextPage: any
 }
 
-const Home: React.FC<HomeProps> = ({ children }) => {
-  const { displayForm, access, loading } = useSelector(
-    (state: any) => state.auth
-  )
-  const { decodedToken } = useJwt(access)
+const Home: React.FC<HomeProps> = ({
+  children,
+  posts,
+  hasNextPage,
+  fetchNextPage,
+}) => {
+  const { displayForm, loading } = useSelector((state: any) => state.auth)
 
   if (loading) return <Loading />
 
   return (
     <div style={displayForm ? { height: '100vh', overflow: 'hidden' } : null}>
-      {/* <Navbar  /> */}
       <Header />
       <Page sideBar={null}>
-        <FeedList />
+        <FeedList
+          posts={posts}
+          hasNextPage={hasNextPage}
+          fetchNextPage={fetchNextPage}
+        />
       </Page>
       <Mark />
       {children}

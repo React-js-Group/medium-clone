@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import Button from "components/Button";
+import React, { useState } from 'react'
+import Button from 'components/Button'
 
-import styles from "./styles.module.scss";
-import Profile from "./components/Profile";
-import Notifications from "./components/Notificaions";
-import Share from "./components/Share";
+import styles from './styles.module.scss'
+import Profile from './components/Profile'
+import Notifications from './components/Notificaions'
+import Share from './components/Share'
 
 const Header: React.FC = (): JSX.Element => {
-  const [displayOptions, setDisplayOptions] = useState<string>("");
+  const [displayOptions, setDisplayOptions] = useState<string>('')
 
   const handleSetDisplay = (active: string) => {
     if (displayOptions.length > 0) {
-      setDisplayOptions("");
+      setDisplayOptions('')
       if (displayOptions !== active) {
-        setDisplayOptions(active);
+        setDisplayOptions(active)
       }
     } else {
-      setDisplayOptions(active);
+      setDisplayOptions(active)
     }
-  };
+  }
 
   return (
     <nav className={styles.Nav}>
@@ -41,12 +41,11 @@ const Header: React.FC = (): JSX.Element => {
           <Button
             type="button"
             content="Publish"
-            onClick={() => {}}
             style={{
-              backgroundColor: "#229911",
-              borderRadius: "100px",
-              width: "4rem",
-              padding: "2px",
+              backgroundColor: '#229911',
+              borderRadius: '100px',
+              width: '4rem',
+              padding: '2px',
             }}
           />
         </li>
@@ -56,7 +55,7 @@ const Header: React.FC = (): JSX.Element => {
         <Profile set={handleSetDisplay} display={displayOptions} />
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

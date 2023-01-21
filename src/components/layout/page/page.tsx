@@ -5,17 +5,17 @@ import SideBar from '../sideBar'
 import classes from './Page.module.scss'
 interface OptionsProps {
   children: any
-  sideBar?: Array<String>
+  sideBar?: any
 }
 
 const Page: React.FC<OptionsProps> = ({ children, sideBar }): JSX.Element => {
-  const { access } = JSON.parse(localStorage.getItem('persist:root'))
+  // if (typeof window !== 'undefined') {
+  //   const { access: access } = JSON.parse(localStorage.getItem('persist:root'))
 
-  const { decodedToken } = useJwt(access)
-
+  // const { decodedToken } = useJwt(access)
   return (
     <>
-      <Navbar scroll={false} token={decodedToken} />
+      <Navbar scroll={false} />
       <div className={classes.container}>
         <SideBar sideBar={sideBar} />
         {children}

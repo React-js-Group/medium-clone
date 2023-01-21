@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
 
 interface ButtonProps {
-  content: any;
-  type: "submit" | "reset" | "button" | undefined;
-  onClick?: () => void;
-  style?: {};
-  className?: any;
+  content: any
+  type: 'submit' | 'reset' | 'button' | undefined
+  onClick?: () => void
+  style?: any
+  className?: any
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -26,7 +26,7 @@ const Button: React.FC<ButtonProps> = ({
     >
       {content}
     </button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button
