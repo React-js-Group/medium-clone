@@ -1,34 +1,33 @@
-@import "../../../../sass/variables";
+@import '../../../../sass/variables';
+.container {
+  position: sticky;
+  flex: 4;
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+}
 
 .Sidebar {
   display: none;
   @media screen and (min-width: $md) {
+    width: 100% !important;
+    height: 100vh !important;
     display: flex;
     flex-flow: column;
+    border-right: 1px solid $secondary-500;
     padding: 2rem;
     flex: 4;
     width: 40%;
+    height: auto;
+    position: sticky !important;
+    top: 3rem;
   }
 
-  & div:first-child {
-    & button {
-      border: 0;
-      outline: 0;
-      padding: 8px;
-      background-color: $dark-500;
-      color: $white;
-      border-radius: 100px;
-      margin: 20px 0;
-      width: 15rem;
-      transition: background 0.2s ease;
-      cursor: pointer;
-      &:hover {
-        background-color: $dark-600;
-      }
-    }
-  }
-
-  & div:last-child {
+  & div:nth-child(1) {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    padding: 0 8px;
     & img {
       border-radius: 100px;
       margin-top: 30px;
@@ -46,5 +45,49 @@
         color: $dark-500;
       }
     }
+  }
+}
+
+.profile {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100px;
+}
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  background-color: $primary;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
+  font-size: 1.5rem;
+}
+
+.followers {
+  padding: 0 8px;
+  color: $secondary-700;
+  padding: 8px;
+  & span:last-child {
+    padding: 8px;
+  }
+}
+
+.about {
+  color: $secondary-700;
+  padding-bottom: 8px;
+  font-size: 14px;
+}
+
+.skills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  & li {
+    background-color: $secondary-500;
+    padding: 8px;
+    border-radius: 8px;
   }
 }

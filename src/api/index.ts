@@ -2,17 +2,74 @@ import axios from 'axios'
 
 axios.defaults.baseURL = process.env.BASE_URL
 axios.defaults.headers.post['Content-Type'] = 'application/json'
-// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 
-const postRequest = (endPoint: string, data: object): Promise<any> => {
-  return axios.post(`${endPoint}`, data)
+export const postRequest = async (
+  endPoint: string,
+  data: object
+): Promise<any> => {
+  return await axios.post(`${endPoint}`, data)
 }
 
-const getRequest = (endPoint: string): Promise<any> => {
-  return axios.get(`${endPoint}`)
+export const getRequest = async (
+  endPoint: string,
+  token: string
+): Promise<any> => {
+  return await axios.get(`${endPoint}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
 }
 
-const bookMarks = async ({ queryKey }) => {
+export const putRequest = async (
+  endPoint: string,
+  data?: object,
+  token?: string
+): Promise<any> => {
+  return await axios.put(`${endPoint}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+}
+
+// export const getUserPost = async ({ queryKey }) => {
+//   const { data } = await axios.get(`user-posts/${queryKey[1].username}/`, {
+//     headers: {
+//       Authorization: `Bearer ${queryKey[1].token}`,
+//     },
+//   })
+
+//   return data
+// }
+
+export const getUserPosts = async (endPoint: string, token: string) => {
+  try {
+    const { data } = await axios.get(endPoint, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    return data
+  } catch (err) {
+    return err
+  }
+}
+
+export const followReq = async (
+  url: string,
+  data: any,
+  token: string
+): Promise<any> => {
+  return await axios.post(url, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+}
+
+export const bookMarks = async ({ queryKey }) => {
   const { data } = await axios.get(`get-bookmark-list/`, {
     headers: {
       Authorization: `Bearer ${queryKey[1]}`,
@@ -21,7 +78,7 @@ const bookMarks = async ({ queryKey }) => {
   return data
 }
 
-const createBookMark = async ({ values, access }) => {
+export const createBookMark = async ({ values, access }) => {
   const { data } = await axios.post(`create-bookmark/`, values, {
     headers: {
       Authorization: `Bearer ${access}`,
@@ -30,7 +87,7 @@ const createBookMark = async ({ values, access }) => {
   return data
 }
 
-const deleteBookMark = async ({ id, access }) => {
+export const deleteBookMark = async ({ id, access }) => {
   const { data } = await axios.delete(`delete-bookmark/${id}/`, {
     headers: {
       Authorization: `Bearer ${access}`,
@@ -38,5 +95,3 @@ const deleteBookMark = async ({ id, access }) => {
   })
   return data
 }
-
-export { postRequest, getRequest, bookMarks, createBookMark, deleteBookMark }

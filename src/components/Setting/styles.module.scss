@@ -1,0 +1,233 @@
+.container {
+  padding: 1rem;
+  max-width: 60rem;
+  margin: auto;
+}
+
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: auto;
+  border: 1px solid $secondary-500;
+  border-radius: 8px;
+  & div {
+    padding: 8px 12px;
+    margin: 8px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    & p:last-child {
+      color: $secondary-600;
+    }
+
+    @media screen and (max-width: 600px) {
+      flex-flow: column;
+    }
+  }
+}
+
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  background-color: $primary;
+  border-radius: 100px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+}
+
+.imageAvatar {
+  border-radius: 100px !important;
+}
+
+.profile {
+  display: flex;
+  flex-flow: column;
+
+  & span {
+    display: flex;
+    align-items: center;
+  }
+
+  & span:hover {
+    color: $primary;
+    cursor: pointer;
+  }
+
+  & p:last-child {
+    color: $secondary-600;
+    font-size: 12px;
+  }
+}
+
+.modal {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: $secondary-500;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editContainer {
+  max-width: 50rem;
+  width: 40rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  max-height: 50rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  @media screen and (max-height: 800px) {
+    max-height: 40rem;
+    margin-top: 2rem;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $secondary-400;
+    border-radius: 100px;
+  }
+
+  & h2 {
+    padding: 0 2rem;
+  }
+}
+
+.times {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  font-size: 1rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.editAvatar {
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+
+  @media screen and (max-width: 600px) {
+    flex-flow: column;
+  }
+
+  & div:last-child {
+    display: flex;
+
+    & input {
+      position: absolute;
+      width: 90px;
+      opacity: 0;
+
+      &::-webkit-file-upload-button {
+        height: 2rem;
+      }
+
+      @media screen and (max-width: 600px) {
+        top: 110px;
+        width: 5rem;
+        right: auto;
+        left: auto;
+        &::-webkit-file-upload-button {
+          height: 2rem;
+        }
+      }
+    }
+
+    & button {
+      background-color: $success;
+      color: $white;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+  }
+
+  & p {
+    font-size: 12px;
+    color: $secondary-500;
+  }
+}
+
+.formContainer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  & textarea {
+    border: 1px solid $secondary-500;
+    border-radius: 8px;
+    margin-top: 8px;
+    resize: none;
+    font-size: 12px;
+    width: 240px;
+    height: 150px;
+
+    &::placeholder {
+      color: $secondary-600;
+    }
+  }
+
+  & div:last-child {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    gap: 8px;
+
+    @media screen and (max-width: 600px) {
+      flex-flow: column;
+      align-items: center;
+    }
+  }
+}
+
+.submit {
+  background-color: $success;
+  padding: 8px;
+  border-radius: 8px;
+  color: $white;
+  width: 12%;
+  @media screen and (max-width: 600px) {
+    width: 40%;
+  }
+}
+.reset {
+  background-color: $secondary-500;
+  padding: 8px;
+  border-radius: 8px;
+  color: $white;
+  width: 12%;
+  @media screen and (max-width: 600px) {
+    width: 40%;
+  }
+}
+
+.aboutLabel {
+  width: 15rem;
+  text-align: right;
+  font-size: 15px;
+  padding: 4px 4px 0 4px;
+}
+
+.profile {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100px;
+}

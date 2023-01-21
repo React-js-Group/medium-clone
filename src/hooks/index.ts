@@ -22,3 +22,8 @@ export const useDeleteBookMark = () => {
     },
   })
 }
+
+// export const useGetUserPosts = (token: any, query: any) => {
+//   const username = query.profile.slice(1)
+//   return useQuery(['user-posts', { token, username }], getUserPost)
+// }

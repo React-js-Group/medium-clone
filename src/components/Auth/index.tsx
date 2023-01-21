@@ -29,11 +29,19 @@ const Auth: React.FC = (): JSX.Element => {
     setDispalyPassword(!displayPassword)
   }
 
-  return (
-    <div className={styles.wrapper}>
-      <div className={`${currentFrom === 'verify' && styles.verifyForm}`}>
-        <FaTimes className={styles.times} onClick={() => dispatch(toggle())} />
-        {currentFrom === 'register' ? (
+  const showCurrentForm = () => {
+    switch (currentFrom) {
+      case 'login':
+        return (
+          <Login
+            currentFrom={currentFrom}
+            setForm={handleSetCurrentForm}
+            displayPassword={displayPassword}
+            onDisplayPassword={handleDisplayPassword}
+          />
+        )
+      case 'register':
+        return (
           <Register
             currentFrom={currentFrom}
             setForm={handleSetCurrentForm}
@@ -41,18 +49,28 @@ const Auth: React.FC = (): JSX.Element => {
             displayPassword={displayPassword}
             onDisplayPassword={handleDisplayPassword}
           />
-        ) : currentFrom === 'login' ? (
+        )
+      case 'forgetPassword':
+        return <ForgetPassword setForm={handleSetCurrentForm} />
+      case 'verify':
+        return <Verify setForm={handleSetCurrentForm} userData={data} />
+      default:
+        return (
           <Login
             currentFrom={currentFrom}
             setForm={handleSetCurrentForm}
             displayPassword={displayPassword}
             onDisplayPassword={handleDisplayPassword}
           />
-        ) : currentFrom === 'forgetPassword' ? (
-          <ForgetPassword setForm={handleSetCurrentForm} />
-        ) : (
-          <Verify setForm={handleSetCurrentForm} userData={data} />
-        )}
+        )
+    }
+  }
+
+  return (
+    <div className={styles.wrapper}>
+      <div className={`${currentFrom === 'verify' && styles.verifyForm}`}>
+        <FaTimes className={styles.times} onClick={() => dispatch(toggle())} />
+        {showCurrentForm()}
       </div>
     </div>
   )

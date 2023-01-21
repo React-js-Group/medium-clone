@@ -2,19 +2,19 @@ import React from 'react'
 import { useFormik } from 'formik'
 import { AiOutlineUser } from 'react-icons/ai'
 import { toast } from 'react-toastify'
+import { RxEyeClosed, RxEyeOpen } from 'react-icons/rx'
+import { useDispatch } from 'react-redux'
+import { BiKey } from 'react-icons/bi'
+import { setCookie } from 'nookies'
 
 import Input from 'components/Input'
 import Button from 'components/Button'
-
 import { LoginSchema } from 'utils/Validation'
 import { postRequest } from 'api'
 import { access, refresh, toggle, loading } from 'store/fetchers/authSlice'
-import { useDispatch } from 'react-redux'
+import { setProfile } from 'store/fetchers/userSlice'
 
 import styles from '../styles.module.scss'
-import { RxEyeClosed, RxEyeOpen } from 'react-icons/rx'
-import { CheckToken } from 'utils/CheckToken'
-import { BiKey } from 'react-icons/bi'
 
 interface LoginProps {
   currentFrom: string
@@ -39,33 +39,32 @@ const Login: React.FC<LoginProps> = ({
 
   const formik = useFormik({
     initialValues,
-    validationSchema: LoginSchema,
-    onSubmit: async (data) => {
+    // validationSchema: LoginSchema,
+    onSubmit: async (values) => {
       try {
         dispatch(loading())
-        const res = await postRequest('login/', data)
+        const { data } = await postRequest('login/', values)
 
-        //! VALIDATION ACCESS TOKEN
-        const isExpired = CheckToken(res.data.access)
+        dispatch(access(data.access))
+        dispatch(refresh(data.refresh))
 
-        //! IF ACCESS TOKEN WAS NOT VALID
-        if (isExpired) {
-          const { data } = await postRequest('refresh/', {
-            refresh: res.data.refresh,
+        localStorage.setItem(
+          'medium-clone-tokens',
+          JSON.stringify({
+            access: data.access,
+            refresh: data.refresh,
+            user: data.user,
           })
-          dispatch(access(data.access))
-          dispatch(refresh(res.data.refresh))
-          dispatch(toggle())
+        )
 
-          //! IF ACCESS TOKEN WAS VALIDED
-        } else {
-          dispatch(access(res.data.access))
-          dispatch(refresh(res.data.refresh))
-          dispatch(toggle())
-        }
-        if (res.status === 200) {
-          dispatch(loading())
-        }
+        dispatch(setProfile(data.user))
+        dispatch(toggle())
+        dispatch(loading())
+
+        setCookie({}, 'medium-clone-tokens', `${data.access}`, {
+          maxAge: 30 * 24 * 60 * 60, // 30 days
+          path: '/',
+        })
       } catch (err) {
         toast('اطلاعات وارد شده صحیح نمی باشد')
         console.log(err)

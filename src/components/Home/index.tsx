@@ -1,24 +1,35 @@
 import Footer from './Footer'
 import Header from './Header'
-import { useSelector } from 'react-redux'
-import Mark from 'components/Mark'
-import Navbar from 'components/Navbar'
-import { useJwt } from 'react-jwt'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { refresh, access, toggle } from 'store/fetchers/authSlice'
+
 import Loading from 'components/Loading'
 import FeedList from 'components/feedBox/FeedList/FeedList'
 import Page from 'components/layout/page/page'
 import Auth from 'components/Auth'
 import Modal from 'components/Modal'
-import { toggle } from 'store/fetchers/authSlice'
+import Mark from 'components/Mark'
+import { useEffect, useState, useLayoutEffect } from 'react'
+import Navbar from 'components/Navbar'
+import { CheckToken } from 'utils/CheckToken'
+import axios from 'axios'
 
 interface HomeProps {
   children?: React.ReactNode
 }
 
 const Home: React.FC<HomeProps> = ({ children }) => {
+<<<<<<< HEAD
   const { displayForm, access, loading } = useSelector(
     (state: any) => state.auth
   )
+=======
+  const [token, setToken] = useState<string>('')
+
+  const dispatch = useDispatch()
+  const { displayForm, loading } = useSelector((state: any) => state.auth)
+>>>>>>> ali
 
   if (loading) return <Loading />
 
@@ -34,7 +45,6 @@ const Home: React.FC<HomeProps> = ({ children }) => {
       <Page sideBar={null}>
         <FeedList />
       </Page>
-      <Mark />
       {children}
       <Footer />
     </div>

@@ -1,24 +1,28 @@
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 import {
   BsBookmarks,
   BsReverseLayoutTextWindowReverse,
   BsSearch,
-} from "react-icons/bs";
-import { IoNotificationsOutline, IoStatsChart } from "react-icons/io5";
-import { IoIosArrowDown } from "react-icons/io";
-import { TfiWrite } from "react-icons/tfi";
-import { GiStarShuriken } from "react-icons/gi";
+} from 'react-icons/bs'
+import { IoNotificationsOutline, IoStatsChart } from 'react-icons/io5'
+import { IoIosArrowDown } from 'react-icons/io'
+import { TfiWrite } from 'react-icons/tfi'
+import { GiStarShuriken } from 'react-icons/gi'
 
-import styles from "./styles.module.scss";
-import { AiOutlineUser } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { access, refresh } from "store/fetchers/authSlice";
+import styles from './styles.module.scss'
+import { AiOutlineUser } from 'react-icons/ai'
+import { useDispatch, useSelector } from 'react-redux'
+import { access, refresh } from 'store/fetchers/authSlice'
+import { setProfile } from 'store/fetchers/userSlice'
+import { useRouter } from 'next/router'
 
 const UserNavbar: React.FC = (): JSX.Element => {
-  const [displayProfile, setDisplayProfile] = useState<boolean>(false);
-  const dispatch = useDispatch();
+  const [displayProfile, setDisplayProfile] = useState<boolean>(false)
+  const route = useRouter()
+  const user = useSelector((state: any) => state.user.profile)
+  const dispatch = useDispatch()
 
   return (
     <nav className={styles.Nav}>
@@ -57,20 +61,26 @@ const UserNavbar: React.FC = (): JSX.Element => {
           className={styles.third}
           onClick={() => setDisplayProfile(!displayProfile)}
         >
-          <Image
-            className={styles.profile}
-            src="/images/profile.jpg"
-            alt="profile"
-            width={40}
-            height={40}
-          />
+          {user.profile ? (
+            <img
+              alt="profile"
+              className={styles.profile}
+              src={process.env.BASE_URL + user.profile}
+            />
+          ) : (
+            <div className={styles.avatar}>
+              {user.username.slice(0, 1).toUpperCase()}
+            </div>
+          )}
           <IoIosArrowDown />
           {displayProfile && (
             <div className={styles.ProfileOptions}>
               <ul>
                 <li>
-                  <AiOutlineUser />
-                  <span>پروفایل</span>
+                  <Link href={`@${user.username}`}>
+                    <AiOutlineUser />
+                    <span>پروفایل</span>
+                  </Link>
                 </li>
                 <li>
                   <BsBookmarks />
@@ -86,7 +96,9 @@ const UserNavbar: React.FC = (): JSX.Element => {
                 </li>
               </ul>
               <ul>
-                <li>تنظیمات</li>
+                <li>
+                  <Link href={`@${user.username}/setting`}>تنظیمات</Link>
+                </li>
                 <li>توصیه ها برای اصلاح</li>
                 <li>مدیریت انتشارات</li>
               </ul>
@@ -102,8 +114,14 @@ const UserNavbar: React.FC = (): JSX.Element => {
                 <li className={styles.logout}>
                   <span
                     onClick={() => {
-                      dispatch(access(""));
-                      dispatch(refresh(""));
+                      route.replace('/')
+                      dispatch(access(''))
+                      dispatch(refresh(''))
+                      localStorage.setItem(
+                        'medium-clone-tokens',
+                        JSON.stringify({ access: '', refresh: '' })
+                      )
+                      setTimeout(() => dispatch(setProfile({})), 1000)
                     }}
                   >
                     خروج
@@ -116,7 +134,7 @@ const UserNavbar: React.FC = (): JSX.Element => {
         </li>
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default UserNavbar;
+export default UserNavbar
