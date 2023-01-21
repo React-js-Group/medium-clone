@@ -9,30 +9,12 @@ import styles from '../styles.module.scss'
 
 interface CodeProps {
   onCurrentForm: (form: string) => void
-  email: string
+  onCode: (otp: string) => void
 }
 
-const Code: React.FC<CodeProps> = ({ onCurrentForm, email }): JSX.Element => {
+const Code: React.FC<CodeProps> = ({ onCurrentForm, onCode }): JSX.Element => {
   const [code, setCode] = useState<string>('')
   const AuthInputRef = useRef<AuthCodeRef>(null)
-
-  const handleSubmitCode = async () => {
-    const data = { email, code }
-    try {
-      const request = await postRequest('check-code/', data)
-      if (request.status === 200) {
-        toast('کد وارد شده صحیح است')
-        onCurrentForm('password')
-      }
-    } catch (err) {
-      if (err.response.status === 404) {
-        toast('کد وارد شده صحیح نمی باشد')
-      }
-      if (err.response.status === 500) {
-        toast('مشکلی از سمت سرور پیش آمده است ، لطفا بعدا امتحان کنید')
-      }
-    }
-  }
 
   return (
     <div style={{ height: '80%', display: 'flex' }}>
@@ -47,21 +29,8 @@ const Code: React.FC<CodeProps> = ({ onCurrentForm, email }): JSX.Element => {
           allowedCharacters="numeric"
           length={6}
           ref={AuthInputRef}
-          onChange={(otp: string) => setCode(otp)}
+          onChange={(otp: string) => onCode(otp)}
           inputClassName={styles.authCode}
-        />
-        <Button
-          content="تایید"
-          type="button"
-          style={{
-            backgroundColor: '#118811',
-            padding: '10px',
-            margin: '1rem 0',
-            color: '#fff',
-            width: '8rem',
-            borderRadius: '8px',
-          }}
-          onClick={handleSubmitCode}
         />
       </div>
     </div>

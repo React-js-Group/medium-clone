@@ -1,6 +1,6 @@
 import { QueryCache, useMutation, useQuery, useQueryClient } from 'react-query'
 
-import { bookMarks, createBookMark, deleteBookMark, getUserPost } from 'api'
+import { bookMarks, createBookMark, deleteBookMark } from 'api'
 import { toggle } from 'store/fetchers/authSlice'
 import { queryClient } from '../../pages/_app'
 
@@ -23,7 +23,7 @@ export const useDeleteBookMark = () => {
   })
 }
 
-export const useGetUserPosts = (token: any, query: any) => {
-  const username = query.profile.slice(1)
-  return useQuery(['user-posts', { token, username }], getUserPost)
-}
+// export const useGetUserPosts = (token: any, query: any) => {
+//   const username = query.profile.slice(1)
+//   return useQuery(['user-posts', { token, username }], getUserPost)
+// }

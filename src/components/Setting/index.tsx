@@ -67,11 +67,7 @@ const Setting: React.FC = (): JSX.Element => {
       formData.append('about', about)
 
       try {
-        const req = await putRequest(
-          `/user_edit/${user.username}/`,
-          formData,
-          auth.access
-        )
+        const req = await putRequest(`user-edit/`, formData, auth.access)
         const { data } = req
         setEdit(false)
         toast('اطلاعات پروفایل با موفقیت به روزرسانی شد')

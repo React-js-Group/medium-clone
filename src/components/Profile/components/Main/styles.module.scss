@@ -4,7 +4,6 @@
   width: 100%;
   flex: 12;
   padding: 0 20px;
-  height: fit-content;
   @media screen and (min-width: $md) {
     flex: 8;
     padding: 0 80px;
@@ -116,6 +115,8 @@
   width: 4rem;
   height: 4rem;
   background-color: $primary;
+  height: 100vh !important;
+
   border-radius: 100px;
   display: flex;
   justify-content: center;
@@ -127,6 +128,17 @@
   }
 }
 
+.follow {
+  & button {
+    padding: 8px;
+    border-radius: 8px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+}
+
 .followers {
   color: $secondary-700;
   padding: 8px;
@@ -134,9 +146,9 @@
     padding: 8px;
   }
 
-  @media screen and (min-width: 900px) {
-    display: none;
-  }
+  // @media screen and (min-width: 900px) {
+  //   display: none;
+  // }
 }
 
 .about {

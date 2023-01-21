@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { postRequest } from 'api'
+import { setCookie } from 'nookies'
 
+import { postRequest } from 'api'
 import { access } from 'store/fetchers/authSlice'
 import { CheckToken } from 'utils/CheckToken'
 
@@ -31,6 +32,10 @@ const RefreshToken: React.FC<RefreshTokenProps> = ({ children }) => {
               refresh,
             })
           )
+          setCookie({}, 'medium-clone-tokens', `${data.access}`, {
+            maxAge: 30 * 24 * 60 * 60, // 30 days
+            path: '/',
+          })
         }
       }
     }

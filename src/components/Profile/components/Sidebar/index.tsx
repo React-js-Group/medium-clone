@@ -11,40 +11,30 @@ import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
 import axios from 'axios'
 
-interface SidebarProps {
-  profile: any
-}
-
-const Sidebar: FC<SidebarProps> = ({ profile }): JSX.Element => {
+const Sidebar: FC = (): JSX.Element => {
   const userProfile = useSelector((state: any) => state.user.profile)
+  const user = useSelector((state: any) => state.profile?.profile?.user)
   const route = useRouter()
 
   return (
     <aside className={styles.Sidebar}>
       <div>
-        {profile.profile ? (
-          <img
-            alt="profile"
-            className={styles.profile}
-            src={process.env.BASE_URL + profile.profile}
-          />
+        {user ? (
+          <img alt="profile" className={styles.profile} src={user.profile} />
         ) : (
           <div className={styles.avatar}>
-            {profile.username.slice(0, 1).toUpperCase()}
+            {user?.username.slice(0, 1).toUpperCase()}
           </div>
         )}
-        <p>{profile.username}</p>
+        <p>{user?.username}</p>
         {route.query.profile.slice(1) === userProfile?.username && (
           <Link href={`${route.query.profile}/setting`}>ویرایش پروفایل</Link>
         )}
       </div>
-      <div className={styles.followers}>
-        <span>دنبال کننده :</span>
-        <span>{profile.followers}</span>
-      </div>
-      <div className={styles.about}> {profile.about}</div>
+
+      <div className={styles.about}> {user?.about}</div>
       <ul className={styles.skills}>
-        {profile.skills?.split(',').map((skill: string, i) => (
+        {user?.skills?.split(',').map((skill: string, i) => (
           <li key={skill + i}>{skill}#</li>
         ))}
       </ul>

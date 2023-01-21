@@ -1,27 +1,24 @@
-import { FC } from 'react'
+import { NextPage } from 'next'
 import Head from 'next/head'
 
 import { getRequest } from 'api'
 
 import Profile from 'components/Profile'
 import Navbar from 'components/Navbar'
-import { useSelector } from 'react-redux'
 import Modal from 'components/Modal'
-import Auth from '../auth'
-import { toggle } from 'store/fetchers/authSlice'
 
 interface ProfilePageProps {
   profile: any
 }
 
-const ProfilePage: FC<ProfilePageProps> = ({ profile }) => {
-  const { displayForm } = useSelector((state: any) => state.auth)
-
+const ProfilePage: NextPage<ProfilePageProps> = ({ profile }) => {
   return (
     <>
       <Head>
         <title>
-          پروفایل | {profile.name ? profile.name : profile.username}
+          {profile?.user?.name
+            ? `${profile?.user?.name} | پروفایل`
+            : `${profile?.user?.username} | پروفایل`}
         </title>
       </Head>
       <Navbar />
@@ -32,14 +29,32 @@ const ProfilePage: FC<ProfilePageProps> = ({ profile }) => {
 
 export default ProfilePage
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ req, params }) {
   const query = params.profile.substr(1)
+  const token = req.cookies['medium-clone-tokens']
 
   try {
-    const users = await getRequest(`user_profile/${query}`)
+    const users = await getRequest(`user-profile/${query}`, token)
+    const userPosts = await getRequest(`user-posts/${query}`, token)
+
+    users.data['isFollowing'] = users.data['is_following']
+    delete users.data['is_following']
+
+    userPosts.data['totalObjects'] = userPosts.data['total_objects']
+    userPosts.data['totalPages'] = userPosts.data['total_pages']
+    userPosts.data['posts'] = userPosts.data['results']
+    delete userPosts.data['total_objects']
+    delete userPosts.data['total_pages']
+    delete userPosts.data['results']
+
+    const profile = {
+      user: { ...users.data },
+      userPosts: { ...userPosts.data },
+    }
+
     return {
       props: {
-        profile: users.data,
+        profile,
       },
     }
   } catch (err) {

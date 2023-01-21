@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import { RxEyeClosed, RxEyeOpen } from 'react-icons/rx'
 import { useDispatch } from 'react-redux'
 import { BiKey } from 'react-icons/bi'
+import { setCookie } from 'nookies'
 
 import Input from 'components/Input'
 import Button from 'components/Button'
@@ -59,6 +60,11 @@ const Login: React.FC<LoginProps> = ({
         dispatch(setProfile(data.user))
         dispatch(toggle())
         dispatch(loading())
+
+        setCookie({}, 'medium-clone-tokens', `${data.access}`, {
+          maxAge: 30 * 24 * 60 * 60, // 30 days
+          path: '/',
+        })
       } catch (err) {
         toast('اطلاعات وارد شده صحیح نمی باشد')
         console.log(err)

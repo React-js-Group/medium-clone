@@ -11,6 +11,7 @@ interface ForgetPasswordProps {
 const ForgetPassword: React.FC<ForgetPasswordProps> = ({
   setForm,
 }): JSX.Element => {
+  const [code, setCode] = useState<string>('')
   const [currentForm, setCurrentForm] = useState<string>('email')
   const [email, setEmail] = useState<string>('')
 
@@ -26,6 +27,10 @@ const ForgetPassword: React.FC<ForgetPasswordProps> = ({
     setForm(form)
   }
 
+  const handleSetCode = (otp: string) => {
+    setCode(otp)
+  }
+
   return (
     <>
       {currentForm === 'email' ? (
@@ -34,10 +39,11 @@ const ForgetPassword: React.FC<ForgetPasswordProps> = ({
           onCurrentForm={handleCurrentForm}
           onEmail={handleSetEmail}
         />
-      ) : currentForm === 'code' ? (
-        <Code onCurrentForm={handleCurrentForm} email={email} />
       ) : (
-        <Password onForm={handleBackToLoginForm} email={email} />
+        <>
+          <Code onCurrentForm={handleCurrentForm} onCode={handleSetCode} />
+          <Password onForm={handleBackToLoginForm} email={email} code={code} />
+        </>
       )}
     </>
   )

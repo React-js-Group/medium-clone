@@ -13,9 +13,14 @@ import styles from '../styles.module.scss'
 interface PasswordProps {
   email: string
   onForm: (form: string) => void
+  code: string
 }
 
-const Password: React.FC<PasswordProps> = ({ email, onForm }): JSX.Element => {
+const Password: React.FC<PasswordProps> = ({
+  email,
+  onForm,
+  code,
+}): JSX.Element => {
   const [displayPassword, setDisplayPassword] = useState<boolean>(false)
   const [displayPassword2, setDisplayPassword2] = useState<boolean>(false)
 
@@ -35,7 +40,7 @@ const Password: React.FC<PasswordProps> = ({ email, onForm }): JSX.Element => {
         .max(32, 'تکرار رمز عبور نباید بیشتر از 32 کاراکتر باشد'),
     }),
     onSubmit: async (values) => {
-      const data = { ...values, email }
+      const data = { ...values, code, email }
       try {
         const request = await postRequest('reset-password/', data)
         if (request.status === 200) {
@@ -49,6 +54,7 @@ const Password: React.FC<PasswordProps> = ({ email, onForm }): JSX.Element => {
         if (err.response.status === 401) {
           toast('تکرار رمز عبور مطابقت ندارد')
         }
+        toast('مشکلی از سمت سرور به وجود آمده است')
         console.log(err)
       }
     },
@@ -71,9 +77,10 @@ const Password: React.FC<PasswordProps> = ({ email, onForm }): JSX.Element => {
     setDisplayPassword2(!displayPassword2)
   }
 
+  const handleSetCode = () => {}
+
   return (
     <div className={styles.container}>
-      <h3 className={styles.title}>بازیابی رمز عبور</h3>
       <form
         onSubmit={formik.handleSubmit}
         className={styles.form}
@@ -101,7 +108,10 @@ const Password: React.FC<PasswordProps> = ({ email, onForm }): JSX.Element => {
         />
         <Button
           type="submit"
-          onClick={handleErrors}
+          onClick={() => {
+            handleErrors()
+            handleSetCode()
+          }}
           content="تایید"
           style={{ backgroundColor: '#ffc017' }}
           className={styles.button}

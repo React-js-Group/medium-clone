@@ -10,6 +10,7 @@ interface IProfile {
   followers: number
   skils: string
   profile: string
+  isFollowing: boolean
 }
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
     followers: 0,
     skils: '',
     profile: '',
+    isFollowing: false,
   },
 }
 
