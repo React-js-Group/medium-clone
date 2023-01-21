@@ -1,204 +1,57 @@
 @import '../../../../sass/variables';
 
 .Main {
-  width: 100%;
-  flex: 12;
-  padding: 0 20px;
-  @media screen and (min-width: $md) {
-    flex: 8;
-    padding: 0 80px;
-    width: 60%;
-  }
-}
-
-.Head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-
-  & div {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    & img {
-      border-radius: 100px;
-
-      @media screen and (min-width: $md) {
-        display: none;
-      }
-    }
-  }
-
-  & svg {
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-}
-
-.Options {
-  position: absolute;
-  left: -70px;
-  top: 60px;
-  z-index: 4;
-  background-color: $white;
-  width: 10rem;
-  border-radius: 8px;
-  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
-  border: 1px solid $secondary-500;
-
-  &::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 0;
-    right: 45%;
-    position: absolute;
-    top: -10px;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-bottom: 10px solid $secondary-400;
-    @media screen and (max-width: $md) {
-      right: 90%;
-    }
-  }
-
-  & ul {
-    display: flex;
-    flex-flow: column;
     width: 100%;
-  }
-
-  & ul li {
-    color: $dark-500;
-    cursor: pointer;
-    width: 100%;
-
-    @media screen and (min-width: 900px) {
-      &:last-child {
-        display: none;
-      }
+    flex: 12;
+    padding: 0 20px;
+    @media screen and (min-width: $md) {
+        flex: 8;
+        padding: 0 80px;
+        width: 60%;
     }
-  }
-
-  @media screen and (max-width: $md) {
-    left: 0;
-  }
 }
 
 .Navbar {
-  margin: 3rem 0;
-  & ul {
-    display: flex;
-    gap: 15px;
-    border-bottom: 1px solid $secondary-400;
-    padding: 0;
-    & li {
-      padding: 20px 0;
-      cursor: pointer;
-      color: $dark-500;
+    margin: 3rem 0;
+    & ul {
+        display: flex;
+        gap: 15px;
+        border-bottom: 1px solid $secondary-400;
+        padding: 0;
+        & li {
+            padding: 20px 0;
+            cursor: pointer;
+            color: $dark-500;
 
-      &:first-child {
-        border-bottom: 1px solid $dark-500;
-      }
+            &:first-child {
+                border-bottom: 1px solid $dark-500;
+            }
+        }
     }
-  }
-}
-
-.profile {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 100px;
-}
-
-.avatar {
-  width: 4rem;
-  height: 4rem;
-  background-color: $primary;
-  height: 100vh !important;
-
-  border-radius: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-
-  @media screen and (min-width: 900px) {
-    display: none !important;
-  }
-}
-
-.follow {
-  & button {
-    padding: 8px;
-    border-radius: 8px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 3px;
-  }
-}
-
-.followers {
-  color: $secondary-700;
-  padding: 8px;
-  & span:last-child {
-    padding: 8px;
-  }
-
-  // @media screen and (min-width: 900px) {
-  //   display: none;
-  // }
-}
-
-.about {
-  color: $secondary-700;
-  padding-bottom: 8px;
-  font-size: 14px;
-
-  @media screen and (min-width: 900px) {
-    display: none;
-  }
-}
-
-.skills {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 4px;
-  & li {
-    background-color: $secondary-500;
-    padding: 8px;
-    border-radius: 8px;
-  }
-
-  @media screen and (min-width: 900px) {
-    display: none;
-  }
 }
 
 .postList {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 10px;
-  width: 100%;
-  padding: 8px;
-
-  @media screen and (max-width: 600px) {
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-  }
-  @media only screen and (min-width: 900px) and (max-width: 1200px) {
-    grid-template-columns: repeat(2, 1fr) !important;
-    grid-template-rows: repeat(2, 1fr) !important;
-  }
-  @media only screen and (min-width: 600px) and (max-width: 700px) {
-    grid-template-columns: repeat(2, 1fr) !important;
-    grid-template-rows: repeat(2, 1fr) !important;
-  }
-  @media screen and (min-width: 900px) {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-  }
+    grid-gap: 10px;
+    width: 100%;
+    padding: 8px;
+
+    @media screen and (max-width: 600px) {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+    }
+    @media only screen and (min-width: 900px) and (max-width: 1200px) {
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+    }
+    @media only screen and (min-width: 600px) and (max-width: 700px) {
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+    }
+    @media screen and (min-width: 900px) {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
 }
