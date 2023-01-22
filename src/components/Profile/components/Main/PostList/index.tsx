@@ -8,35 +8,48 @@ import { useSelector } from 'react-redux'
 
 import styles from './styles.module.scss'
 
-const PostList: React.FC = (): JSX.Element => {
-    const [postData, setPostData] = useState<[]>([])
-    const [hasMore, setHasMore] = useState<boolean>(true)
-    const [page, setPage] = useState(1)
+interface PostListProps {
+    profile: any
+}
 
-    const userPosts = useSelector(
-        (state: any) => state.profile?.profile?.userPosts
-    )
+const PostList: React.FC<PostListProps> = ({ profile }): JSX.Element => {
+    const [postData, setPostData] = useState<{}[]>([])
+    const [next, setNext] = useState<string>(profile.userPosts.next)
+    const [hasMore, setHasMore] = useState<boolean>(true)
+
+    const { userPosts } = profile
+
+    useEffect(() => {
+        setPostData(userPosts.posts)
+        setNext(userPosts.next)
+    }, [])
+
     const access = useSelector((state: any) => state.auth.access)
 
-    const PAGE_LIMIT = 9
-
     const fetchData = async () => {
-        console.log(userPosts?.next)
+        if (userPosts.next) {
+            try {
+                const { data } = await axios.get(next, {
+                    headers: {
+                        Authorization: `Bearer ${access}`,
+                    },
+                })
+                const posts = data.results.map((post: any) => post)
+                setPostData([...postData, ...posts])
 
-        const { data } = await axios.get(userPosts?.next, {
-            headers: {
-                Authorization: `Bearer ${access}`,
-            },
-        })
-        setPostData(data?.results)
-        if (!data?.next) {
+                if (data.next) {
+                    setNext(data.next)
+                } else {
+                    setHasMore(false)
+                }
+            } catch (err) {
+                console.log(err)
+                // setHasMore(false)
+            }
+        } else {
             setHasMore(false)
         }
     }
-
-    useEffect(() => {
-        fetchData()
-    }, [userPosts, page])
 
     return (
         <div className={styles.postList}>
@@ -47,27 +60,14 @@ const PostList: React.FC = (): JSX.Element => {
                     <CardLoading />
                 </>
             )}
-            <>
-                {userPosts?.posts.map((post: any) => (
-                    <Card
-                        user={post.user}
-                        key={post.id}
-                        title={post.title}
-                        description={post.description}
-                        tags={post.tags}
-                        created={post.created}
-                        file={post.files[0]?.file}
-                    />
-                ))}
-            </>
             <InfiniteScroll
                 dataLength={postData?.length}
-                next={() => setPage((prevState) => prevState + 1)}
+                next={fetchData}
                 hasMore={hasMore}
                 loader={<h4>Loading...</h4>}
                 endMessage={
                     <p style={{ textAlign: 'center' }}>
-                        <b>Yay! You have seen it all</b>
+                        <b>پستی باقی نمانده </b>
                     </p>
                 }
             >
@@ -80,7 +80,7 @@ const PostList: React.FC = (): JSX.Element => {
                             description={post.description}
                             tags={post.tags}
                             created={post.created}
-                            file={post.files[0]?.file}
+                            file={post.files.file}
                         />
                     ))}
                 </div>

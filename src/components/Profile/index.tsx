@@ -1,13 +1,9 @@
-import { followReq, putRequest } from 'api'
-import axios from 'axios'
+import { FC } from 'react'
+import { useSelector } from 'react-redux'
+import { toggle } from 'store/fetchers/authSlice'
+
 import Auth from 'components/Auth'
 import Modal from 'components/Modal'
-import { FC, useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
-import { useDispatch, useSelector } from 'react-redux'
-import { access, refresh, toggle } from 'store/fetchers/authSlice'
-import { initProfile } from 'store/fetchers/profileSlice'
-
 import Main from './components/Main'
 import Sidebar from './components/Sidebar'
 
@@ -18,29 +14,17 @@ interface ProfileProps {
 }
 
 const Profile: FC<ProfileProps> = ({ profile }): JSX.Element => {
-    // const [isFollow, setIsFollow] = useState<boolean | null>(null)
-    const [accessToken, setAccessToken] = useState<string>('')
-
-    // const user = useSelector((state: any) => state.profile?.profile?.user)
     const displayForm = useSelector((state: any) => state.auth.displayForm)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        const getTokens = JSON.parse(
-            localStorage.getItem('medium-clone-tokens')
-        )
-        const { user, userPosts } = profile
-        setAccessToken(getTokens.access)
-        dispatch(access(getTokens.access))
-        dispatch(refresh(getTokens.refresh))
-        dispatch(initProfile(profile))
-    }, [])
 
     return (
         <div
             style={
                 displayForm
-                    ? { height: '100vh', overflow: 'hidden', display: 'flex' }
+                    ? {
+                          height: '100vh',
+                          overflow: 'hidden',
+                          display: 'flex',
+                      }
                     : { display: 'flex' }
             }
         >
@@ -49,13 +33,12 @@ const Profile: FC<ProfileProps> = ({ profile }): JSX.Element => {
                     <Auth />
                 </Modal>
             )}
-            <Main />
+            <Main profile={profile} />
             <div className={styles.container}>
-                <Sidebar />
+                <Sidebar profile={profile} />
             </div>
         </div>
     )
 }
 
 export default Profile
-//

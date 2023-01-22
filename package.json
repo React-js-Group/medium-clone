@@ -28,6 +28,7 @@
     "eslint-config-next": "13.0.6",
     "formik": "^2.2.9",
     "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
     "next": "13.0.6",
     "next-remove-imports": "^1.0.8",
     "nookies": "^2.5.2",

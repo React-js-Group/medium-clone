@@ -1,0 +1,46 @@
+@import '../../sass/variables';
+
+.container {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-flow: column;
+    margin-top: 2rem;
+}
+
+.Table {
+    width: 100%;
+    border: 1px solid $secondary-500;
+    border-radius: 8px;
+
+    tr {
+        td {
+            border-bottom: 1px solid $secondary-500;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            img {
+                width: 3rem;
+                height: 3rem;
+                border-radius: 100px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+    }
+}
+
+.avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100px;
+    background-color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}

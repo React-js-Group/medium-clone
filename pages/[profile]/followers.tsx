@@ -1,45 +1,64 @@
 import React from 'react'
-import nookies from 'nookies'
 
-import { getRequest } from 'api'
+import { getRequest, sendRequest } from 'api'
 import Navbar from 'components/Navbar'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import axios from 'axios'
+import Followers from 'components/Followers'
 
-const Followers: NextPage = () => {
-  return (
-    <>
-      <Head>
-        <title>دنبال کنندگان</title>
-      </Head>
-      <>
-        <Navbar />
-      </>
-    </>
-  )
+interface FollowersPageProps {
+    followers: any
 }
 
-export default Followers
-
-export async function getStaticPaths(context: any) {
-  return { paths: ['/[profile]/followers'], fallback: 'blocking' }
+const FollowersPage: NextPage<FollowersPageProps> = ({ followers }) => {
+    return (
+        <>
+            <Head>
+                <title>دنبال کنندگان</title>
+            </Head>
+            <>
+                <Navbar />
+                <Followers followers={followers} />
+            </>
+        </>
+    )
 }
 
-export async function getStaticProps(context: any) {
-  const cookie = nookies.get(context)
+export default FollowersPage
 
-  const { data } = await axios.get(`${process.env.BASE_URL}followers/`, {
-    headers: {
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0NDk1MzczLCJpYXQiOjE2NzQyMDc4NDgsImp0aSI6ImM2M2ViYzQ4NTRiMDQ3ZjViNTU4M2Y3Mjk3ZDFjMzYyIiwidXNlcl9pZCI6MTIyfQ.vcl8jO0nDZ3nqmAlHfkIfqCprL1I70wYFvyKKzwZlFE',
-    },
-  })
+export async function getStaticPaths() {
+    const { data } = await axios({
+        url: `${process.env.BASE_URL}all-users/`,
+        method: 'GET',
+    })
 
-  console.log(cookie)
-  console.log(data)
-  // console.log(data)
-  return {
-    props: {},
-  }
+    const paths = data.map((user: any) => `/@${user.username}/followers`)
+
+    return {
+        paths,
+        fallback: 'blocking',
+    }
+}
+
+export async function getStaticProps({ params }) {
+    const user = params.profile.slice(1)
+
+    try {
+        const { data } = await axios({
+            url: `${process.env.BASE_URL}followers/${user}`,
+            method: 'GET',
+        })
+
+        return {
+            props: {
+                followers: data,
+            },
+            revalidate: 5,
+        }
+    } catch (err) {
+        return {
+            notFound: true,
+        }
+    }
 }

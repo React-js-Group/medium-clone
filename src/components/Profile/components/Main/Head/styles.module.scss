@@ -110,13 +110,14 @@
 .followers {
     color: $secondary-700;
     padding: 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid $secondary-500;
+    border-radius: 8px;
+
     & span:last-child {
         padding: 8px;
     }
-
-    // @media screen and (min-width: 900px) {
-    //   display: none;
-    // }
 }
 
 .about {
