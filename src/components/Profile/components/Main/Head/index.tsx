@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
+import { AiOutlineLink, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { HiOutlineUserGroup, HiUserGroup } from 'react-icons/hi'
 
 import styles from './styles.module.scss'
+import { useSelector } from 'react-redux'
+import { FaPlus } from 'react-icons/fa'
+import { IoSettingsOutline } from 'react-icons/io5'
 interface HeadProps {
     isFollow: any
     setFollow: () => void
@@ -25,6 +28,8 @@ const Head: React.FC<HeadProps> = ({
     const [options, setOptions] = useState<boolean>(false)
 
     const { user, userPosts } = profile
+    const me = useSelector((state: any) => state.user.profile)
+
     const route = useRouter()
 
     return (
@@ -52,17 +57,30 @@ const Head: React.FC<HeadProps> = ({
                         {options && (
                             <div className={styles.Options}>
                                 <ul>
-                                    <li>لینک پروفایل</li>
-                                    <li>طراحی پروفایل</li>
+                                    <li className={styles.Link}>
+                                        <AiOutlineLink />
+                                        <span>لینک پروفایل</span>
+                                    </li>
                                     {route.query.profile.slice(1) ===
-                                        user.username && (
-                                        <li>
-                                            <Link
-                                                href={`${route.query.profile}/setting`}
-                                            >
-                                                تنظیمات
-                                            </Link>
-                                        </li>
+                                        me.username && (
+                                        <div className={styles.Links}>
+                                            <li className={styles.Link}>
+                                                <IoSettingsOutline />
+                                                <Link
+                                                    href={`${route.query.profile}/setting`}
+                                                >
+                                                    تنظیمات
+                                                </Link>
+                                            </li>
+                                            <li className={styles.Link}>
+                                                <FaPlus />
+                                                <Link
+                                                    href={`${route.query.profile}/new-post`}
+                                                >
+                                                    پست جدید
+                                                </Link>
+                                            </li>
+                                        </div>
                                     )}
                                 </ul>
                             </div>

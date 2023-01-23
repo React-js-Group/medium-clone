@@ -12,10 +12,9 @@ interface SidebarProps {
 }
 
 const Sidebar: FC<SidebarProps> = ({ profile }): JSX.Element => {
-    const { user, userProfile } = profile
+    const { user } = profile
+    const me = useSelector((state: any) => state.user.profile)
     const route = useRouter()
-
-    console.log(user)
 
     return (
         <aside className={styles.Sidebar}>
@@ -30,7 +29,7 @@ const Sidebar: FC<SidebarProps> = ({ profile }): JSX.Element => {
                     <Avatar char={user.username.slice(0, 1)} />
                 )}
                 <p>{user?.username}</p>
-                {route.query.profile.slice(1) === userProfile?.username && (
+                {route.query.profile.slice(1) === me.username && (
                     <Link href={`${route.query.profile}/setting`}>
                         ویرایش پروفایل
                     </Link>

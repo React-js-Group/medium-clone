@@ -1,233 +1,290 @@
 .container {
-  padding: 1rem;
-  max-width: 60rem;
-  margin: auto;
+    padding: 1rem;
+    max-width: 60rem;
+    margin: auto;
 }
 
 .wrapper {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  margin: auto;
-  border: 1px solid $secondary-500;
-  border-radius: 8px;
-  & div {
-    padding: 8px 12px;
-    margin: 8px 0;
-    width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-flow: column;
+    align-items: center;
+    margin: auto;
+    border: 1px solid $secondary-500;
+    border-radius: 8px;
+    & div {
+        padding: 8px 12px;
+        margin: 8px 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
 
-    & p:last-child {
-      color: $secondary-600;
-    }
+        & p:last-child {
+            color: $secondary-600;
+        }
 
-    @media screen and (max-width: 600px) {
-      flex-flow: column;
+        @media screen and (max-width: 600px) {
+            flex-flow: column;
+        }
     }
-  }
 }
 
 .avatar {
-  width: 3rem;
-  height: 3rem;
-  background-color: $primary;
-  border-radius: 100px;
-  display: grid;
-  place-items: center;
-  font-size: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: $primary;
+    border-radius: 100px;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
 }
 
 .imageAvatar {
-  border-radius: 100px !important;
+    border-radius: 100px !important;
 }
 
 .profile {
-  display: flex;
-  flex-flow: column;
-
-  & span {
     display: flex;
-    align-items: center;
-  }
+    flex-flow: column;
 
-  & span:hover {
-    color: $primary;
-    cursor: pointer;
-  }
+    & span {
+        display: flex;
+        align-items: center;
+    }
 
-  & p:last-child {
-    color: $secondary-600;
-    font-size: 12px;
-  }
+    & span:hover {
+        color: $primary;
+        cursor: pointer;
+    }
+
+    & p:last-child {
+        color: $secondary-600;
+        font-size: 12px;
+    }
 }
 
 .modal {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  background-color: $secondary-500;
-  top: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: $secondary-500;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .editContainer {
-  max-width: 50rem;
-  width: 40rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  display: flex;
-  flex-flow: column;
-  position: relative;
-  max-height: 50rem;
-  overflow-y: scroll;
-  overflow-x: hidden;
+    max-width: 50rem;
+    width: 40rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    flex-flow: column;
+    position: relative;
+    max-height: 50rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
-  @media screen and (max-height: 800px) {
-    max-height: 40rem;
-    margin-top: 2rem;
-  }
+    @media screen and (max-height: 800px) {
+        max-height: 40rem;
+        margin-top: 2rem;
+    }
 
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: $secondary-400;
-    border-radius: 100px;
-  }
+    @media screen and (max-width: 600px) {
+        margin-top: 30rem;
+    }
 
-  & h2 {
-    padding: 0 2rem;
-  }
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $secondary-400;
+        border-radius: 100px;
+    }
+
+    & h2 {
+        padding: 0 2rem;
+    }
 }
 
 .times {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  font-size: 1rem;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-size: 1rem;
 
-  &:hover {
-    cursor: pointer;
-  }
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .editAvatar {
-  padding: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  position: relative;
-
-  @media screen and (max-width: 600px) {
-    flex-flow: column;
-  }
-
-  & div:last-child {
+    padding: 8px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    position: relative;
 
-    & input {
-      position: absolute;
-      width: 90px;
-      opacity: 0;
+    @media screen and (max-width: 600px) {
+        flex-flow: column;
+    }
 
-      &::-webkit-file-upload-button {
-        height: 2rem;
-      }
+    & div:last-child {
+        display: flex;
 
-      @media screen and (max-width: 600px) {
-        top: 110px;
-        width: 5rem;
-        right: auto;
-        left: auto;
-        &::-webkit-file-upload-button {
-          height: 2rem;
+        & input {
+            position: absolute;
+            width: 90px;
+            opacity: 0;
+
+            &::-webkit-file-upload-button {
+                height: 2rem;
+            }
+
+            @media screen and (max-width: 600px) {
+                top: 110px;
+                width: 5rem;
+                right: auto;
+                left: auto;
+                &::-webkit-file-upload-button {
+                    height: 2rem;
+                }
+            }
         }
-      }
+
+        & button {
+            background-color: $success;
+            color: $white;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 12px;
+        }
     }
 
-    & button {
-      background-color: $success;
-      color: $white;
-      padding: 8px;
-      border-radius: 8px;
-      font-size: 12px;
+    & p {
+        font-size: 12px;
+        color: $secondary-500;
     }
-  }
-
-  & p {
-    font-size: 12px;
-    color: $secondary-500;
-  }
 }
 
 .formContainer {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-
-  & textarea {
-    border: 1px solid $secondary-500;
-    border-radius: 8px;
-    margin-top: 8px;
-    resize: none;
-    font-size: 12px;
-    width: 240px;
-    height: 150px;
-
-    &::placeholder {
-      color: $secondary-600;
-    }
-  }
-
-  & div:last-child {
-    width: 100%;
     display: flex;
-    justify-content: center;
-    padding: 12px;
-    gap: 8px;
+    flex-flow: column;
+    align-items: center;
+
+    & textarea {
+        border: 1px solid $secondary-500;
+        border-radius: 8px;
+        margin-top: 8px;
+        resize: none;
+        font-size: 12px;
+        width: 67%;
+        height: 150px;
+
+        &::placeholder {
+            color: $secondary-600;
+        }
+
+        @media screen and (max-width: 600px) {
+            max-width: 15rem;
+            min-width: 15rem;
+        }
+    }
+}
+
+.username {
+    width: 67%;
+
+    & input {
+        width: 26.5rem;
+    }
 
     @media screen and (max-width: 600px) {
-      flex-flow: column;
-      align-items: center;
+        max-width: 15rem;
+        min-width: 15rem;
+        & input {
+            max-width: 15rem;
+        }
     }
-  }
+}
+
+.nameInputs {
+    display: flex;
+    align-items: center;
+    width: 67%;
+    justify-content: space-between;
+    gap: 12px;
+
+    input {
+        width: 100%;
+    }
+
+    @media screen and (max-width: 600px) {
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        input {
+            width: 100%;
+            margin: auto;
+        }
+        label {
+            margin-right: 0;
+        }
+    }
+}
+
+.buttons {
+    width: 67%;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px;
+
+    @media screen and (max-width: 600px) {
+        flex-flow: column;
+        max-width: 15rem;
+    }
 }
 
 .submit {
-  background-color: $success;
-  padding: 8px;
-  border-radius: 8px;
-  color: $white;
-  width: 12%;
-  @media screen and (max-width: 600px) {
-    width: 40%;
-  }
+    background-color: $success;
+    padding: 8px;
+    border-radius: 8px;
+    color: $white;
+    width: 50%;
+    @media screen and (max-width: 600px) {
+        width: 100%;
+        margin: auto;
+    }
 }
 .reset {
-  background-color: $secondary-500;
-  padding: 8px;
-  border-radius: 8px;
-  color: $white;
-  width: 12%;
-  @media screen and (max-width: 600px) {
-    width: 40%;
-  }
+    background-color: $secondary-500;
+    padding: 8px;
+    border-radius: 8px;
+    width: 50%;
+    color: $white;
+    @media screen and (max-width: 600px) {
+        width: 100%;
+        margin: auto;
+    }
 }
 
 .aboutLabel {
-  width: 15rem;
-  text-align: right;
-  font-size: 15px;
-  padding: 4px 4px 0 4px;
+    width: 67%;
+    text-align: right;
+    font-size: 15px;
+    padding: 4px 4px 0 4px;
+    min-width: 15rem;
+
+    @media screen and (max-width: 600px) {
+        max-width: 15rem;
+    }
 }
 
 .profile {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 100px;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100px;
 }

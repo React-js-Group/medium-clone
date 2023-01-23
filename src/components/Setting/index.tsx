@@ -13,124 +13,141 @@ import styles from './styles.module.scss'
 import Loading from '../Spinner'
 
 interface IInitialValues {
-  name: string
-  family: string
-  about: string
+    name: string
+    family: string
+    username: string
+    about: string
 }
 
 const Setting: React.FC = (): JSX.Element => {
-  const [edit, setEdit] = useState<boolean>(false)
-  const [image, setImage] = useState<any>(null)
-  const [src, setSrc] = useState<any>()
-  const [skills, setSkills] = useState<{}[]>([{}])
-  const [loading, setLoading] = useState<boolean>(false)
+    const [edit, setEdit] = useState<boolean>(false)
+    const [image, setImage] = useState<any>(null)
+    const [src, setSrc] = useState<any>()
+    const [skills, setSkills] = useState<{}[]>([{}])
+    const [loading, setLoading] = useState<boolean>(false)
 
-  const user = useSelector((state: any) => state.user.profile)
-  const auth = useSelector((state: any) => state.auth)
+    const user = useSelector((state: any) => state.user.profile)
+    const auth = useSelector((state: any) => state.auth)
 
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-  const initalValues: IInitialValues = {
-    name: '',
-    family: '',
-    about: '',
-  }
+    const initalValues: IInitialValues = {
+        name: '',
+        family: '',
+        username: '',
+        about: '',
+    }
 
-  const handleResetForm = () => {
-    setEdit(false)
-    setSrc(null)
-    setSkills([{}])
-  }
-  const formik = useFormik({
-    initialValues: initalValues,
-    validationSchema: editUserSchema,
-    onReset: () => {
-      handleResetForm()
-    },
-    onSubmit: async ({ name, family, about }) => {
-      setLoading(true)
-      const arraySkills = []
-      if (skills.length > 0) {
-        skills.forEach((item: any) => {
-          if (item.skill !== undefined) {
-            arraySkills.push(item.skill)
-          }
-        })
-      }
-
-      const formData = new FormData()
-
-      formData.append('profile', image ? image : '')
-      formData.append('skills', arraySkills.toString().trim())
-      formData.append('name', name)
-      formData.append('family', family)
-      formData.append('about', about)
-
-      try {
-        const req = await putRequest(`user-edit/`, formData, auth.access)
-        const { data } = req
+    const handleResetForm = () => {
         setEdit(false)
-        toast('اطلاعات پروفایل با موفقیت به روزرسانی شد')
-        handleResetForm()
-        const userData = { ...user }
-        delete userData.profile
-        delete userData.skills
-        delete userData.name
-        delete userData.family
-        delete userData.about
-        const merged = { ...userData, ...data }
-        dispatch(setProfile(merged))
-        setLoading(false)
-      } catch (err) {
-        toast('مشکلی پیش آمده است')
-        setEdit(false)
-        handleResetForm()
-        setLoading(false)
-        console.log(err)
-      }
-    },
-  })
+        setSrc(null)
+        setSkills([{}])
+    }
+    const formik = useFormik({
+        initialValues: initalValues,
+        validationSchema: editUserSchema,
+        onReset: () => {
+            handleResetForm()
+        },
+        onSubmit: async ({ name, family, username, about }) => {
+            setLoading(true)
+            const arraySkills = []
+            if (skills.length > 0) {
+                skills.forEach((item: any) => {
+                    if (item.skill !== undefined) {
+                        arraySkills.push(item.skill)
+                    }
+                })
+            }
 
-  const handleSetImage = (data: any) => {
-    setImage(data)
-  }
+            console.log(name, family, username, about)
 
-  const handleSetSrc = (data: any) => {
-    setSrc(data)
-  }
+            const formData = new FormData()
 
-  const handleSetSkills = (skill: string) => {
-    const cpSkills: {}[] = [...skills]
-    cpSkills.push({ id: Math.random() * 1000, skill })
-    setSkills(cpSkills)
-  }
+            formData.append('profile', image ? image : '')
+            formData.append('skills', arraySkills.toString().trim())
+            formData.append('name', name)
+            formData.append('family', family)
+            formData.append('username', username)
+            formData.append('about', about)
 
-  const handleDeleteSkill = (id: number) => {
-    const cpSkills: {}[] = [...skills]
-    const updateSkills: {}[] = cpSkills.filter((f: any) => f.id !== id)
-    setSkills(updateSkills)
-  }
+            try {
+                const { data } = await putRequest(
+                    `user-edit/`,
+                    formData,
+                    auth.access
+                )
+                setEdit(false)
+                toast('اطلاعات پروفایل با موفقیت به روزرسانی شد')
+                handleResetForm()
+                const userData = { ...user }
+                delete userData.profile
+                delete userData.skills
+                delete userData.name
+                delete userData.family
+                delete userData.username
+                delete userData.about
+                const merged = { ...userData, ...data }
+                dispatch(setProfile(merged))
+                setLoading(false)
+            } catch (err) {
+                if (err.response.status === 400) {
+                    if (err.response.data.username) {
+                        toast(
+                            'شما نمی توانید از این نام کاربری استفاده کنید ، لطفا نام کاربری دیگری را انتخاب کنید'
+                        )
+                    }
+                    setLoading(false)
+                } else {
+                    toast('مشکلی پیش آمده است')
+                    handleResetForm()
+                    setLoading(false)
+                    setEdit(false)
+                }
+            }
+        },
+    })
 
-  return (
-    <>
-      <div className={styles.container}>
-        <h2>تنظیمات</h2>
-        <Info user={user} onEdit={(value: boolean) => setEdit(value)} />
-        <Form
-          edit={edit}
-          formik={formik}
-          src={src}
-          setSrc={handleSetSrc}
-          setImage={handleSetImage}
-          onSkills={handleSetSkills}
-          skills={skills}
-          onDelete={handleDeleteSkill}
-          onReset={handleResetForm}
-          loading={loading}
-        />
-      </div>
-    </>
-  )
+    const handleSetImage = (data: any) => {
+        setImage(data)
+    }
+
+    const handleSetSrc = (data: any) => {
+        setSrc(data)
+    }
+
+    const handleSetSkills = (skill: string) => {
+        const cpSkills: {}[] = [...skills]
+        cpSkills.push({ id: Math.random() * 1000, skill })
+        setSkills(cpSkills)
+    }
+
+    const handleDeleteSkill = (id: number) => {
+        const cpSkills: {}[] = [...skills]
+        const updateSkills: {}[] = cpSkills.filter((f: any) => f.id !== id)
+        setSkills(updateSkills)
+    }
+
+    return (
+        <>
+            <div className={styles.container}>
+                <h2>تنظیمات</h2>
+                <Info user={user} onEdit={(value: boolean) => setEdit(value)} />
+                <Form
+                    edit={edit}
+                    formik={formik}
+                    src={src}
+                    setSrc={handleSetSrc}
+                    setImage={handleSetImage}
+                    onSkills={handleSetSkills}
+                    skills={skills}
+                    onDelete={handleDeleteSkill}
+                    onReset={handleResetForm}
+                    loading={loading}
+                />
+            </div>
+        </>
+    )
 }
 
 export default Setting

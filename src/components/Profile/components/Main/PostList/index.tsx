@@ -44,7 +44,6 @@ const PostList: React.FC<PostListProps> = ({ profile }): JSX.Element => {
                 }
             } catch (err) {
                 console.log(err)
-                // setHasMore(false)
             }
         } else {
             setHasMore(false)
@@ -60,31 +59,43 @@ const PostList: React.FC<PostListProps> = ({ profile }): JSX.Element => {
                     <CardLoading />
                 </>
             )}
-            <InfiniteScroll
-                dataLength={postData?.length}
-                next={fetchData}
-                hasMore={hasMore}
-                loader={<h4>Loading...</h4>}
-                endMessage={
-                    <p style={{ textAlign: 'center' }}>
-                        <b>پستی باقی نمانده </b>
-                    </p>
-                }
-            >
-                <div className={styles.postList}>
-                    {postData?.map((post: any) => (
-                        <Card
-                            user={post.user}
-                            key={post.id}
-                            title={post.title}
-                            description={post.description}
-                            tags={post.tags}
-                            created={post.created}
-                            file={post.files.file}
-                        />
-                    ))}
-                </div>
-            </InfiniteScroll>
+            {postData.length > 0 ? (
+                <InfiniteScroll
+                    dataLength={postData?.length}
+                    next={fetchData}
+                    hasMore={hasMore}
+                    loader={<h4>Loading...</h4>}
+                    endMessage={
+                        <p style={{ textAlign: 'center' }}>
+                            <b>پستی باقی نمانده </b>
+                        </p>
+                    }
+                >
+                    <div className={styles.postList}>
+                        {postData?.map((post: any) => (
+                            <Card
+                                user={post.user}
+                                key={post.id}
+                                title={post.title}
+                                description={post.description}
+                                tags={post.tags}
+                                created={post.created}
+                                file={post.files.file}
+                            />
+                        ))}
+                    </div>
+                </InfiniteScroll>
+            ) : (
+                <h3
+                    style={{
+                        textAlign: 'center',
+                        width: '100%',
+                        position: 'absolute',
+                    }}
+                >
+                    هیچ پستی وجود ندارد
+                </h3>
+            )}
         </div>
     )
 }

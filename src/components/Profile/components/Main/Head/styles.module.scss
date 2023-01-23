@@ -1,3 +1,5 @@
+@import '../../../../../sass/variables';
+
 .Head {
     display: flex;
     justify-content: space-between;
@@ -37,7 +39,6 @@
 
     &::after {
         content: '';
-        display: block;
         width: 0;
         height: 0;
         right: 45%;
@@ -51,26 +52,46 @@
         }
     }
 
-    & ul {
+    ul {
         display: flex;
         flex-flow: column;
         width: 100%;
-    }
 
-    & ul li {
-        color: $dark-500;
-        cursor: pointer;
-        width: 100%;
-
-        @media screen and (min-width: 900px) {
-            &:last-child {
-                display: none;
-            }
+        & li {
+            color: $dark-500;
+            cursor: pointer;
+            width: 7rem;
         }
     }
 
     @media screen and (max-width: $md) {
         left: 0;
+    }
+}
+
+.Links {
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.Link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+        color: $primary;
+
+        & svg {
+            color: $primary;
+        }
+    }
+
+    & svg {
+        font-size: 12px;
+        color: $secondary-700;
     }
 }
 
@@ -114,6 +135,12 @@
     display: inline-block;
     border: 1px solid $secondary-500;
     border-radius: 8px;
+    transition: all ease 0.3s;
+
+    &:hover {
+        border-color: $primary;
+        color: $primary;
+    }
 
     & span:last-child {
         padding: 8px;

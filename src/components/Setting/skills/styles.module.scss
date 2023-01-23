@@ -1,65 +1,82 @@
 @import '../../../sass/variables';
 
 .container {
-  display: flex;
-  flex-flow: column;
-  width: 15rem;
-
-  & label {
-    margin: 8px 0;
-    font-size: 15px;
-  }
-
-  & input {
-    border: 0.5px solid $secondary-500;
-    border-radius: 5px;
-    padding: 8px;
-
-    &:focus {
-      border: 0.5px solid $primary;
-    }
-
-    &::placeholder {
-      color: $secondary-600;
-    }
-  }
-
-  & div {
     display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    flex-flow: column;
+    width: 67%;
+    align-items: center;
 
-    &::-webkit-scrollbar {
-      width: 8px;
+    & label {
+        margin: 8px 0;
+        font-size: 15px;
+        width: 100%;
+        min-width: 15rem;
     }
-    &::-webkit-scrollbar-thumb {
-      background-color: $secondary-400;
-      border-radius: 100px;
-    }
-    & span {
-      display: flex;
-      background-color: $secondary-400;
-      color: $secondary-700;
-      position: relative;
-      padding: 8px;
-      border-radius: 8px;
-      font-size: 12px;
 
-      &:hover {
-        background-color: #882222;
-        color: #fff;
-        cursor: pointer;
-      }
+    & input {
+        border: 0.5px solid $secondary-500;
+        border-radius: 5px;
+        padding: 8px;
+        width: 100%;
+        min-width: 15rem;
+
+        &:focus {
+            border: 0.5px solid $primary;
+        }
+
+        &::placeholder {
+            color: $secondary-600;
+        }
     }
-  }
+
+    @media screen and (max-width: 600px) {
+        & label,
+        & input {
+            max-width: 15rem;
+        }
+    }
+
+    & div {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        gap: 5px;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: $secondary-400;
+            border-radius: 100px;
+        }
+        & span {
+            display: flex;
+            background-color: $secondary-400;
+            color: $secondary-700;
+            position: relative;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 12px;
+
+            &:hover {
+                background-color: #882222;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            max-width: 67%;
+        }
+    }
 }
 
 .times {
-  font-size: 10px;
-  position: absolute;
-  left: 1px;
-  top: 1px;
-  color: $secondary-600;
+    font-size: 10px;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    color: $secondary-600;
 }
