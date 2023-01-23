@@ -1,31 +1,31 @@
 import React from 'react'
-import Head from 'next/head'
-import { NextPage } from 'next'
 
-import axios from 'axios'
-
+import { getRequest, sendRequest } from 'api'
 import Navbar from 'components/Navbar'
-import Followers from 'components/Followers'
+import { NextPage } from 'next'
+import Head from 'next/head'
+import axios from 'axios'
+import Followings from 'components/Followings'
 
-interface FollowersPageProps {
-    followers: any
+interface FollowingPageProps {
+    followings: any
 }
 
-const FollowersPage: NextPage<FollowersPageProps> = ({ followers }) => {
+const FollowingPage: NextPage<FollowingPageProps> = ({ followings }) => {
     return (
         <>
             <Head>
-                <title>دنبال کنندگان</title>
+                <title>دنبال شوندگان</title>
             </Head>
             <>
                 <Navbar />
-                <Followers followers={followers} />
+                <Followings followings={followings} />
             </>
         </>
     )
 }
 
-export default FollowersPage
+export default FollowingPage
 
 export async function getStaticPaths() {
     const { data } = await axios({
@@ -33,7 +33,7 @@ export async function getStaticPaths() {
         method: 'GET',
     })
 
-    const paths = data.map((user: any) => `/@${user.username}/followers`)
+    const paths = data.map((user: any) => `/@${user.username}/followings`)
 
     return {
         paths,
@@ -46,13 +46,13 @@ export async function getStaticProps({ params }) {
 
     try {
         const { data } = await axios({
-            url: `${process.env.BASE_URL}followers/${user}`,
+            url: `${process.env.BASE_URL}followings/${user}`,
             method: 'GET',
         })
 
         return {
             props: {
-                followers: data,
+                followings: data,
             },
             revalidate: 5,
         }

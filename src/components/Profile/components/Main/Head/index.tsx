@@ -59,7 +59,11 @@ const Head: React.FC<HeadProps> = ({
                                 <ul>
                                     <li className={styles.Link}>
                                         <AiOutlineLink />
-                                        <span>لینک پروفایل</span>
+                                        <Link
+                                            href={`${route.query.profile}/followings`}
+                                        >
+                                            دنبال شوندگان
+                                        </Link>
                                     </li>
                                     {route.query.profile.slice(1) ===
                                         me.username && (

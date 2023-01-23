@@ -50,7 +50,6 @@ export async function getServerSideProps({ req, params }) {
             user: { ...users.data },
             userPosts: { ...userPosts.data },
         }
-        console.log(`user : `, users)
 
         return {
             props: {
