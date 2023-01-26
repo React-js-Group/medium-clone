@@ -75,7 +75,7 @@ const BookMarkItem: React.FC<optionProps> = ({ item }): JSX.Element => {
         <div className={classes.btnBox}>
           <button className={classes.showlist}>مشاهده لیست</button>
 
-          <p className={classes.postNum}>{item.posts.length}</p>
+          <p className={classes.postNum}></p>
         </div>
         <div className={classes.iconBox}>
           <button

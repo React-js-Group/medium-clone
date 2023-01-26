@@ -86,7 +86,6 @@ const Setting: React.FC = (): JSX.Element => {
         setEdit(false)
         handleResetForm()
         setLoading(false)
-        console.log(err)
       }
     },
   })

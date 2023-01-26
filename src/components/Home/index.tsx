@@ -14,6 +14,7 @@ import { useEffect, useState, useLayoutEffect } from 'react'
 import Navbar from 'components/Navbar'
 import { CheckToken } from 'utils/CheckToken'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 interface HomeProps {
   children?: React.ReactNode
@@ -44,8 +45,7 @@ const Home: React.FC<HomeProps> = ({
           <Auth />
         </Modal>
       )}
-      {/* <Navbar  /> */}
-      <Header />
+
       <Page sideBar={null}>
         <FeedList
           posts={posts}

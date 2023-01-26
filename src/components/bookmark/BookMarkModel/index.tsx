@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useMutation, useQueryClient } from 'react-query'
 import { createBookMark } from 'api'
 import { accessToken, toggle } from 'store/fetchers/authSlice'
-import { useCreateBookMark } from 'hooks'
+import { useCreateBookMark } from 'Hoocks'
 import { useEffect } from 'react'
 
 interface optionProps {

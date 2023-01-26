@@ -1,8 +1,8 @@
-@import "../../../sass/variables";
+@import '../../../sass/variables';
 
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   max-width: 1380px;
   margin: 0 auto;
 
