@@ -10,8 +10,6 @@ const FeedList: React.FC<Props> = ({
   hasNextPage,
   fetchNextPage,
 }): JSX.Element => {
-  console.log(posts)
-
   return (
     <div className={classes.Container}>
       {posts?.results?.map((item) => (

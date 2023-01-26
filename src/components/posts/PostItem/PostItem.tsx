@@ -1,4 +1,5 @@
 import { useDeleteBookMark, useDeletePost } from 'Hoocks'
+import Link from 'next/link'
 import { useState } from 'react'
 import { AiFillDelete, AiOutlineEdit } from 'react-icons/ai'
 import { GiCancel } from 'react-icons/gi'
@@ -59,7 +60,9 @@ const PostItem: React.FC<optionProps> = ({ item }): JSX.Element => {
         <div className={classes.titleBox}>{item.title}</div>
 
         <div className={classes.btnBox}>
-          <button className={classes.showlist}>مشاهده پست</button>
+          <Link href={`/Posts/${item.id}`} className={classes.showlist}>
+            مشاهده پست
+          </Link>
 
           <p className={classes.postNum}></p>
         </div>

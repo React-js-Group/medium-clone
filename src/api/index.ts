@@ -32,6 +32,9 @@ export const sendRequest: Requests['ISendRequest'] = async (
 
 // -----------------------------------------------------------------------------------
 
+export const myLoader = ({ src }) => {
+    return `https://medium.pythonanywhere.com`
+}
 export const postRequest = async (
     endPoint: string,
     data: object
@@ -175,5 +178,11 @@ export const deletePost = async ({ id, access }) => {
             Authorization: `Bearer ${access}`,
         },
     })
+    return data
+}
+
+export const fetchSinglePost = async (id) => {
+    console.log(id)
+    const { data } = await axios.get(`post/${id}/`, {})
     return data
 }

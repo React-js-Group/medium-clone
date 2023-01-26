@@ -14,10 +14,10 @@ const BookMarkBox: React.FC = (): JSX.Element => {
   if (error) {
     return <div className={classes.container}>console.error();</div>
   }
-
+  console.log(data)
   return (
     <div className={classes.container}>
-      {data?.map((item) => (
+      {data?.results?.map((item) => (
         <BookMarkItem item={item} key={item.id} />
       ))}
     </div>

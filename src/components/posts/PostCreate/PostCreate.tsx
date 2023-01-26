@@ -13,6 +13,8 @@ import UploadFile from '../uploadFile'
 import { useCreatePost } from 'Hoocks'
 import { useSelector } from 'react-redux'
 import { accessToken } from 'store/fetchers/authSlice'
+import Spinner from 'components/Spinner'
+import { useRouter } from 'next/router'
 
 // **************** proos InterFace ****************
 
@@ -21,9 +23,13 @@ interface props {
 }
 
 const PostCreate: React.FC<props> = ({ editorLoaded }): JSX.Element => {
+  //**************** useRouter ****************
+
+  const router = useRouter()
+
   // **************** useStates ****************
   const [data, setData] = useState('')
-  const { mutate: postCreate, isLoading, error } = useCreatePost()
+  const { mutate: postCreate, isLoading, error, isSuccess } = useCreatePost()
   // *********************************************
   const [images, setImages] = useState([{ img: '' }])
   // **************** ckEditor Config ****************
@@ -39,98 +45,113 @@ const PostCreate: React.FC<props> = ({ editorLoaded }): JSX.Element => {
   // **************** onChange ****************
   const onChange = (data) => {
     setData(data)
-    formik.values.descriotion = data
+    console.log(data)
   }
   interface InitialForm {
     title: string
     tag: string
     seoTitle: string
-    seoDescriotion: string
-    descriotion: string
+    seoDescription: string
   }
   const access = useSelector(accessToken)
   const initialValues: InitialForm = {
     title: '',
     tag: '',
     seoTitle: '',
-    seoDescriotion: '',
-    descriotion: '',
+    seoDescription: '',
   }
+  // **************** formikConfig ****************
   const formik = useFormik({
     initialValues,
     validationSchema: createPostSchema,
     onSubmit: (values) => {
-      const formData = new FormData()
-      formData.append('title', values.title)
-      formData.append('seo_title', values.seoTitle)
-      formData.append('seo_description', values.seoDescriotion)
-      formData.append('tags', values.tag)
-      formData.append('description', values.descriotion)
-      console.log(images)
-      images.map((item) => formData.append('files', item.img))
+      if (data) {
+        const formData = new FormData()
+        formData.append('title', values.title)
+        formData.append('seo_title', values.seoTitle)
+        formData.append('seo_description', values.seoDescription)
+        formData.append('tags', values.tag)
+        formData.append('description', data)
+        console.log(images)
+        images.map((item) => formData.append('files', item.img))
 
-      postCreate({ value: formData, access })
-      console.log(formData)
+        postCreate({ value: formData, access })
+      } else {
+        toast('هر پست باید دارای متن باشد')
+      }
     },
   })
+
+  // **************** handleCheckValidation ****************
   const handleCheckValidation = () => {
     if (formik.errors.title) {
       toast(formik.errors.title)
     }
+
+    console.log(formik.errors)
+  }
+
+  // **************** IsSuccess ****************
+  if (isSuccess) {
+    router.push('/profile/Post/')
   }
 
   return (
     <div className={classes.container}>
-      <form onSubmit={formik.handleSubmit}>
-        <Input
-          type={'text'}
-          label={'تیتر'}
-          name={'title'}
-          onChange={formik.handleChange}
-        />
-        <Input
-          type={'text'}
-          label={'تگ ها'}
-          name={'tag'}
-          onChange={formik.handleChange}
-        />
-        <Input
-          type={'text'}
-          label={'تایتل سئو'}
-          name={'seoTitle'}
-          onChange={formik.handleChange}
-        />
-        <Input
-          type={'text'}
-          label={'توضیحات سئو'}
-          name={'seoDescriotion'}
-          onChange={formik.handleChange}
-        />
-        <div className={classes.editor}>
-          {editorLoaded ? (
-            <CKEditor
-              type=""
-              name={name}
-              editor={ClassicEditor}
-              onChange={(event, editor) => {
-                const data = editor.getData()
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <form onSubmit={formik.handleSubmit}>
+          <Input
+            type={'text'}
+            label={'تیتر'}
+            name={'title'}
+            onChange={formik.handleChange}
+          />
+          <Input
+            type={'text'}
+            label={'تگ ها'}
+            name={'tag'}
+            onChange={formik.handleChange}
+          />
+          <Input
+            type={'text'}
+            label={'تایتل سئو'}
+            name={'seoTitle'}
+            onChange={formik.handleChange}
+          />
+          <Input
+            type={'text'}
+            label={'توضیحات سئو'}
+            name={'seoDescription'}
+            onChange={formik.handleChange}
+          />
+          <div className={classes.editor}>
+            {editorLoaded ? (
+              <CKEditor
+                type=""
+                name={name}
+                editor={ClassicEditor}
+                onChange={(event, editor) => {
+                  const data = editor.getData()
 
-                onChange(data)
-              }}
-            />
-          ) : (
-            <div>Editor loading</div>
-          )}
-        </div>
+                  onChange(data)
+                }}
+              />
+            ) : (
+              <div>Editor loading</div>
+            )}
+          </div>
 
-        <UploadFile images={images} setImages={setImages} />
-        <Button
-          type="submit"
-          onClick={handleCheckValidation}
-          content={'ثبت'}
-          className={classes.subBtn}
-        />
-      </form>
+          <UploadFile images={images} setImages={setImages} />
+          <Button
+            type="submit"
+            onClick={handleCheckValidation}
+            content={'ثبت'}
+            className={classes.subBtn}
+          />
+        </form>
+      )}
     </div>
   )
 }

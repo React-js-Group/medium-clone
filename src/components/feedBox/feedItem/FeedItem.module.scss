@@ -3,13 +3,23 @@
 .feedItem {
   display: flex;
   margin-bottom: 55px;
+  width: 100%;
+  justify-content: space-between;
+  padding: 20px;
 
   @media screen and (max-width: $sm) {
     flex-flow: column;
     height: auto;
     align-items: center;
-  }
+    flex-direction: column-reverse;
 
+    .feedItemImg {
+      width: 100%;
+    }
+  }
+  .feedItemImg {
+    width: 100%;
+  }
   .footer {
     display: flex;
     justify-content: space-between;
@@ -20,11 +30,18 @@
     width: 100%;
   }
 
-  .footerRight {
+  .footer {
     display: flex;
     gap: 20px;
     color: rgb(117, 117, 117);
     font-weight: 100;
+    .footerRight {
+      display: flex;
+      gap: 20px;
+      color: rgb(117, 117, 117);
+      font-weight: 100;
+    }
+
     .label {
       background-color: rgb(242, 242, 242);
       color: rgb(117, 117, 117);

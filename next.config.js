@@ -21,6 +21,18 @@ const nextConfig = {
   },
   env: {
     BASE_URL: process.env.BASE_URL,
+    IMG_URL: process.env.IMG_URL,
+  },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'medium.pythonanywhere.com',
+        port: '',
+        pathname: '',
+      },
+    ],
   },
 }
 const removeImports = require('next-remove-imports')()

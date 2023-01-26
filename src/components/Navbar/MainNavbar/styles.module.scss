@@ -8,6 +8,12 @@
   display: flex;
   background-color: $primary;
   transition: 0.4s;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  transition-property: background-color;
+  transition-duration: 1s;
+  transition-delay: 0;
 
   @media screen and (max-width: 700px) {
     flex-flow: column !important;
@@ -75,6 +81,13 @@
   display: flex;
   background-color: $white;
   transition: 0.4s;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  transition-property: background-color;
+  transition-duration: 2s;
+  transition-delay: 0.6;
+
   .logo {
     @media screen and (max-width: 700px) {
       justify-content: center;

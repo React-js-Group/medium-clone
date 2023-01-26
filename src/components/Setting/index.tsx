@@ -15,7 +15,6 @@ import Loading from '../Spinner'
 interface IInitialValues {
     name: string
     family: string
-    username: string
     about: string
 }
 
@@ -34,7 +33,6 @@ const Setting: React.FC = (): JSX.Element => {
     const initalValues: IInitialValues = {
         name: '',
         family: '',
-        username: '',
         about: '',
     }
 
@@ -49,7 +47,7 @@ const Setting: React.FC = (): JSX.Element => {
         onReset: () => {
             handleResetForm()
         },
-        onSubmit: async ({ name, family, username, about }) => {
+        onSubmit: async ({ name, family, about }) => {
             setLoading(true)
             const arraySkills = []
             if (skills.length > 0) {
@@ -60,23 +58,21 @@ const Setting: React.FC = (): JSX.Element => {
                 })
             }
 
-            console.log(name, family, username, about)
-
             const formData = new FormData()
 
             formData.append('profile', image ? image : '')
             formData.append('skills', arraySkills.toString().trim())
             formData.append('name', name)
             formData.append('family', family)
-            formData.append('username', username)
             formData.append('about', about)
 
             try {
-                const { data } = await putRequest(
+                const req = await putRequest(
                     `user-edit/`,
                     formData,
                     auth.access
                 )
+                const { data } = req
                 setEdit(false)
                 toast('اطلاعات پروفایل با موفقیت به روزرسانی شد')
                 handleResetForm()
@@ -85,25 +81,16 @@ const Setting: React.FC = (): JSX.Element => {
                 delete userData.skills
                 delete userData.name
                 delete userData.family
-                delete userData.username
                 delete userData.about
                 const merged = { ...userData, ...data }
                 dispatch(setProfile(merged))
                 setLoading(false)
             } catch (err) {
-                if (err.response.status === 400) {
-                    if (err.response.data.username) {
-                        toast(
-                            'شما نمی توانید از این نام کاربری استفاده کنید ، لطفا نام کاربری دیگری را انتخاب کنید'
-                        )
-                    }
-                    setLoading(false)
-                } else {
-                    toast('مشکلی پیش آمده است')
-                    handleResetForm()
-                    setLoading(false)
-                    setEdit(false)
-                }
+                toast('مشکلی پیش آمده است')
+                setEdit(false)
+                handleResetForm()
+                setLoading(false)
+                console.log(err)
             }
         },
     })

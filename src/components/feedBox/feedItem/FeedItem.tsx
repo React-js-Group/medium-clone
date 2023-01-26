@@ -13,18 +13,30 @@ interface FeedItemProps {
 }
 
 const FeedItem: React.FC<FeedItemProps> = ({ item }): JSX.Element => {
+  const tags = item.tags.split(',')
+
+  const myLoader = ({ src }) => {
+    return `https://medium.pythonanywhere.com${src}`
+  }
+
   return (
     <div className={classes.feedItem}>
       <div className={classes.feedDes}>
-        <h2>{item.title}</h2>
-        <Link href={`Posts/${item.title}`}>
-          <h3>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</h3>
+        <Link href={`Posts/${item.id}`}>
+          <h2>{item.title}</h2>
         </Link>
+        <h3>{item.description}</h3>
+
+        <div className={classes.footer}>
+          {tags.map(
+            (item, i) => i < 2 && <div className={classes.label}>{item}</div>
+          )}
+        </div>
+
         <div className={classes.footer}>
           <div className={classes.footerRight}>
             <div className={classes.date}>اسفند 1401</div>
             <div className={classes.readTime}>7 دقیقه</div>
-            <div className={classes.label}>سلامتی</div>
           </div>
           <div className={classes.footerLeft}>
             {/* <img src={Image} alt={'bookMark'} className={classes.bookmarkImg} /> */}
@@ -32,7 +44,14 @@ const FeedItem: React.FC<FeedItemProps> = ({ item }): JSX.Element => {
         </div>
       </div>
       <div className={classes.Image}>
-        {/* <Image src={Image} alt={"post_title"} /> */}
+        <Image
+          src={`${item.files.file} `}
+          alt={'post_title'}
+          loader={myLoader}
+          width={300}
+          height={300}
+          className={classes.feedItemImg}
+        />
       </div>
     </div>
   )
