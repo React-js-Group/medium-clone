@@ -1,0 +1,146 @@
+.Head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    & div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        & img {
+            border-radius: 100px;
+
+            @media screen and (min-width: $md) {
+                display: none;
+            }
+        }
+    }
+
+    & svg {
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}
+
+.Options {
+    position: absolute;
+    left: -70px;
+    top: 60px;
+    z-index: 4;
+    background-color: $white;
+    width: 10rem;
+    border-radius: 8px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid $secondary-500;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        right: 45%;
+        position: absolute;
+        top: -10px;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 10px solid $secondary-400;
+        @media screen and (max-width: $md) {
+            right: 90%;
+        }
+    }
+
+    & ul {
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+    }
+
+    & ul li {
+        color: $dark-500;
+        cursor: pointer;
+        width: 100%;
+
+        @media screen and (min-width: 900px) {
+            &:last-child {
+                display: none;
+            }
+        }
+    }
+
+    @media screen and (max-width: $md) {
+        left: 0;
+    }
+}
+
+.profile {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100px;
+}
+
+.avatar {
+    width: 4rem;
+    height: 4rem;
+    background-color: $primary;
+
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+
+    @media screen and (min-width: 900px) {
+        display: none !important;
+    }
+}
+
+.follow {
+    & button {
+        padding: 8px;
+        border-radius: 8px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+    }
+}
+
+.followers {
+    color: $secondary-700;
+    padding: 8px;
+    & span:last-child {
+        padding: 8px;
+    }
+
+    // @media screen and (min-width: 900px) {
+    //   display: none;
+    // }
+}
+
+.about {
+    color: $secondary-700;
+    padding-bottom: 8px;
+    font-size: 14px;
+
+    @media screen and (min-width: 900px) {
+        display: none;
+    }
+}
+
+.skills {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    & li {
+        background-color: $secondary-500;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    @media screen and (min-width: 900px) {
+        display: none;
+    }
+}
