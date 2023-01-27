@@ -29,7 +29,7 @@ const Sidebar: FC<SidebarProps> = ({ profile }): JSX.Element => {
                     <Avatar char={user.username.slice(0, 1)} />
                 )}
                 <p>{user?.username}</p>
-                {route.query.profile.slice(1) === me.username && (
+                {route.query.profile.slice(1) === me?.username && (
                     <Link href={`${route.query.profile}/setting`}>
                         ویرایش پروفایل
                     </Link>

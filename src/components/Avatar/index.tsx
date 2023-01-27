@@ -10,7 +10,7 @@ interface AvatarProps {
 const Avatar: React.FC<AvatarProps> = ({ char, size }) => {
     return (
         <div className={size === 'sm' ? styles.smAvatar : styles.avatar}>
-            {char.toUpperCase()}
+            {char?.toUpperCase()}
         </div>
     )
 }

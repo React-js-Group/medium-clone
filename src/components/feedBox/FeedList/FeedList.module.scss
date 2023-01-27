@@ -1,19 +1,19 @@
 .Container {
-  display: flex;
-  flex-direction: column;
-  flex: 3;
-  justify-content: center;
-  align-items: center;
-  overflow: scroll;
-  height: 100vh;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+    height: 100vh;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 .container::-webkit-scrollbar {
-  width: 0; /* Remove scrollbar space */
-  background: transparent; /* Optional: just make scrollbar invisible */
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
 }
 
 .container::-webkit-scrollbar-thumb {
-  background: transparent; /* Optional: just make scrollbar invisible */
+    background: transparent; /* Optional: just make scrollbar invisible */
 }
