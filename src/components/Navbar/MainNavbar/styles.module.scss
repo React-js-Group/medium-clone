@@ -85,11 +85,7 @@
     width: 100%;
     z-index: 100;
     transition-property: background-color;
-<<<<<<< HEAD
     transition-duration: 1s;
-=======
-    transition-duration: 2s;
->>>>>>> 9266fe6b2d5fe258776b04683296f22ee9e88321
     transition-delay: 0.6;
 
     .logo {
@@ -119,20 +115,11 @@
         }
     }
     .navbar {
-<<<<<<< HEAD
         flex: 1;
-=======
->>>>>>> 9266fe6b2d5fe258776b04683296f22ee9e88321
         @media screen and (max-width: 700px) {
             width: 100%;
             justify-content: center;
         }
-<<<<<<< HEAD
-        display: flex;
-=======
-        flex-grow: 1;
-        flex: 1;
->>>>>>> 9266fe6b2d5fe258776b04683296f22ee9e88321
         ul {
             width: 80%;
             display: flex;
