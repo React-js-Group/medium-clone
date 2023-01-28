@@ -119,19 +119,26 @@ const Setting: React.FC = (): JSX.Element => {
         <>
             <div className={styles.container}>
                 <h2>تنظیمات</h2>
-                <Info user={user} onEdit={(value: boolean) => setEdit(value)} />
-                <Form
-                    edit={edit}
-                    formik={formik}
-                    src={src}
-                    setSrc={handleSetSrc}
-                    setImage={handleSetImage}
-                    onSkills={handleSetSkills}
-                    skills={skills}
-                    onDelete={handleDeleteSkill}
-                    onReset={handleResetForm}
-                    loading={loading}
-                />
+                {user && (
+                    <>
+                        <Info
+                            user={user}
+                            onEdit={(value: boolean) => setEdit(value)}
+                        />
+                        <Form
+                            edit={edit}
+                            formik={formik}
+                            src={src}
+                            setSrc={handleSetSrc}
+                            setImage={handleSetImage}
+                            onSkills={handleSetSkills}
+                            skills={skills}
+                            onDelete={handleDeleteSkill}
+                            onReset={handleResetForm}
+                            loading={loading}
+                        />
+                    </>
+                )}
             </div>
         </>
     )

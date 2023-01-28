@@ -25,31 +25,40 @@ const Card: React.FC<CardProps> = ({
 }): JSX.Element => {
     return (
         <div className={styles.container}>
-            <div className={styles.writer}>
-                {user.profile ? (
+            <div>
+                <div className={styles.writer}>
+                    {user.profile ? (
+                        <img
+                            aria-label="profile"
+                            alt="profile"
+                            src={process.env.BASE_URL + user.profile}
+                        />
+                    ) : (
+                        <Avatar char={user.name?.slice(0, 1)} size="sm" />
+                    )}
+                    <span>{user.name ? user.name : user.username}</span>
+                </div>
+                <div>
+                    <h3 className={styles.title}>{title}</h3>
+                    <p className={styles.description}>
+                        {description?.slice(0, 80)}...
+                    </p>
+                    <div className={styles.tags}>
+                        {tags?.split(',').map((tag, i) => (
+                            <span key={i}>#{tag}</span>
+                        ))}
+                    </div>
+                    <span className={styles.created}>{created}</span>
+                </div>
+            </div>
+            <div className={styles.left}>
+                {file && (
                     <img
-                        alt="profile"
-                        src={process.env.BASE_URL + user.profile}
+                        src={process.env.BASE_URL + file}
+                        className={styles.files}
                     />
-                ) : (
-                    <Avatar char={user.name?.slice(0, 1)} size="sm" />
                 )}
-                <span>{user.name ? user.name : user.username}</span>
             </div>
-            {file && (
-                <img
-                    src={process.env.BASE_URL + file}
-                    className={styles.files}
-                />
-            )}
-            <h3 className={styles.title}>{title}</h3>
-            <p className={styles.description}>{description?.slice(0, 80)}...</p>
-            <div className={styles.tags}>
-                {tags?.split(',').map((tag, i) => (
-                    <span key={i}>#{tag}</span>
-                ))}
-            </div>
-            <span className={styles.created}>{created}</span>
         </div>
     )
 }

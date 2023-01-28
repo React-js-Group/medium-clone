@@ -26,7 +26,7 @@ const Head: React.FC<HeadProps> = ({
     profile,
 }): JSX.Element => {
     const [options, setOptions] = useState<boolean>(false)
-
+    const token = useSelector((state: any) => state.auth.access)
     const { user, userPosts } = profile
     const me = useSelector((state: any) => state.user.profile)
 
@@ -66,7 +66,7 @@ const Head: React.FC<HeadProps> = ({
                                         </Link>
                                     </li>
                                     {route.query.profile.slice(1) ===
-                                        me.username && (
+                                        me?.username && (
                                         <div className={styles.Links}>
                                             <li className={styles.Link}>
                                                 <IoSettingsOutline />
@@ -90,7 +90,7 @@ const Head: React.FC<HeadProps> = ({
                             </div>
                         )}
                     </div>
-                    {isFollow !== null && (
+                    {isFollow !== null && token && (
                         <div className={styles.follow}>
                             <button
                                 type="button"
