@@ -10,6 +10,7 @@ import styles from './styles.module.scss'
 import { useSelector } from 'react-redux'
 import { FaPlus } from 'react-icons/fa'
 import { IoSettingsOutline } from 'react-icons/io5'
+import FollowBTN from 'components/FollowBTN'
 interface HeadProps {
     isFollow: any
     setFollow: () => void
@@ -91,34 +92,11 @@ const Head: React.FC<HeadProps> = ({
                         )}
                     </div>
                     {isFollow !== null && token && (
-                        <div className={styles.follow}>
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setFollow()
-                                    setFollowers()
-                                }}
-                                style={
-                                    isFollow
-                                        ? {
-                                              backgroundColor: '#fff',
-                                              color: '#0081c9 ',
-                                              border: '1px solid #0081c9',
-                                          }
-                                        : {
-                                              backgroundColor: '#0081c9',
-                                              color: '#fff',
-                                          }
-                                }
-                            >
-                                {isFollow ? 'دنبال نکن' : 'دنبال کن'}
-                                {isFollow ? (
-                                    <AiOutlineMinus />
-                                ) : (
-                                    <AiOutlinePlus />
-                                )}
-                            </button>
-                        </div>
+                        <FollowBTN
+                            setFollow={setFollow}
+                            setFollowers={setFollowers}
+                            isFollow={isFollow}
+                        />
                     )}
                     <Link
                         href={`@${user.username}/followers`}
