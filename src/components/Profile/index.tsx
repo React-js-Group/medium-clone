@@ -14,7 +14,7 @@ import Sidebar from './components/Sidebar'
 import styles from './components/Sidebar/styles.module.scss'
 
 interface ProfileProps {
-    profile: any
+    profile?: any
 }
 
 const Profile: FC<ProfileProps> = ({ profile }): JSX.Element => {
