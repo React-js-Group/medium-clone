@@ -4,11 +4,11 @@ import BookMarkMenu from '../BookMarkMenu/BookMarkMenu'
 import classes from './PostBody.module.scss'
 
 interface optionProps {
-  children: any
+    children?: any
 }
 
 const PostBody: React.FC<optionProps> = ({ children }): JSX.Element => {
-  return <div className={classes.container}>{children}</div>
+    return <div className={classes.container}>{children}</div>
 }
 
 export default PostBody

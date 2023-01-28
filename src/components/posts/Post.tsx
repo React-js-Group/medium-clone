@@ -4,7 +4,8 @@ import PostBody from './PostBody/PostBody'
 const Post: React.FC = (): JSX.Element => {
     return (
         <div className={classes.container}>
-            <PostBody>{}</PostBody>
+            {/* <PostBody>{}</PostBody> */}
+            <PostBody />
         </div>
     )
 }

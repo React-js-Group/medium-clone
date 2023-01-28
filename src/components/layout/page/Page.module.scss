@@ -1,14 +1,14 @@
 @import '../../../sass/variables';
 
 .container {
-  display: flex;
-  flex-direction: row-reverse;
-  max-width: 1380px;
-  margin: 0 auto;
+    display: flex;
+    flex-direction: row-reverse;
+    max-width: 1380px;
+    margin: 0 auto;
 
-  @media screen and (max-width: $sm) {
-    flex-flow: column;
-    height: auto;
-    align-items: center;
-  }
+    @media screen and (max-width: $sm) {
+        flex-flow: column;
+        height: auto;
+        align-items: center;
+    }
 }

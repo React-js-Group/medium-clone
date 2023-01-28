@@ -3,6 +3,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {
     BsBookmarks,
+<<<<<<< HEAD
+=======
+    BsFilePostFill,
+>>>>>>> 9266fe6b2d5fe258776b04683296f22ee9e88321
     BsReverseLayoutTextWindowReverse,
     BsSearch,
 } from 'react-icons/bs'
@@ -72,7 +76,13 @@ const UserNavbar: React.FC = (): JSX.Element => {
                             src={process.env.BASE_URL + user.profile}
                         />
                     ) : (
+<<<<<<< HEAD
                         <Avatar char={user.username.slice(0, 1)} size="sm" />
+=======
+                        <div className={styles.avatar}>
+                            {user.username.slice(0, 1).toUpperCase()}
+                        </div>
+>>>>>>> 9266fe6b2d5fe258776b04683296f22ee9e88321
                     )}
                     <IoIosArrowDown />
                     {displayProfile && (
@@ -86,8 +96,22 @@ const UserNavbar: React.FC = (): JSX.Element => {
                                 </li>
                                 <li>
                                     <BsBookmarks />
+<<<<<<< HEAD
                                     <span>لیست</span>
                                 </li>
+=======
+                                    <Link href={`bookmark`}>
+                                        <span>لیست</span>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <BsFilePostFill />
+                                    <Link href={`/profile/Post/`}>
+                                        <span>پست ها</span>
+                                    </Link>
+                                </li>
+
+>>>>>>> 9266fe6b2d5fe258776b04683296f22ee9e88321
                                 <li>
                                     <BsReverseLayoutTextWindowReverse />
                                     <span>استوری</span>
