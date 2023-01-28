@@ -82,23 +82,20 @@ const UserNavbar: React.FC = (): JSX.Element => {
                         <div className={styles.ProfileOptions}>
                             <ul>
                                 <li>
-                                    <Link href={`@${user.username}`}>
+                                    <Link href={`/@${user.username}`}>
                                         <AiOutlineUser />
                                         <span>پروفایل</span>
                                     </Link>
                                 </li>
                                 <li>
                                     <BsBookmarks />
-                                    <span>لیست</span>
-                                </li>
-                                <li>
                                     <Link href={`bookmark`}>
                                         <span>لیست</span>
                                     </Link>
                                 </li>
                                 <li>
                                     <BsFilePostFill />
-                                    <Link href={`/profile/Post/`}>
+                                    <Link href={`/Posts`}>
                                         <span>پست ها</span>
                                     </Link>
                                 </li>
@@ -113,7 +110,7 @@ const UserNavbar: React.FC = (): JSX.Element => {
                             </ul>
                             <ul>
                                 <li>
-                                    <Link href={`@${user.username}/setting`}>
+                                    <Link href={`/@${user?.username}/setting`}>
                                         تنظیمات
                                     </Link>
                                 </li>

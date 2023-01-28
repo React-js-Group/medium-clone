@@ -79,7 +79,7 @@ const Head: React.FC<HeadProps> = ({
                                             <li className={styles.Link}>
                                                 <FaPlus />
                                                 <Link
-                                                    href={`${route.query.profile}/new-post`}
+                                                    href={`${route.query.profile}/post/create`}
                                                 >
                                                     پست جدید
                                                 </Link>

@@ -141,6 +141,7 @@
 
             &::-webkit-file-upload-button {
                 height: 2rem;
+                cursor: pointer;
             }
 
             @media screen and (max-width: 600px) {
@@ -160,6 +161,10 @@
             padding: 8px;
             border-radius: 8px;
             font-size: 12px;
+
+            :hover {
+                cursor: pointer;
+            }
         }
     }
 

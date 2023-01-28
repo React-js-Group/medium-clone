@@ -1,10 +1,9 @@
 import Head from 'next/head'
 
 import Home from 'components/Home'
-import { useQuery, QueryClient, dehydrate, useInfiniteQuery } from 'react-query'
+import { useInfiniteQuery } from 'react-query'
 import { fetchPosts } from 'api'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { useState } from 'react'
 import Loading from 'components/Loading'
 
 interface optionprops {
