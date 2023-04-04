@@ -49,7 +49,7 @@ const BookMarkModel: React.FC<optionProps> = ({ handelClick }): JSX.Element => {
     useEffect(() => {
         if (isSuccess) {
             toast('بوک مارک با موفقیت اضافه شد')
-            dispatch(toggle())
+            handelClick()
         }
     }, [isSuccess])
 

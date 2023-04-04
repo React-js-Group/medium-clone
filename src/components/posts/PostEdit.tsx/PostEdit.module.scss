@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex: 4;
+  flex-direction: column;
+  width: 100%;
+  padding: 30px;
+}
+.editor {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.subBtn {
+  margin-right: 20px;
+  border: none;
+  background: #084cdf;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  margin-top: 40px;
+}

@@ -1,6 +1,7 @@
 .container {
-  display: flex;
-  flex: 4;
-  flex-direction: column;
-  width: 100%;
+    display: flex;
+    flex: 4;
+    flex-direction: column;
+    width: 100%;
+    grid-area: feedList;
 }

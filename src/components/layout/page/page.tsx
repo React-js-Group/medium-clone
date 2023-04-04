@@ -14,6 +14,7 @@ import { accessToken } from 'store/fetchers/authSlice'
 import { useSelector } from 'react-redux'
 import { access } from 'fs/promises'
 import { CheckToken } from 'utils/CheckToken'
+import Footer from 'components/Home/Footer'
 
 const Page: React.FC<OptionsProps> = ({ children, sideBar }): JSX.Element => {
     const { pathname } = useRouter()
@@ -44,6 +45,7 @@ const Page: React.FC<OptionsProps> = ({ children, sideBar }): JSX.Element => {
             <div className={classes.container}>
                 <SideBar sideBar={sideBar} />
                 {children}
+                <Footer/>
             </div>
         </>
     )

@@ -3,13 +3,21 @@
 .footer {
   width: 100%;
   height: auto;
+      @media screen and (max-width: $sm) {
+   display: none;
+    
+    }
 }
 .container {
   display: flex;
   flex-direction: column;
-  position: sticky;
-  top: 75px;
+
+ 
   padding: 10px;
+  position: fixed;
+  bottom: 0px;
+ background-color: white;
+ width: 100%;
 }
 .buttonDiv {
   padding: 10px 0 30px 30px;

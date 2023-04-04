@@ -28,7 +28,7 @@ const UserNavbar: React.FC = (): JSX.Element => {
 
     return (
         <nav className={styles.Nav}>
-            <ul>
+            <ul className={styles.serchBar}>
                 <li>
                     <Link href="/">
                         <svg
@@ -82,7 +82,7 @@ const UserNavbar: React.FC = (): JSX.Element => {
                         <div className={styles.ProfileOptions}>
                             <ul>
                                 <li>
-                                    <Link href={`@${user.username}`}>
+                                    <Link href={`/@${user.username}`}>
                                         <AiOutlineUser />
                                         <span>پروفایل</span>
                                     </Link>
@@ -98,7 +98,7 @@ const UserNavbar: React.FC = (): JSX.Element => {
                                 </li>
                                 <li>
                                     <BsFilePostFill />
-                                    <Link href={`/profile/Post/`}>
+                                    <Link href={`/@${user.username}/Post/`}>
                                         <span>پست ها</span>
                                     </Link>
                                 </li>
@@ -113,7 +113,7 @@ const UserNavbar: React.FC = (): JSX.Element => {
                             </ul>
                             <ul>
                                 <li>
-                                    <Link href={`@${user.username}/setting`}>
+                                    <Link href={`/@${user?.username}/setting`}>
                                         تنظیمات
                                     </Link>
                                 </li>

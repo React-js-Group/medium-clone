@@ -1,68 +1,139 @@
 @import '../../../sass/variables';
 
 .feedItem {
-  display: flex;
-  margin-bottom: 55px;
-  width: 100%;
-  justify-content: space-between;
-  padding: 20px;
-
-  @media screen and (max-width: $sm) {
-    flex-flow: column;
-    height: auto;
-    align-items: center;
-    flex-direction: column-reverse;
-
-    .feedItemImg {
-      width: 100%;
-    }
-  }
-  .feedItemImg {
-    width: 100%;
-  }
-  .footer {
     display: flex;
+    margin-bottom: 55px;
+    width: 100%;
     justify-content: space-between;
-    margin: 0px 10px;
-  }
-  .bookmarkImg {
-    color: rgb(117, 117, 117);
+    padding: 20px;
+    flex-direction: column;
+
+    @media screen and (max-width: $sm) {
+        flex-flow: column;
+        height: auto;
+        align-items: center;
+        flex-direction: column;
+    }
+    .feedItemImg {
+        width: 100%;
+    }
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        margin: 0px 10px;
+    }
+    .bookmarkImg {
+        color: rgb(117, 117, 117);
+        width: 100%;
+    }
+
+    .footer {
+        display: flex;
+        gap: 20px;
+        color: rgb(117, 117, 117);
+        font-weight: 100;
+        .footerRight {
+            display: flex;
+            gap: 20px;
+            color: rgb(117, 117, 117);
+            font-weight: 100;
+        }
+
+        .label {
+            background-color: rgb(242, 242, 242);
+            color: rgb(117, 117, 117);
+            border-radius: 100px;
+            padding: 2px 8px;
+            line-height: 2;
+            letter-spacing: 0.3px;
+        }
+    }
+
+    h2 {
+        color: rgb(41, 41, 41);
+    }
+    h3 {
+        color: rgb(117, 117, 117);
+        font-weight: 300;
+        margin-bottom: 15px;
+        width: 100%;
+        flex: 2;
+    }
+
+    .feedDes {
+        margin-left: 36px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        .Image {
+            display: flex;
+        }
+
+        .feedDescription {
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .feedTags {
+            display: flex;
+            gap: 10px;
+        }
+        .feedTag {
+            padding: 5px 20px;
+            background: transparent;
+            border: 1px solid #cccccc;
+            color: #aaaaaa;
+            font-family: inherit;
+            border-radius: 3px;
+            margin: 5px 0 5px 10px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        @media screen and (max-width: $sm) {
+            flex-flow: column;
+            height: auto;
+            align-items: center;
+            flex-direction: row;
+
+            .feedItemImg {
+                width: 100%;
+            }
+        }
+    }
+}
+.ProfileInfo {
     width: 100%;
-  }
-
-  .footer {
+    & img {
+        width: 24px;
+        border-radius: 50%;
+    }
+}
+.ProfileInfoBox {
     display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    @media screen and (max-width: $sm) {
+        width: 88%;
+    }
+
+    .profileBox {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+}
+.bookMarkMark {
+    display: flex;
+    position: relative;
+}
+.titleBox {
+    display: flex;
+    justify-content: start;
+    align-items: center;
     gap: 20px;
-    color: rgb(117, 117, 117);
-    font-weight: 100;
-    .footerRight {
-      display: flex;
-      gap: 20px;
-      color: rgb(117, 117, 117);
-      font-weight: 100;
-    }
-
-    .label {
-      background-color: rgb(242, 242, 242);
-      color: rgb(117, 117, 117);
-      border-radius: 100px;
-      padding: 2px 8px;
-      line-height: 2;
-      letter-spacing: 0.3px;
-    }
-  }
-
-  h2 {
-    color: rgb(41, 41, 41);
-    margin-bottom: 5px;
-  }
-  h3 {
-    color: rgb(117, 117, 117);
-    font-weight: 300;
-    margin-bottom: 15px;
-  }
-
-  .feedDes {
-    margin-left: 36px;
-  }
 }

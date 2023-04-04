@@ -4,10 +4,12 @@
     flex: 3;
     justify-content: center;
     align-items: center;
-    overflow: scroll;
-    height: 100vh;
+    margin-bottom: 200px;
+    width: 100%;
+
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+    grid-area: feedList;
 }
 .container::-webkit-scrollbar {
     width: 0; /* Remove scrollbar space */

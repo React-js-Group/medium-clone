@@ -6,9 +6,9 @@
     align-items: center;
     background-color: $white;
     width: 100%;
-    height: 50px;
+    height: 7vh;
     border-bottom: 1px solid $secondary-500;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 2;
     padding: 2rem 0;
@@ -18,6 +18,19 @@
         height: auto;
         align-items: center;
         background-color: $white;
+           padding:  0;
+    
+    }
+
+
+    & .serchBar{
+
+ @media screen and (max-width: $sm) {
+                width: 100%;
+                justify-content: center;
+                display: none;
+            }
+
     }
 
     & ul {
@@ -31,6 +44,7 @@
             @media screen and (max-width: $sm) {
                 width: 100%;
                 justify-content: center;
+                
             }
         }
         &:first-child input {
@@ -73,6 +87,14 @@
 }
 .second {
     order: 1;
+   @media screen and (max-width: $sm) {
+                width: 100%;
+                justify-content: center;
+                display: none !important;
+                
+            }
+
+
 }
 
 .third {

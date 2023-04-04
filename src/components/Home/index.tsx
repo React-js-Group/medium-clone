@@ -15,6 +15,7 @@ import Navbar from 'components/Navbar'
 import { CheckToken } from 'utils/CheckToken'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { PROFILE_SIDEBAR } from 'components/layout/sideBar/sideBarType'
 
 interface HomeProps {
   children?: React.ReactNode
@@ -46,7 +47,7 @@ const Home: React.FC<HomeProps> = ({
         </Modal>
       )}
 
-      <Page sideBar={null}>
+      <Page sideBar={[PROFILE_SIDEBAR]}>
         <FeedList
           posts={posts}
           hasNextPage={hasNextPage}
@@ -54,7 +55,7 @@ const Home: React.FC<HomeProps> = ({
         />
       </Page>
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

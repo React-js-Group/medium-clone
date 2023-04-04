@@ -3,19 +3,18 @@ import PostHeader from '../postHeader/postHeader'
 import Markdown from '@ckeditor/ckeditor5-markdown-gfm/src/markdown'
 import 'draft-js/dist/Draft.css'
 import { useEffect, useRef, useState } from 'react'
-import classes from './PostCreate.module.scss'
+import classes from './PostEdit.module.scss'
 import Input from 'components/Input'
 import { useFormik, FormikConfig } from 'formik'
 import { createPostSchema } from 'utils/Validation'
 import { toast } from 'react-toastify'
-import ButtonC from 'components/Button'
+import Button from 'components/Button'
 import UploadFile from '../uploadFile'
 import { useCreatePost } from 'Hoocks'
 import { useSelector } from 'react-redux'
 import { accessToken } from 'store/fetchers/authSlice'
 import Spinner from 'components/Spinner'
 import { useRouter } from 'next/router'
-import { Button, Upload } from 'antd'
 
 // **************** proos InterFace ****************
 
@@ -25,7 +24,7 @@ interface props {
 
 const PostCreate: React.FC<props> = ({ editorLoaded }): JSX.Element => {
     //**************** useRouter ****************
-    const [fileList, setFileList] = useState([])
+
     const router = useRouter()
 
     // **************** useStates ****************
@@ -46,6 +45,7 @@ const PostCreate: React.FC<props> = ({ editorLoaded }): JSX.Element => {
     // **************** onChange ****************
     const onChange = (data) => {
         setData(data)
+        console.log(data)
     }
     interface InitialForm {
         title: string
@@ -72,10 +72,8 @@ const PostCreate: React.FC<props> = ({ editorLoaded }): JSX.Element => {
                 formData.append('seo_description', values.seoDescription)
                 formData.append('tags', values.tag)
                 formData.append('description', data)
-
-                fileList.map((item) =>
-                    formData.append('files', item.originFileObj)
-                )
+                console.log(images)
+                images.map((item) => formData.append('files', item.img))
 
                 postCreate({ value: formData, access })
             } else {
@@ -98,22 +96,6 @@ const PostCreate: React.FC<props> = ({ editorLoaded }): JSX.Element => {
         router.push('/profile/Post/')
     }
 
-    // **************** antUpload ****************
-    const handleChange = (info) => {
-        let newFileList = [...info.fileList]
-
-        // 2. Read from response and show file link
-        newFileList = newFileList.map((file) => {
-            if (file.response) {
-                // Component will show file.url as link
-                file.url = file.response.url
-            }
-            return file
-        })
-
-        setFileList(newFileList)
-    }
-    console.log(fileList)
     return (
         <div className={classes.container}>
             {isLoading ? (
@@ -160,16 +142,9 @@ const PostCreate: React.FC<props> = ({ editorLoaded }): JSX.Element => {
                             <div>Editor loading</div>
                         )}
                     </div>
-                    <Upload.Dragger
-                        multiple
-                        listType="picture"
-                        onChange={handleChange}
-                    >
-                        <Button>UPLOAD</Button>
-                    </Upload.Dragger>
 
-                    {/* <UploadFile images={images} setImages={setImages} /> */}
-                    <ButtonC
+                    <UploadFile images={images} setImages={setImages} />
+                    <Button
                         type="submit"
                         onClick={handleCheckValidation}
                         content={'ثبت'}

@@ -10,7 +10,7 @@ const BookMarkHeader: React.FC = (): JSX.Element => {
 
     const [model, setModel] = useState(false)
     const handelClick = () => {
-        // dispatch(toggle());
+        setModel(!model)
     }
     return (
         <div className={classes.container}>
@@ -18,7 +18,7 @@ const BookMarkHeader: React.FC = (): JSX.Element => {
             <button className={classes.newListBtn} onClick={handelClick}>
                 لیست جدید
             </button>
-            {/* {bookmarkModel && <BookMarkModel handelClick={handelClick} />} */}
+            {model && <BookMarkModel handelClick={handelClick} />}
         </div>
     )
 }

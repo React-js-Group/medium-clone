@@ -1,0 +1,17 @@
+.SideBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    flex-direction: column;
+    position: fixed;
+    gap: 10px;
+    h2 {
+        text-align: center;
+    }
+}
+.profile {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}

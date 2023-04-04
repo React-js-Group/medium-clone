@@ -23,11 +23,10 @@ const Home: React.FC = (): JSX.Element => {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            {/* <Layout> */}
+
             <Page sideBar={[BOOK_MARK_SIDEBAR, PROFILE_SIDEBAR]}>
                 <BookMarkBody />
             </Page>
-            {/* </Layout> */}
         </div>
     )
 }

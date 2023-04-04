@@ -2,7 +2,7 @@ import axios from 'axios'
 
 axios.defaults.baseURL = process.env.BASE_URL
 axios.defaults.headers.post['Content-Type'] = 'application/json'
-
+export const UrlImg = 'https://medium.pythonanywhere.com'
 // -----------------------------------------------------------------------------------
 interface Requests {
     ISendRequest: (
@@ -32,9 +32,6 @@ export const sendRequest: Requests['ISendRequest'] = async (
 
 // -----------------------------------------------------------------------------------
 
-export const myLoader = ({ src }) => {
-    return `https://medium.pythonanywhere.com`
-}
 export const postRequest = async (
     endPoint: string,
     data: object
@@ -158,6 +155,17 @@ export const createPost = async ({ value, access }) => {
 
     return data
 }
+export const updatePost = async ({ id, value, access }) => {
+    const { data } = await axios.put(`post/update/${id}/`, value, {
+        headers: {
+            Authorization: `Bearer ${access}`,
+            'Content-Type': 'multipart/form-data; boundary=X-INSOMNIA-BOUNDARY',
+        },
+    })
+
+    return data
+}
+
 export const fetchUserPost = async ({ pageParam = 1, queryKey }) => {
     console.log(pageParam)
     const { data } = await axios.get(`user-posts/sina/?page=${pageParam}`, {
@@ -165,11 +173,16 @@ export const fetchUserPost = async ({ pageParam = 1, queryKey }) => {
             Authorization: `Bearer ${queryKey[1]}`,
         },
     })
-    const url = new URL(data.next)
-    const nextPage = +url.searchParams.get('page') || 0
-    const page = nextPage && !isNaN(nextPage) ? nextPage - 1 : undefined
+    let nextPage
+    const url = data.next == null ? 0 : new URL(data.next)
 
-    return { ...data, page }
+    if (url != 0) {
+        nextPage = +url.searchParams.get('page')
+    } else {
+        nextPage = data.total_pages + 1
+    }
+
+    return { ...data, nextPage }
 }
 
 export const deletePost = async ({ id, access }) => {
@@ -182,7 +195,52 @@ export const deletePost = async ({ id, access }) => {
 }
 
 export const fetchSinglePost = async (id) => {
-    console.log(id)
-    const { data } = await axios.get(`post/${id}/`, {})
+    const { data } = await axios.get(`post/${id}/`)
+    return data
+}
+export const fetchSinglePostQ = async ({ queryKey }) => {
+    const { data } = await axios.get(`post/${queryKey[1]}/`)
+    return data
+}
+export const addBookMarkPost = async ({ access, BookMarkId, PoostId }) => {
+    const { data } = await axios.post(
+        `/create-bookmarkuser/${BookMarkId}/${PoostId}/`,
+        {},
+        {
+            headers: {
+                Authorization: `Bearer ${access}`,
+            },
+        }
+    )
+    return data
+}
+export const getBookmark = async ({ queryKey }) => {
+    const { data } = await axios.get(`get-bookmark/${queryKey[1]}/`, {
+        headers: {
+            Authorization: `Bearer ${queryKey[2]}`,
+        },
+    })
+
+    return data
+}
+export const checkBookmark = async (bookMarkId, postId, access) => {
+    const { data } = await axios.get(`${bookMarkId}/${postId}/`, {
+        headers: {
+            Authorization: `Bearer ${access}`,
+        },
+    })
+
+    return data
+}
+export const deleteBookMarkPost = async ({ bookMarkId, postId, access }) => {
+    const { data } = await axios.delete(
+        `delete-bookmark-user/${bookMarkId}/${postId}/`,
+        {
+            headers: {
+                Authorization: `Bearer ${access}`,
+            },
+        }
+    )
+
     return data
 }

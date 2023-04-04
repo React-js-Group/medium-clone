@@ -6,36 +6,36 @@ import { toggle } from 'store/fetchers/authSlice'
 import styles from './styles.module.scss'
 
 interface ModalProps {
-  children: React.ReactNode
-  setDisplayForm: any
-  displayForm: boolean
+    children: React.ReactNode
+    setDisplayForm: any
+    displayForm: boolean
 }
 
 const Modal: React.FC<ModalProps> = ({
-  children,
-  setDisplayForm,
-  displayForm,
+    children,
+    setDisplayForm,
+    displayForm,
 }): JSX.Element => {
-  const handleHideModal = (event: React.MouseEvent<HTMLDivElement>) => {
-    ;(event.target as HTMLDivElement).id === 'modal' &&
-      setDisplayForm(!displayForm)
-  }
+    const handleHideModal = (event: React.MouseEvent<HTMLDivElement>) => {
+        ;(event.target as HTMLDivElement).id === 'modal' &&
+            setDisplayForm(!displayForm)
+    }
 
-  return (
-    <div
-      className={styles.modal}
-      id="modal"
-      onClick={(e) => handleHideModal(e)}
-    >
-      <div className={styles.container}>
-        <FaTimes
-          onClick={() => setDisplayForm(!displayForm)}
-          className={styles.times}
-        />
-        {children}
-      </div>
-    </div>
-  )
+    return (
+        <div
+            className={styles.modal}
+            id="modal"
+            onClick={(e) => handleHideModal(e)}
+        >
+            <div className={styles.container}>
+                <FaTimes
+                    onClick={() => setDisplayForm(!displayForm)}
+                    className={styles.times}
+                />
+                {children}
+            </div>
+        </div>
+    )
 }
 
 export default Modal
