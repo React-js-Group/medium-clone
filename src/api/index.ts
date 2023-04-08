@@ -67,7 +67,7 @@ export const putRequest = async (
 //     headers: {
 //       Authorization: `Bearer ${queryKey[1].token}`,
 //     },
-//   })
+//   }
 
 // }
 
