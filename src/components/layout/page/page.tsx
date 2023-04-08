@@ -45,7 +45,7 @@ const Page: React.FC<OptionsProps> = ({ children, sideBar }): JSX.Element => {
             <div className={classes.container}>
                 <SideBar sideBar={sideBar} />
                 {children}
-                <Footer/>
+                <Footer />
             </div>
         </>
     )

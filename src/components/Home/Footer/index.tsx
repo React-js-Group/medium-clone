@@ -5,11 +5,6 @@ const Footer = () => {
     return (
         <div className={styles.footer}>
             <div className={styles.container}>
-                <div>
-                    <h4 style={{ margin: '0' }}>
-                        بیشتر از آنچه برای شما مهم است کشف کنید
-                    </h4>
-                </div>
                 {/* <div className={styles.buttonDiv}>
           <button className={styles.button}>برنامه نویسی</button>
           <button className={styles.button}>علم داده</button>

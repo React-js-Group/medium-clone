@@ -14,6 +14,10 @@ const nextConfig = {
         BASE_URL: process.env.BASE_URL,
         IMG_URL: process.env.IMG_URL,
     },
+    experimental: {
+        outputStandalone: true,
+        outputFileTracingRoot: path.join(__dirname, '../../'),
+    },
 }
 const removeImports = require('next-remove-imports')()
 module.exports = removeImports({})

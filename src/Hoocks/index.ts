@@ -95,16 +95,14 @@ export const useSinglePost = (id) => {
 }
 export const useAddBookMarkPost = () => {
     return useMutation(addBookMarkPost, {
-        onSuccess: () => {},
+        // onSuccess: () => {},
     })
 }
-export const useremoveBookMarkPost = () => {
+export const UseremoveBookMarkPost = () => {
     return useMutation(deleteBookMarkPost, {
-        onSuccess: () => {},
+        // onSuccess: () => {},
     })
 }
 export const useGetbookmark = (id, access) => {
-    return useQuery(['getBooKbookMark', id, access], getBookmark, {
-       
-    })
+    return useQuery(['getBooKbookMark', id, access], getBookmark, {})
 }

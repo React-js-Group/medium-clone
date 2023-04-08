@@ -47,7 +47,7 @@ const Mark: React.FC<optionProps> = ({ item }): JSX.Element => {
         setMark(!mark)
     }
 
-    let postItem = item
+    const postItem = item
 
     return (
         <>
@@ -63,7 +63,13 @@ const Mark: React.FC<optionProps> = ({ item }): JSX.Element => {
                 <div className={styles.Lists}>
                     <ul>
                         {data?.results.map((item, index) => {
-                            return <MarkList item={item} postItem={postItem} />
+                            return (
+                                <MarkList
+                                    item={item}
+                                    postItem={postItem}
+                                    key={item.id}
+                                />
+                            )
                         })}
                     </ul>
                 </div>

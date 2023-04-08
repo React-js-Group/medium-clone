@@ -22,7 +22,7 @@ const FeedItem: React.FC<FeedItemProps> = ({ item }): JSX.Element => {
 
     return (
         <>
-            <div className={classes.feedItem}>
+            <div className={classes.feedItem} key={item.user.profile.id}>
                 <div className={classes.ProfileInfoBox}>
                     <div className={classes.ProfileInfo}>
                         <Link href={`/@${item.user.name}`}>
@@ -56,8 +56,11 @@ const FeedItem: React.FC<FeedItemProps> = ({ item }): JSX.Element => {
                         <div className={classes.feedDescription}>
                             <p>{item.description}</p>
                             <div className={classes.feedTags}>
-                                {tags.map((item) => (
-                                    <div className={classes.feedTag}>
+                                {tags.map((item, index) => (
+                                    <div
+                                        className={classes.feedTag}
+                                        key={index}
+                                    >
                                         {item}
                                     </div>
                                 ))}
