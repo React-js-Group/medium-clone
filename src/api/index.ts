@@ -69,7 +69,6 @@ export const putRequest = async (
 //     },
 //   })
 
-//   return data
 // }
 
 export const getUserPosts = async (endPoint: string, token: string) => {
